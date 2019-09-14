@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.evartem.jobajob.data
 
 import com.zaxxer.hikari.HikariConfig
@@ -13,59 +15,17 @@ import javax.sql.DataSource
 private var dbUrl: String? = null
 
 @Autowired
-lateinit private var dataSource: DataSource
+private lateinit var dataSource: DataSource
 
 @Bean
 @Throws(SQLException::class)
+
 fun dataSource(): DataSource {
-    if (dbUrl?.isEmpty() ?: true) {
-        return HikariDataSource()
+    return if (dbUrl?.isEmpty() != false) {
+        HikariDataSource()
     } else {
         val config = HikariConfig()
         config.jdbcUrl = dbUrl
-        return HikariDataSource(config)
+        HikariDataSource(config)
     }
 }
-
-/*@Configuration
-class DatabaseConfig {
-
-    @Value("\${spring.datasource.url}")
-    private val dbUrl: String? = null
-
-    @Bean
-    fun dataSource(): DataSource {
-        val config = HikariConfig()
-        config.jdbcUrl = dbUrl
-        return HikariDataSource(config)
-    }
-}*/
-
-/*
-@Configuration
-class DatabaseConfig {
-    @Value("\${spring.datasource.url}")
-    private var dbUrl: String? = null
-
-    @Bean
-    @Throws(SQLException::class)
-    fun dataSource(): DataSource {
-
-        if (dbUrl?.isEmpty() ?: true) {
-            return HikariDataSource()
-        } else {
-            val config = HikariConfig()
-            config.jdbcUrl = dbUrl
-            return HikariDataSource(config)
-        }
-    }
-}
-*/
-
-/*
-@RestController
-class HelloController {
-    @GetMapping("/hello")
-    fun hello(name: String) =
-            "Hello again3, $name!"
-}*/

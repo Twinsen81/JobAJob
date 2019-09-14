@@ -25,7 +25,9 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	runtimeOnly("org.hsqldb:hsqldb")
+	//runtimeOnly("org.hsqldb:hsqldb")
+	implementation("org.postgresql:postgresql")
+	implementation("commons-dbcp:commons-dbcp:1.4")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

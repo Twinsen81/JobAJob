@@ -11,10 +11,3 @@ class JobAJobApplication
 fun main(args: Array<String>) {
 	runApplication<JobAJobApplication>(*args)
 }
-
-@RestController
-class HelloController {
-	@GetMapping("/hello")
-	fun hello(name: String) =
-			"Hello again3, $name!"
-}

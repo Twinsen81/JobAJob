@@ -3,6 +3,7 @@ package com.evartem.jobajob.domain
 import javax.persistence.*
 
 @Entity
+@Table(name = "candidateprofile")
 class CandidateProfile(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)

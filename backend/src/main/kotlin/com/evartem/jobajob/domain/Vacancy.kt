@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 @Entity
+@Table(name = "vacancy")
 data class Vacancy(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)

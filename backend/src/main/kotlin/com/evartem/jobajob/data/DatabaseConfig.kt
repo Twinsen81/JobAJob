@@ -1,30 +1,29 @@
 package com.evartem.jobajob.data
 
-import org.apache.commons.dbcp.BasicDataSource
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
-import java.net.URI
-import java.net.URISyntaxException
+import java.sql.SQLException
+import javax.sql.DataSource
 
 
-@Configuration
-class MainConfig {
+@Value("\${spring.datasource.url}")
+private var dbUrl: String? = null
 
-    @Bean
-    @Throws(URISyntaxException::class)
-    fun dataSource(): BasicDataSource {
-        val dbUri = URI(System.getenv("DATABASE_URL"))
+@Autowired
+lateinit private var dataSource: DataSource
 
-        val username = dbUri.getUserInfo().split(":")[0]
-        val password = dbUri.getUserInfo().split(":")[1]
-        val dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require"
-
-        val basicDataSource = BasicDataSource()
-        basicDataSource.setUrl(dbUrl)
-        basicDataSource.setUsername(username)
-        basicDataSource.setPassword(password)
-
-        return basicDataSource
+@Bean
+@Throws(SQLException::class)
+fun dataSource(): DataSource {
+    if (dbUrl?.isEmpty() ?: true) {
+        return HikariDataSource()
+    } else {
+        val config = HikariConfig()
+        config.jdbcUrl = dbUrl
+        return HikariDataSource(config)
     }
 }
 

@@ -11,9 +11,9 @@ class CandidateProfile(
         var lastName: String = "",
         var email: String = "",
         var phone: String = "",
-        var photoUrl: String = "",
-        @OneToMany(cascade = [CascadeType.ALL])
+        var photoUrl: String = ""
+/*        @OneToMany(cascade = [CascadeType.ALL])
         var resumes: List<Resume> = emptyList(),
         @OneToMany(cascade = [CascadeType.ALL])
-        var savedVacancies: List<Vacancy> = emptyList()
+        var savedVacancies: List<Vacancy> = emptyList()*/
 )

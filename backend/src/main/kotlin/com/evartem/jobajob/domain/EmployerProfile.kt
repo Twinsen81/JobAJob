@@ -12,9 +12,9 @@ class EmployerProfile(
         var companyLocation: String = "",
         var companyLogoUrl: String = "",
         var contactName: String = "",
-        var contactEmail: String = "",
-        @OneToMany(cascade = [CascadeType.ALL])
+        var contactEmail: String = ""
+/*        @OneToMany(cascade = [CascadeType.ALL])
         var vacancies: List<Vacancy> = emptyList(),
         @OneToMany(cascade = [CascadeType.ALL])
-        var savedResumes: List<Resume> = emptyList()
+        var savedResumes: List<Resume> = emptyList()*/
 )

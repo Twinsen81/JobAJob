@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 import org.gradle.api.JavaVersion
 
 object Config {
@@ -11,7 +13,6 @@ object Config {
 }
 
 object Versions {
-
     const val kotlin = "1.3.50"
 
     const val androidX = "1.1.0"
@@ -21,7 +22,6 @@ object Versions {
 }
 
 object Libraries {
-
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 
     // AndroidX
@@ -49,4 +49,14 @@ object Libraries {
     const val gradleAndroid = "com.android.tools.build:gradle:3.5.0"
     const val gradleKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val gradleVersions = "com.github.ben-manes:gradle-versions-plugin:0.25.0"
+}
+
+object Modules {
+    const val libraryUtils = ":libraries:utils"
+    const val featureLogin = ":features:login"
+}
+
+object GradleTemplates {
+    const val kotlinLibrary = "template-kotlin-library.gradle"
+    const val androidLibrary = "template-android-library.gradle"
 }

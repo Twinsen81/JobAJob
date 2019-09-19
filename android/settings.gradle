@@ -1,2 +1,4 @@
 include ':app'
+include ':features:login'
+include ':libraries:utils'
 rootProject.name='JobAJob'

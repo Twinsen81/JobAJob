@@ -1,19 +1,13 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply from: 'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/gradle/projectDependencyGraph.gradle'
 
 android {
-    defaultConfig {
-        applicationId Config.appId
-        versionCode Config.versionCode
-        versionName Config.versionName
-    }
+
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -21,7 +15,6 @@ android {
 dependencies {
 
     implementation project(Modules.libraryUtils)
-    implementation project(Modules.featureLogin)
 
     implementation Libraries.kotlin
 

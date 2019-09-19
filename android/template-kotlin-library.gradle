@@ -1,0 +1,11 @@
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation Libraries.kotlin
+
+    implementation Libraries.dagger
+    kapt Libraries.daggerCompiler
+
+    testImplementation Libraries.testJunit
+}

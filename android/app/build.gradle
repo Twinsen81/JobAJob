@@ -21,7 +21,8 @@ android {
 dependencies {
 
     implementation project(Modules.libraryUtils)
-    implementation project(Modules.featureLogin)
+    implementation project(Modules.featureLoginApi)
+    implementation project(Modules.featureLoginImpl)
 
     implementation Libraries.kotlin
 
@@ -32,6 +33,8 @@ dependencies {
     implementation Libraries.lifecycleViewModel
 
     implementation Libraries.dagger
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     kapt Libraries.daggerCompiler
     implementation Libraries.daggerAndroid
     kapt Libraries.daggerAndroidProcessor

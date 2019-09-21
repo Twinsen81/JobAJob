@@ -2,9 +2,16 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'idea'
+
+idea {
+    module {
+        sourceDirs += file('build/generated/source/kapt/main')
+        generatedSourceDirs += file('build/generated/source/kapt/main')
+    }
+}
 
 android {
-
     buildTypes {
         release {
             minifyEnabled true

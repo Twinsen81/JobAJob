@@ -53,7 +53,8 @@ object Libraries {
 
 object Modules {
     const val libraryUtils = ":libraries:utils"
-    const val featureLogin = ":features:login"
+    const val featureLoginImpl = ":features:login:login-impl"
+    const val featureLoginApi = ":features:login:login-api"
 }
 
 object GradleTemplates {

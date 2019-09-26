@@ -17,6 +17,8 @@ object Versions {
     const val androidX = "1.1.0"
     const val lifecycle = "2.1.0"
     const val dagger = "2.24"
+    const val rxJava = "2.2.12"
+    const val rxKotlin = "2.4.0"
 }
 
 object Libraries {
@@ -34,6 +36,10 @@ object Libraries {
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     const val daggerAndroid = "com.google.dagger:dagger-android:${Versions.dagger}"
     const val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+
+    // Rx
+    const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
+    const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
 
     // Misc
     const val timber = "com.jakewharton.timber:timber:4.7.1"

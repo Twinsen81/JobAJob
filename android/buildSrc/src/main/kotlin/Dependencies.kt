@@ -40,6 +40,7 @@ object Libraries {
     // Rx
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
+    const val rxPreferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
 
     // Misc
     const val timber = "com.jakewharton.timber:timber:4.7.1"
@@ -58,8 +59,12 @@ object Libraries {
 object Modules {
     const val libraryModel = ":libraries:model"
     const val libraryUtils = ":libraries:utils"
-    const val featureLoginImpl = ":features:login:login-impl"
+
+    const val libraryPreferencesApi = ":libraries:preferences:preferences-api"
+    const val libraryPreferencesImpl = ":libraries:preferences:preferences-impl"
+
     const val featureLoginApi = ":features:login:login-api"
+    const val featureLoginImpl = ":features:login:login-impl"
 }
 
 object GradleTemplates {

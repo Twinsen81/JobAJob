@@ -1,4 +1,4 @@
-apply from:"$rootDir/${GradleTemplates.androidLibrary}"
+apply from:"$rootDir/buildSrc/${GradleTemplates.androidLibrary}"
 
 dependencies {
     implementation project(Modules.featureLoginApi)

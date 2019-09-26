@@ -1,5 +1,6 @@
-include ':features:login:login-impl', ':preferences-api'
+include ':features:login:login-impl', ':libraries:preferences:preferences-impl'
 include ':features:login:login-api'
+include ':libraries:preferences:preferences-api'
 include ':libraries:model'
 include ':libraries:utils'
 rootProject.name='JobAJob'

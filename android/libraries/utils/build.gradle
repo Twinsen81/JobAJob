@@ -1,1 +1,1 @@
-apply from:"$rootDir/${GradleTemplates.kotlinLibrary}"
+apply from:"$rootDir/buildSrc/${GradleTemplates.kotlinLibrary}"

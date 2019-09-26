@@ -9,7 +9,7 @@ import javax.inject.Singleton
 @Singleton
 interface UtilsComponent : UtilsApi {
     companion object {
-        val instance: UtilsComponent = DaggerUtilsComponent.builder().build()
+        val instance: UtilsComponent = DaggerUtilsComponent.create()
     }
 
     override fun utils(): Utils = Utils()

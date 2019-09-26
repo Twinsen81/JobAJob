@@ -1,6 +1,8 @@
 package com.evartem.jobajob.di
 
 import android.app.Application
+import com.evartem.jobajob.LoginActivity
+import com.evartem.jobajob.MainActivity
 import dagger.Component
 
 @Component(modules = [AppModule::class])

@@ -7,14 +7,14 @@ import com.evartem.jobajob.LoginActivity
 import com.evartem.jobajob.LoginViewModel
 import com.evartem.jobajob.MainActivity
 import com.evartem.jobajob.MainActivityViewModel
-import dagger.Binds
-import dagger.Component
-import dagger.MapKey
-import dagger.Module
+import dagger.*
 import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
+import jobajob.library.utils.di.PerFeature
+import jobajob.library.utils.di.PerScreen
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 import kotlin.reflect.KClass
 
 class ViewModelFactory @Inject constructor(private val providers: Map<
@@ -60,5 +60,4 @@ interface ActivityModule {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     fun bindViewModelLogin(viewModel: LoginViewModel): ViewModel
-
 }

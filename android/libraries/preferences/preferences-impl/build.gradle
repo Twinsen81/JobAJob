@@ -2,5 +2,6 @@ apply from:"$rootDir/buildSrc/${GradleTemplates.androidLibrary}"
 
 dependencies {
     implementation project(Modules.libraryPreferencesApi)
+    implementation Libraries.xPreference
     implementation Libraries.rxPreferences
 }

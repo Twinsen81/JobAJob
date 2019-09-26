@@ -27,11 +27,11 @@ dependencies {
 
     implementation Libraries.kotlin
 
-    implementation Libraries.appCompat
-    implementation Libraries.coreKtx
-    implementation Libraries.constraintLayout
-    implementation Libraries.lifecycle
-    implementation Libraries.lifecycleViewModel
+    implementation Libraries.xAppCompat
+    implementation Libraries.xCoreKtx
+    implementation Libraries.xConstraintLayout
+    implementation Libraries.xLifecycle
+    implementation Libraries.xLifecycleViewModel
 
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler

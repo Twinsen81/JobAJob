@@ -1,4 +1,4 @@
-package jobajob.libraries.preferences
+package jobajob.library.preferences
 
 import org.junit.Test
 

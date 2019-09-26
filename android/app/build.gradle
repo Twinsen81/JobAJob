@@ -20,25 +20,31 @@ android {
 
 dependencies {
 
+    implementation Libraries.kotlin
+
+    // App modules
     implementation project(Modules.libraryUtils)
+
     implementation project(Modules.featureLoginApi)
     implementation project(Modules.featureLoginImpl)
 
-    implementation Libraries.kotlin
+    implementation project(Modules.libraryPreferencesApi)
+    implementation project(Modules.libraryPreferencesImpl)
 
-    implementation Libraries.appCompat
-    implementation Libraries.coreKtx
-    implementation Libraries.constraintLayout
-    implementation Libraries.lifecycle
-    implementation Libraries.lifecycleViewModel
+    // AndroidX
+    implementation Libraries.xAppCompat
+    implementation Libraries.xCoreKtx
+    implementation Libraries.xConstraintLayout
+    implementation Libraries.xLifecycle
+    implementation Libraries.xLifecycleViewModel
 
+    // Dagger
     implementation Libraries.dagger
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     kapt Libraries.daggerCompiler
     implementation Libraries.daggerAndroid
     kapt Libraries.daggerAndroidProcessor
 
+    // Tests
     testImplementation Libraries.testJunit
     androidTestImplementation Libraries.testRunner
     androidTestImplementation Libraries.testEspresso

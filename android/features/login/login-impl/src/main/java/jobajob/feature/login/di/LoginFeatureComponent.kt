@@ -4,14 +4,17 @@ import dagger.Component
 import jobajob.library.utils.di.PerFeature
 import jobajob.library.utils.di.UtilsApi
 
-@Component(modules = [LoginFeatureModule::class], dependencies = [LoginFeatureDependencies::class])
+@Component(
+    modules = [LoginFeatureModule::class],
+    dependencies = [LoginFeatureDependencies::class]
+)
 @PerFeature
 abstract class LoginFeatureComponent : LoginFeatureApi {
 
     companion object {
         private var loginFeatureComponent: LoginFeatureComponent? = null
 
-        fun initAndGet(dependencies: LoginFeatureDependencies): LoginFeatureApi {
+        fun initAndGet(dependencies: LoginFeatureDependencies): LoginFeatureComponent {
             if (loginFeatureComponent == null) {
                 synchronized(LoginFeatureComponent::class) {
                     if (loginFeatureComponent == null) {
@@ -25,8 +28,7 @@ abstract class LoginFeatureComponent : LoginFeatureApi {
         }
 
         fun get(): LoginFeatureComponent {
-            require(loginFeatureComponent != null)
-                { "You must call LoginFeatureComponent.initAndGet prior this call!" }
+            require(loginFeatureComponent != null) { "You must call initAndGet prior this call!" }
             return loginFeatureComponent!!
         }
 

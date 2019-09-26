@@ -25,11 +25,12 @@ object Libraries {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 
     // AndroidX
-    const val appCompat = "androidx.appcompat:appcompat:${Versions.androidX}"
-    const val coreKtx = "androidx.core:core-ktx:${Versions.androidX}"
-    const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
-    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+    const val xAppCompat = "androidx.appcompat:appcompat:${Versions.androidX}"
+    const val xCoreKtx = "androidx.core:core-ktx:${Versions.androidX}"
+    const val xLifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val xLifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val xConstraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+    const val xPreference = "androidx.preference:preference:1.1.0"
 
     // Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"

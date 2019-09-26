@@ -28,7 +28,6 @@ task clean(type: Delete) {
 subprojects {
     afterEvaluate { project ->
         if (project.hasProperty('android')) {
-            apply plugin: "com.github.ben-manes.versions"
 
             android {
                 compileSdkVersion Config.compileSdk

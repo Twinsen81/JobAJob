@@ -1,5 +1,5 @@
-include ':app'
 include ':features:login:login-impl'
 include ':features:login:login-api'
+include ':libraries:model'
 include ':libraries:utils'
 rootProject.name='JobAJob'

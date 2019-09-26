@@ -21,6 +21,7 @@ android {
 
 dependencies {
 
+    implementation project(Modules.libraryModel)
     implementation project(Modules.libraryUtils)
 
     implementation Libraries.kotlin

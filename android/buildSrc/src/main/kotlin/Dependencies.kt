@@ -50,6 +50,7 @@ object Libraries {
 }
 
 object Modules {
+    const val libraryModel = ":libraries:model"
     const val libraryUtils = ":libraries:utils"
     const val featureLoginImpl = ":features:login:login-impl"
     const val featureLoginApi = ":features:login:login-api"

@@ -1,4 +1,4 @@
-include ':features:login:login-impl'
+include ':features:login:login-impl', ':preferences-api'
 include ':features:login:login-api'
 include ':libraries:model'
 include ':libraries:utils'

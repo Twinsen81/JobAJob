@@ -1,0 +1,6 @@
+apply from:"$rootDir/${GradleTemplates.kotlinLibrary}"
+
+dependencies {
+    implementation Libraries.rxJava
+    implementation Libraries.rxKotlin
+}

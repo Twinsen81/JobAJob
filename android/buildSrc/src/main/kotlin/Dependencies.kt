@@ -14,10 +14,8 @@ object Config {
 
 object Versions {
     const val kotlin = "1.3.50"
-
     const val androidX = "1.1.0"
     const val lifecycle = "2.1.0"
-
     const val dagger = "2.24"
 }
 

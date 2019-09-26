@@ -1,6 +1,7 @@
 package jobajob.library.utils.di
 
 import dagger.Component
+import jobajob.library.utils.KeyStoreUtils
 import jobajob.library.utils.Utils
 import javax.inject.Singleton
 
@@ -12,4 +13,5 @@ interface UtilsComponent : UtilsApi {
     }
 
     override fun utils(): Utils = Utils()
+    override fun keyStoreUtils(): KeyStoreUtils = KeyStoreUtils()
 }

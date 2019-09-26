@@ -1,6 +1,7 @@
 package com.evartem.jobajob.di
 
 import android.app.Application
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -10,9 +11,9 @@ class AppModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun provideContext() = application
+    fun provideContext(): Context = application
 
     @Singleton
     @Provides
-    fun provideApplication() = application
+    fun provideApplication(): Application = application
 }

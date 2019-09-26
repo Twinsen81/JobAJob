@@ -7,6 +7,6 @@ import javax.inject.Singleton
 
 @Singleton
 class Utils @Inject constructor() {
-    fun generateUserId() : String =
+    fun generateRandomUserId() : String =
         UUID.randomUUID().toString().replace("-", "")
 }

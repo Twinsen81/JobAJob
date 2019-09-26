@@ -10,5 +10,5 @@ object LoginFeatureModule {
 
     @JvmStatic
     @Provides
-    fun provideSessionInfo(utils: Utils) = SessionInfo("me@me.com", utils.generateUserId())
+    fun provideSessionInfo(utils: Utils) = SessionInfo("me@me.com", utils.generateRandomUserId())
 }

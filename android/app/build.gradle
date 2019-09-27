@@ -44,6 +44,9 @@ dependencies {
     implementation Libraries.daggerAndroid
     kapt Libraries.daggerAndroidProcessor
 
+    // Misc
+    debugImplementation Libraries.leakCanary
+
     // Tests
     testImplementation Libraries.testJunit
     androidTestImplementation Libraries.testRunner

@@ -1,20 +1,18 @@
 package com.evartem.jobajob
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.evartem.jobajob.di.DaggerViewModelFactoryComponent
-import com.evartem.jobajob.di.ViewModelFactory
+import com.evartem.jobajob.di.AppComponent
 import jobajob.feature.login.domain.SessionInfo
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: MainActivityViewModel
 
 
@@ -26,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DaggerViewModelFactoryComponent.create().inject(this)
+        AppComponent.get().inject(this)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java)
         tvSessionInfo.text = viewModel.getStartLabel()

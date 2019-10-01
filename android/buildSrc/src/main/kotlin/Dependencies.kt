@@ -49,7 +49,7 @@ object Libraries {
 
     // Tests
     const val testJunit = "junit:junit:4.12"
-    const val testRunner = "androidx.test:runner:1.2.0"
+    const val testRunner = "androidx.test.ext:junit:1.1.1"
     const val testEspresso = "androidx.test.espresso:espresso-core:3.2.0"
 
     // Gradle
@@ -62,6 +62,7 @@ object Modules {
     const val libraryModel = ":libraries:model"
     const val libraryUtils = ":libraries:utils"
     const val libraryNavigation = ":libraries:navigation"
+    const val libraryUiComponents = ":libraries:ui-components"
 
     const val libraryPreferencesApi = ":libraries:preferences:preferences-api"
     const val libraryPreferencesImpl = ":libraries:preferences:preferences-impl"

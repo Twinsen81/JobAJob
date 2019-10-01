@@ -24,6 +24,7 @@ dependencies {
 
     // App modules
     implementation project(Modules.libraryUtils)
+    implementation project(Modules.libraryUiComponents)
 
     implementation project(Modules.featureLoginApi)
     implementation project(Modules.featureLoginImpl)

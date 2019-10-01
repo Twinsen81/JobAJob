@@ -1,8 +1,12 @@
-include ':app', ':libraries:navigation', ':features:dashboard', ':features:favorites'
-include ':features:login:login-impl'
-include ':features:login:login-api'
-include ':libraries:preferences:preferences-api'
-include ':libraries:preferences:preferences-impl'
-include ':libraries:model'
-include ':libraries:utils'
+include ':features:login:login-impl',
+        ':features:login:login-api',
+        ':features:dashboard',
+        ':features:favorites'
+include ':libraries:utils',
+        ':libraries:model',
+        ':libraries:navigation',
+        ':libraries:ui-components',
+        ':libraries:preferences:preferences-api',
+        ':libraries:preferences:preferences-impl'
+include ':app'
 rootProject.name='JobAJob'

@@ -1,1 +1,1 @@
-apply from:"$rootDir/buildSrc/${GradleTemplates.androidLibrary}"
+apply from:"$rootDir/${GradleTemplates.androidLibrary}"

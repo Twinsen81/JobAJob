@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'idea'
+apply plugin: 'com.github.ben-manes.versions'
+
+idea {
+    module {
+        sourceDirs += file('build/generated/source/kapt/main')
+        generatedSourceDirs += file('build/generated/source/kapt/main')
+    }
+}
+
+android {
+    buildTypes {
+        release {
+            minifyEnabled true
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(Modules.libraryNavigation)
+
+    implementation Libraries.kotlin
+
+    implementation Libraries.xAppCompat
+    implementation Libraries.xCoreKtx
+    implementation Libraries.xConstraintLayout
+    implementation Libraries.xLifecycle
+    implementation Libraries.xLifecycleViewModel
+
+    implementation Libraries.dagger
+    kapt Libraries.daggerCompiler
+    implementation Libraries.daggerAndroid
+    kapt Libraries.daggerAndroidProcessor
+
+    testImplementation Libraries.testJunit
+    androidTestImplementation Libraries.testRunner
+    androidTestImplementation Libraries.testEspresso
+}

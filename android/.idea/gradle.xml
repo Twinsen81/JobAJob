@@ -11,11 +11,14 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/dashboard" />
+            <option value="$PROJECT_DIR$/features/favorites" />
             <option value="$PROJECT_DIR$/features/login" />
             <option value="$PROJECT_DIR$/features/login/login-api" />
             <option value="$PROJECT_DIR$/features/login/login-impl" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/model" />
+            <option value="$PROJECT_DIR$/libraries/navigation" />
             <option value="$PROJECT_DIR$/libraries/preferences" />
             <option value="$PROJECT_DIR$/libraries/preferences/preferences-api" />
             <option value="$PROJECT_DIR$/libraries/preferences/preferences-impl" />

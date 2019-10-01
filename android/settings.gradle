@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':libraries:navigation', ':features:dashboard', ':features:favorites'
 include ':features:login:login-impl'
 include ':features:login:login-api'
 include ':libraries:preferences:preferences-api'

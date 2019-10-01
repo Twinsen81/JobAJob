@@ -61,15 +61,20 @@ object Libraries {
 object Modules {
     const val libraryModel = ":libraries:model"
     const val libraryUtils = ":libraries:utils"
+    const val libraryNavigation = ":libraries:navigation"
 
     const val libraryPreferencesApi = ":libraries:preferences:preferences-api"
     const val libraryPreferencesImpl = ":libraries:preferences:preferences-impl"
 
     const val featureLoginApi = ":features:login:login-api"
     const val featureLoginImpl = ":features:login:login-impl"
+
+    const val featureDashboard = ":features:dashboard"
+    const val featureFavorites = ":features:favorites"
 }
 
 object GradleTemplates {
     const val kotlinLibrary = "template-kotlin-library.gradle"
     const val androidLibrary = "template-android-library.gradle"
+    const val androidFeature = "template-android-feature.gradle"
 }

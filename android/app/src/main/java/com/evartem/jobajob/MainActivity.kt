@@ -7,6 +7,8 @@ import com.evartem.jobajob.di.AppComponent
 import com.evartem.jobajob.di.FeatureInjector
 import jobajob.feature.dashboard.di.DashboardFeatureApi
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
+import jobajob.feature.favorites.di.FavoritesFeatureComponent
+import jobajon.feature.favorites.di.FavoritesFeatureApi
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -35,7 +37,14 @@ class MainActivity : AppCompatActivity() {
                         (features.dashboardFeatureComponent() as DashboardFeatureApi).getDashboardFragment()
                     )
                     .commit()
-
+            R.id.navigation_favorites ->
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.main_container,
+                        (features.favoritesFeatureComponent() as FavoritesFeatureApi).getFavoritesFragment()
+                    )
+                    .commit()
         }
         return true
     }
@@ -43,7 +52,9 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
 
-        /*if (isFinishing)
-            DashboardFeatureComponent.resetComponent()*/
+        if (isFinishing) {
+            DashboardFeatureComponent.resetComponent()
+            FavoritesFeatureComponent.resetComponent()
+        }
     }
 }

@@ -30,6 +30,9 @@ dependencies {
     implementation project(Modules.featureDashboardApi)
     implementation project(Modules.featureDashboardImpl)
 
+    implementation project(Modules.featureFavoritesApi)
+    implementation project(Modules.featureFavoritesImpl)
+
     implementation project(Modules.libraryPreferencesApi)
     implementation project(Modules.libraryPreferencesImpl)
 

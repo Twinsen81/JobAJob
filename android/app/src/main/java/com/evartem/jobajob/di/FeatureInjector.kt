@@ -3,6 +3,8 @@ package com.evartem.jobajob.di
 import android.app.Application
 import jobajob.feature.dashboard.di.DaggerDashboardFeatureComponent_FeatureDependenciesComponent
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
+import jobajob.feature.favorites.di.DaggerFavoritesFeatureComponent_FeatureDependenciesComponent
+import jobajob.feature.favorites.di.FavoritesFeatureComponent
 import jobajob.feature.login.di.DaggerLoginFeatureComponent_LoginFeatureDependenciesComponent
 import jobajob.feature.login.di.LoginFeatureComponent
 import javax.inject.Inject
@@ -21,6 +23,13 @@ class FeatureInjector @Inject constructor(private val application: Application, 
     fun dashboardFeatureComponent() =
         DashboardFeatureComponent.initAndGet(
             DaggerDashboardFeatureComponent_FeatureDependenciesComponent.builder()
+                .utilsApi(libraryInjector.utils())
+                .build()
+        )
+
+    fun favoritesFeatureComponent() =
+        FavoritesFeatureComponent.initAndGet(
+            DaggerFavoritesFeatureComponent_FeatureDependenciesComponent.builder()
                 .utilsApi(libraryInjector.utils())
                 .build()
         )

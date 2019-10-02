@@ -11,10 +11,14 @@ idea {
 }
 
 dependencies {
-    implementation Libraries.kotlin
 
+    // Dagger
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
 
+    // Misc
+    implementation Libraries.kotlin
+
+    // Tests
     testImplementation Libraries.testJunit
 }

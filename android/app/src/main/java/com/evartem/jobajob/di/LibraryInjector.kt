@@ -9,6 +9,7 @@ import jobajob.library.utils.di.UtilsComponent
 import javax.inject.Inject
 import javax.inject.Singleton
 
+@Singleton
 class LibraryInjector @Inject constructor(private val application: Application) {
 
     fun utils(): UtilsApi = UtilsComponent.instance

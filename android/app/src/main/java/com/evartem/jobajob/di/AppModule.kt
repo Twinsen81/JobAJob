@@ -17,11 +17,11 @@ class AppModule(private val application: Application) {
     @Provides
     fun provideApplication(): Application = application
 
-    @Singleton
+/*    @Singleton
     @Provides
     fun provideLibraries(application: Application) = LibraryInjector(application)
 
     @Singleton
     @Provides
-    fun provideFeatures(application: Application) = FeatureInjector(application)
+    fun provideFeatures(application: Application) = FeatureInjector(application)*/
 }

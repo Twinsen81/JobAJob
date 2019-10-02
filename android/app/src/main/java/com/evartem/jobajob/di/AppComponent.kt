@@ -1,14 +1,12 @@
 package com.evartem.jobajob.di
 
 import android.app.Application
-import com.evartem.jobajob.LoginActivity
 import com.evartem.jobajob.MainActivity
-import com.evartem.jobajob.di.viewmodel.ViewModelModule
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, ViewModelModule::class])
+@Component(modules = [AppModule::class])
 abstract class AppComponent {
 
     companion object {
@@ -26,6 +24,5 @@ abstract class AppComponent {
         }
     }
 
-    abstract fun inject(activity: LoginActivity)
     abstract fun inject(activity: MainActivity)
 }

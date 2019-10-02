@@ -32,8 +32,6 @@ dependencies {
     // Dagger
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
-    implementation Libraries.daggerAndroid
-    kapt Libraries.daggerAndroidProcessor
 
     // Misc
     implementation Libraries.kotlin

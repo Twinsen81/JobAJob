@@ -15,7 +15,7 @@ abstract class DashboardFeatureComponent : DashboardFeatureApi {
     companion object {
         private var featureComponent: DashboardFeatureComponent? = null
 
-        fun initAndGet(dependencies: DashboardFeatureDependencies): DashboardFeatureComponent {
+        fun initAndGet(dependencies: DashboardFeatureDependencies): DashboardFeatureApi {
             if (featureComponent == null) {
                 synchronized(DashboardFeatureComponent::class) {
                     if (featureComponent == null) {
@@ -42,5 +42,5 @@ abstract class DashboardFeatureComponent : DashboardFeatureApi {
     @PerFeature
     interface FeatureDependenciesComponent : DashboardFeatureDependencies
 
-    abstract fun inject(fragment: DashboardFragment)
+    internal abstract fun inject(fragment: DashboardFragment)
 }

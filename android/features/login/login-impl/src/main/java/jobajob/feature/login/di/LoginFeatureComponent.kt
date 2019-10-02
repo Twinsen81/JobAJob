@@ -13,34 +13,34 @@ import jobajob.library.utils.di.UtilsApi
 abstract class LoginFeatureComponent : LoginFeatureApi {
 
     companion object {
-        private var loginFeatureComponent: LoginFeatureComponent? = null
+        private var featureComponent: LoginFeatureComponent? = null
 
-        fun initAndGet(dependencies: LoginFeatureDependencies): LoginFeatureComponent {
-            if (loginFeatureComponent == null) {
+        fun initAndGet(dependencies: LoginFeatureDependencies): LoginFeatureApi {
+            if (featureComponent == null) {
                 synchronized(LoginFeatureComponent::class) {
-                    if (loginFeatureComponent == null) {
-                        loginFeatureComponent = DaggerLoginFeatureComponent.builder()
+                    if (featureComponent == null) {
+                        featureComponent = DaggerLoginFeatureComponent.builder()
                             .loginFeatureDependencies(dependencies)
                             .build()
                     }
                 }
             }
-            return loginFeatureComponent!!
+            return featureComponent!!
         }
 
         fun get(): LoginFeatureComponent {
-            require(loginFeatureComponent != null) { "You must call initAndGet prior this call!" }
-            return loginFeatureComponent!!
+            require(featureComponent != null) { "You must call initAndGet prior this call!" }
+            return featureComponent!!
         }
 
         fun resetComponent() {
-            loginFeatureComponent = null
+            featureComponent = null
         }
     }
 
     @Component(dependencies = [UtilsApi::class])
     @PerFeature
-    interface LoginFeatureDependenciesComponent : LoginFeatureDependencies
+    interface FeatureDependenciesComponent : LoginFeatureDependencies
 
-    abstract fun inject(activity: LoginActivity)
+    internal abstract fun inject(activity: LoginActivity)
 }

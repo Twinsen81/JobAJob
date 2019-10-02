@@ -14,10 +14,12 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 import javax.inject.Inject
 import kotlin.random.Random
 
-class DashboardFragment: Fragment() {
+internal class DashboardFragment: Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: DashboardViewModel
+
+    private var rnd = Random.nextInt()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +34,10 @@ class DashboardFragment: Fragment() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DashboardViewModel::class.java)
 
-        dbTitle.text = "${dbTitle.text}  ${Random.nextInt()}"
+        dbTitle.text = "${dbTitle.text}  $rnd"
+
+        tag
     }
+
+
 }

@@ -6,11 +6,12 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class])
+@Component(modules = [AppModule::class, AppNavigationModule::class])
 abstract class AppComponent {
 
     companion object {
         private lateinit var appComponent: AppComponent
+
         fun init(application: Application) {
             require(!::appComponent.isInitialized) { "AppComponent is already initialized. The init() must be called only once!" }
             appComponent = DaggerAppComponent.builder()

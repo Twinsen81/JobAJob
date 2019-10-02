@@ -12,10 +12,12 @@ import kotlinx.android.synthetic.main.fragment_favorites.*
 import javax.inject.Inject
 import kotlin.random.Random
 
-class FavoritesFragment: Fragment() {
+internal class FavoritesFragment: Fragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: FavoritesViewModel
+
+    private val rnd = Random.nextInt()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +32,6 @@ class FavoritesFragment: Fragment() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
 
-        dbTitle.text = "${dbTitle.text}  ${Random.nextInt()}"
+        dbTitle.text = "${dbTitle.text}  $rnd"
     }
 }

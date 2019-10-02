@@ -36,8 +36,6 @@ object Libraries {
     // Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
-    const val daggerAndroid = "com.google.dagger:dagger-android:${Versions.dagger}"
-    const val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
 
     // Rx
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
@@ -63,7 +61,6 @@ object Libraries {
 object Modules {
     const val libraryModel = ":libraries:model"
     const val libraryUtils = ":libraries:utils"
-    const val libraryNavigation = ":libraries:navigation"
     const val libraryUiComponents = ":libraries:ui-components"
 
     const val libraryPreferencesApi = ":libraries:preferences:preferences-api"

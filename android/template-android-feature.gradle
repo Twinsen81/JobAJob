@@ -22,9 +22,6 @@ android {
 
 dependencies {
 
-    // App modules
-    implementation project(Modules.libraryNavigation)
-
     // AndroidX
     implementation Libraries.xAppCompat
     implementation Libraries.xCoreKtx
@@ -35,8 +32,6 @@ dependencies {
     // Dagger
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
-    implementation Libraries.daggerAndroid
-    kapt Libraries.daggerAndroidProcessor
 
     // Misc
     implementation Libraries.kotlin

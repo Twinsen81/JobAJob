@@ -16,7 +16,7 @@ abstract class FavoritesFeatureComponent : FavoritesFeatureApi {
     companion object {
         private var featureComponent: FavoritesFeatureComponent? = null
 
-        fun initAndGet(dependencies: FavoritesFeatureDependencies): FavoritesFeatureComponent {
+        fun initAndGet(dependencies: FavoritesFeatureDependencies): FavoritesFeatureApi {
             if (featureComponent == null) {
                 synchronized(FavoritesFeatureComponent::class) {
                     if (featureComponent == null) {
@@ -43,5 +43,5 @@ abstract class FavoritesFeatureComponent : FavoritesFeatureApi {
     @PerFeature
     interface FeatureDependenciesComponent : FavoritesFeatureDependencies
 
-    abstract fun inject(fragment: FavoritesFragment)
+    internal abstract fun inject(fragment: FavoritesFragment)
 }

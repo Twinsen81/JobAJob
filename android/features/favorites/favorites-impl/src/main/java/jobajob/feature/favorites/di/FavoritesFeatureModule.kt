@@ -10,9 +10,10 @@ import jobajob.feature.favorites.FavoritesFragment
 import jobajob.feature.favorites.FavoritesViewModel
 import jobajob.library.uicomponents.di.FeatureViewModelFactoryModule
 import jobajob.library.uicomponents.di.ViewModelKey
+import jobajob.library.utils.di.PerFeature
 
 @Module(includes = [FeatureViewModelFactoryModule::class])
-abstract class FavoritesFeatureModule {
+internal abstract class FavoritesFeatureModule {
 
     @[Binds IntoMap ViewModelKey(FavoritesViewModel::class)]
     abstract fun bindViewModel(viewModel: FavoritesViewModel): ViewModel

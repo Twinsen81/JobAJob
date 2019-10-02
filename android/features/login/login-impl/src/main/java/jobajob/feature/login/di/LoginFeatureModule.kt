@@ -1,14 +1,16 @@
 package jobajob.feature.login.di
 
+import androidx.lifecycle.ViewModel
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import jobajob.feature.login.domain.SessionInfo
-import jobajob.library.utils.Utils
+import dagger.multibindings.IntoMap
+import jobajob.feature.login.LoginViewModel
+import jobajob.library.uicomponents.di.FeatureViewModelFactoryModule
+import jobajob.library.uicomponents.di.ViewModelKey
 
-@Module
-object LoginFeatureModule {
+@Module(includes = [FeatureViewModelFactoryModule::class])
+abstract class LoginFeatureModule {
 
-    @JvmStatic
-    @Provides
-    fun provideSessionInfo(utils: Utils) = SessionInfo("me@me.com", utils.generateRandomUserId())
+    @[Binds IntoMap ViewModelKey(LoginViewModel::class)]
+    abstract fun bindLoginViewModel(loginViewModel: LoginViewModel): ViewModel
 }

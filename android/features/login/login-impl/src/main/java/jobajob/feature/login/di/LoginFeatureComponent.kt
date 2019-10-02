@@ -1,6 +1,7 @@
 package jobajob.feature.login.di
 
 import dagger.Component
+import jobajob.feature.login.LoginActivity
 import jobajob.library.utils.di.PerFeature
 import jobajob.library.utils.di.UtilsApi
 
@@ -40,4 +41,6 @@ abstract class LoginFeatureComponent : LoginFeatureApi {
     @Component(dependencies = [UtilsApi::class])
     @PerFeature
     interface LoginFeatureDependenciesComponent : LoginFeatureDependencies
+
+    abstract fun inject(activity: LoginActivity)
 }

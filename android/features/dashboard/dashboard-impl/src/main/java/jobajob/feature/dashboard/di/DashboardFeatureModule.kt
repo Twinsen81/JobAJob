@@ -10,7 +10,6 @@ import jobajob.feature.dashboard.DashboardFragment
 import jobajob.feature.dashboard.DashboardViewModel
 import jobajob.library.uicomponents.di.FeatureViewModelFactoryModule
 import jobajob.library.uicomponents.di.ViewModelKey
-import jobajob.library.utils.di.PerFeature
 
 @Module(includes = [FeatureViewModelFactoryModule::class])
 abstract class DashboardFeatureModule {
@@ -23,6 +22,6 @@ abstract class DashboardFeatureModule {
 
         @Provides
         @JvmStatic
-        fun dashboardFragment(): Fragment = DashboardFragment()
+        fun provideFeatureFragment(): Fragment = DashboardFragment()
     }
 }

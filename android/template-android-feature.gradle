@@ -22,21 +22,28 @@ android {
 
 dependencies {
 
+    // App modules
     implementation project(Modules.libraryNavigation)
 
-    implementation Libraries.kotlin
-
+    // AndroidX
     implementation Libraries.xAppCompat
     implementation Libraries.xCoreKtx
     implementation Libraries.xConstraintLayout
     implementation Libraries.xLifecycle
     implementation Libraries.xLifecycleViewModel
 
+    // Dagger
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
     implementation Libraries.daggerAndroid
     kapt Libraries.daggerAndroidProcessor
 
+    // Misc
+    implementation Libraries.kotlin
+    implementation Libraries.cicerone
+    implementation Libraries.xLifecycleViewModel
+
+    // Tests
     testImplementation Libraries.testJunit
     androidTestImplementation Libraries.testRunner
     androidTestImplementation Libraries.testEspresso

@@ -20,8 +20,6 @@ android {
 
 dependencies {
 
-    implementation Libraries.kotlin
-
     // App modules
     implementation project(Modules.libraryUtils)
     implementation project(Modules.libraryUiComponents)
@@ -50,6 +48,8 @@ dependencies {
     kapt Libraries.daggerAndroidProcessor
 
     // Misc
+    implementation Libraries.kotlin
+    implementation Libraries.cicerone
     debugImplementation Libraries.leakCanary
 
     // Tests

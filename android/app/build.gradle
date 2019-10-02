@@ -29,6 +29,9 @@ dependencies {
     implementation project(Modules.featureLoginApi)
     implementation project(Modules.featureLoginImpl)
 
+    implementation project(Modules.featureDashboardApi)
+    implementation project(Modules.featureDashboardImpl)
+
     implementation project(Modules.libraryPreferencesApi)
     implementation project(Modules.libraryPreferencesImpl)
 
@@ -38,6 +41,7 @@ dependencies {
     implementation Libraries.xConstraintLayout
     implementation Libraries.xLifecycle
     implementation Libraries.xLifecycleViewModel
+    implementation Libraries.xMaterial
 
     // Dagger
     implementation Libraries.dagger

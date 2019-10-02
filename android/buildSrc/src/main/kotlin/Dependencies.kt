@@ -31,6 +31,7 @@ object Libraries {
     const val xLifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val xConstraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val xPreference = "androidx.preference:preference:1.1.0"
+    const val xMaterial = "com.google.android.material:material:1.0.0"
 
     // Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
@@ -70,8 +71,11 @@ object Modules {
     const val featureLoginApi = ":features:login:login-api"
     const val featureLoginImpl = ":features:login:login-impl"
 
-    const val featureDashboard = ":features:dashboard"
-    const val featureFavorites = ":features:favorites"
+    const val featureDashboardApi = ":features:dashboard:dashboard-api"
+    const val featureDashboardImpl = ":features:dashboard:dashboard-impl"
+
+    const val featureFavoritesApi = ":features:favorites:favorites-api"
+    const val featureFavoritesImpl = ":features:favorites:favorites-impl"
 }
 
 object GradleTemplates {

@@ -1,24 +1,19 @@
 package com.evartem.jobajob
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.evartem.jobajob.di.AppComponent
-import jobajob.feature.login.domain.SessionInfo
+import com.evartem.jobajob.di.FeatureInjector
+import jobajob.feature.dashboard.di.DashboardFeatureApi
+import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: MainActivityViewModel
-
-
-    companion object {
-        var session: SessionInfo? = null
-    }
+    @Inject
+    lateinit var features: FeatureInjector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,21 +21,29 @@ class MainActivity : AppCompatActivity() {
 
         AppComponent.get().inject(this)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java)
-        tvSessionInfo.text = viewModel.getStartLabel()
-
-        btnNav2Login.setOnClickListener {
-            startActivity(
-                Intent(this, LoginActivity::class.java)
-            )
-        }
+        bottom_navigation.setOnNavigationItemSelectedListener(this::onBottomNavigationItemSelected)
+        onBottomNavigationItemSelected(bottom_navigation.menu.findItem(R.id.navigation_dashboard))
     }
 
-    override fun onResume() {
-        super.onResume()
+    private fun onBottomNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.navigation_dashboard ->
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.main_container,
+                        (features.dashboardFeatureComponent() as DashboardFeatureApi).getDashboardFragment()
+                    )
+                    .commit()
 
-        session?.also {
-            tvSessionInfo.text = session.toString()
         }
+        return true
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        /*if (isFinishing)
+            DashboardFeatureComponent.resetComponent()*/
     }
 }

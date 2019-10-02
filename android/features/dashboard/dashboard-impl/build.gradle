@@ -1,0 +1,7 @@
+apply from:"$rootDir/${GradleTemplates.androidLibrary}"
+
+dependencies {
+    implementation project(Modules.libraryUtils)
+    implementation project(Modules.libraryUiComponents)
+    implementation project(Modules.featureDashboardApi)
+}

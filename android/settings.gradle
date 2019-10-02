@@ -1,7 +1,9 @@
-include ':features:login:login-impl',
-        ':features:login:login-api',
-        ':features:dashboard',
-        ':features:favorites'
+include ':features:login:login-api',
+        ':features:login:login-impl',
+        ':features:dashboard:dashboard-api',
+        ':features:dashboard:dashboard-impl',
+        ':features:favorites:favorites-api',
+        ':features:favorites:favorites-impl'
 include ':libraries:utils',
         ':libraries:model',
         ':libraries:navigation',

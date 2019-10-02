@@ -12,7 +12,11 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/dashboard" />
+            <option value="$PROJECT_DIR$/features/dashboard/dashboard-api" />
+            <option value="$PROJECT_DIR$/features/dashboard/dashboard-impl" />
             <option value="$PROJECT_DIR$/features/favorites" />
+            <option value="$PROJECT_DIR$/features/favorites/favorites-api" />
+            <option value="$PROJECT_DIR$/features/favorites/favorites-impl" />
             <option value="$PROJECT_DIR$/features/login" />
             <option value="$PROJECT_DIR$/features/login/login-api" />
             <option value="$PROJECT_DIR$/features/login/login-impl" />

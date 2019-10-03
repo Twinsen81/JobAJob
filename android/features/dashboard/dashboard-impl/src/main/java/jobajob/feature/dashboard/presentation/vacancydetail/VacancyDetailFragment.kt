@@ -10,7 +10,6 @@ import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.library.uicomponents.presentation.BaseFeatureFragment
 import jobajob.library.uicomponents.presentation.withArgs
-import kotlinx.android.synthetic.main.fragment_container.*
 import kotlinx.android.synthetic.main.fragment_vacancy_detail.*
 import javax.inject.Inject
 
@@ -51,9 +50,5 @@ internal class VacancyDetailFragment: BaseFeatureFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(VacancyDetailViewModel::class.java)
 
         dbVacTitle.text = "${dbVacTitle.text}  $vacancyId"
-
-        tag
     }
-
-
 }

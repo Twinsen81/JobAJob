@@ -1,12 +1,12 @@
 package com.evartem.jobajob.di
 
 import android.app.Application
-import com.evartem.jobajob.MainActivity
+import com.evartem.jobajob.presentation.MainActivity
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, AppNavigationModule::class])
+@Component(modules = [AppModule::class])
 abstract class AppComponent {
 
     companion object {

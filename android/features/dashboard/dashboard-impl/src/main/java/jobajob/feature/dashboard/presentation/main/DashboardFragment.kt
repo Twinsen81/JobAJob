@@ -10,16 +10,14 @@ import androidx.lifecycle.ViewModelProviders
 import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.feature.dashboard.presentation.vacancies.VacanciesFragment
-import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
+import jobajob.library.uicomponents.navigation.BackButtonHandler
 import jobajob.library.uicomponents.navigation.FeatureNavigator
-import jobajob.library.uicomponents.navigation.NavigationScreen
-import kotlinx.android.synthetic.main.fragment_container.*
+import jobajob.library.uicomponents.presentation.BaseFeatureFragment
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
-import kotlin.random.Random
 
-internal class DashboardFragment : Fragment() {
+internal class DashboardFragment : BaseFeatureFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -50,9 +48,10 @@ internal class DashboardFragment : Fragment() {
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(DashboardViewModel::class.java)
 
-        featureRouter.navigateTo(object : SupportAppScreen() {
-            override fun getFragment(): Fragment = VacanciesFragment()
-        })
+        if (savedInstanceState == null)
+            featureRouter.navigateTo(object : SupportAppScreen() {
+                override fun getFragment(): Fragment = VacanciesFragment()
+            })
     }
 
     override fun onResume() {
@@ -65,6 +64,18 @@ internal class DashboardFragment : Fragment() {
         super.onPause()
 
         featureNavigator.pauseNavigator()
+    }
+
+    override fun onBackPressed(): Boolean {
+        if (childFragmentManager.backStackEntryCount <= 1)
+            return false
+
+        val topFragment = childFragmentManager.fragments.last()
+        if (topFragment is BackButtonHandler && topFragment.onBackPressed())
+            return true
+
+        featureRouter.exit()
+        return true
     }
 
 }

@@ -1,12 +1,16 @@
 package jobajob.feature.dashboard.di
 
+import androidx.fragment.app.Fragment
 import dagger.Component
-import jobajob.feature.dashboard.DashboardFragment
+import jobajob.feature.dashboard.presentation.main.DashboardFragment
+import jobajob.feature.dashboard.presentation.vacancies.VacanciesFragment
+import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
+import jobajob.library.uicomponents.navigation.FeatureNavigationModule
 import jobajob.library.utils.di.PerFeature
 import jobajob.library.utils.di.UtilsApi
 
 @Component(
-    modules = [DashboardFeatureModule::class],
+    modules = [DashboardFeatureModule::class, FeatureNavigationModule::class],
     dependencies = [DashboardFeatureDependencies::class]
 )
 @PerFeature
@@ -42,5 +46,9 @@ abstract class DashboardFeatureComponent : DashboardFeatureApi {
     @PerFeature
     interface FeatureDependenciesComponent : DashboardFeatureDependencies
 
+    override fun getDashboardFragment(): Fragment = DashboardFragment()
+
     internal abstract fun inject(fragment: DashboardFragment)
+    internal abstract fun inject(fragment: VacanciesFragment)
+    internal abstract fun inject(fragment: VacancyDetailFragment)
 }

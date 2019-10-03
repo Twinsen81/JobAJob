@@ -1,28 +1,24 @@
 package jobajob.feature.dashboard.di
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.multibindings.IntoMap
-import jobajob.feature.dashboard.DashboardFragment
-import jobajob.feature.dashboard.DashboardViewModel
+import jobajob.feature.dashboard.presentation.main.DashboardViewModel
+import jobajob.feature.dashboard.presentation.vacancies.VacanciesViewModel
+import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailViewModel
 import jobajob.library.uicomponents.di.FeatureViewModelFactoryModule
 import jobajob.library.uicomponents.di.ViewModelKey
-import jobajob.library.utils.di.PerFeature
 
 @Module(includes = [FeatureViewModelFactoryModule::class])
 internal abstract class DashboardFeatureModule {
 
     @[Binds IntoMap ViewModelKey(DashboardViewModel::class)]
-    abstract fun bindViewModel(viewModel: DashboardViewModel): ViewModel
+    abstract fun bindViewModelDashboard(viewModel: DashboardViewModel): ViewModel
 
-    @Module
-    companion object {
+    @[Binds IntoMap ViewModelKey(VacanciesViewModel::class)]
+    abstract fun bindViewModelVacancies(viewModel: VacanciesViewModel): ViewModel
 
-        @Provides
-        @JvmStatic
-        fun provideFeatureFragment(): Fragment = DashboardFragment()
-    }
+    @[Binds IntoMap ViewModelKey(VacancyDetailViewModel::class)]
+    abstract fun bindViewModelVacancyDetail(viewModel: VacancyDetailViewModel): ViewModel
 }

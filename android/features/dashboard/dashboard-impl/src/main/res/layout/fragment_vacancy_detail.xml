@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/dbTitle"
+        android:id="@+id/dbVacTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DASHBOARD"
+        android:text="VACANCY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

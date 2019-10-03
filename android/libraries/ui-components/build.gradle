@@ -1,5 +1,8 @@
 apply from:"$rootDir/${GradleTemplates.androidLibrary}"
 
 dependencies {
+
+    implementation Libraries.cicerone
+
     implementation project(Modules.libraryUtils)
 }

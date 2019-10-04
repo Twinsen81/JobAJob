@@ -1,4 +1,4 @@
-package jobajob.feature.favorites
+package jobajob.feature.favorites.presentation.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,15 +7,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import jobajob.feature.favorites.R
 import jobajob.feature.favorites.di.FavoritesFeatureComponent
+import jobajob.library.uicomponents.navigation.BaseFeatureFragment
 import kotlinx.android.synthetic.main.fragment_favorites.*
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 import kotlin.random.Random
 
-internal class FavoritesFragment: Fragment() {
+internal class FavoritesFragment : BaseFeatureFragment() {
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: FavoritesViewModel
+
+    @Inject
+    lateinit var featureRouter: Router
 
     private val rnd = Random.nextInt()
 
@@ -30,7 +37,8 @@ internal class FavoritesFragment: Fragment() {
 
         FavoritesFeatureComponent.get().inject(this)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
+        viewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
 
         dbTitle.text = "${dbTitle.text}  $rnd"
     }

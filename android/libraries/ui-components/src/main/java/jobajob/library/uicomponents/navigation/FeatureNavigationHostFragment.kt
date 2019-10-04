@@ -1,4 +1,4 @@
-package jobajob.feature.dashboard.presentation.main
+package jobajob.library.uicomponents.navigation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,21 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import jobajob.feature.dashboard.R
-import jobajob.feature.dashboard.di.DashboardFeatureComponent
-import jobajob.feature.dashboard.presentation.vacancies.VacanciesFragment
-import jobajob.library.uicomponents.navigation.BackButtonHandler
-import jobajob.library.uicomponents.navigation.FeatureNavigator
-import jobajob.library.uicomponents.navigation.BaseFeatureFragment
+import jobajob.library.uicomponents.R
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
 
-internal class DashboardFragment : BaseFeatureFragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: DashboardViewModel
+abstract class FeatureNavigationHostFragment : BaseFeatureFragment() {
 
     @Inject
     lateinit var featureNavigator: FeatureNavigator
@@ -32,12 +23,12 @@ internal class DashboardFragment : BaseFeatureFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.dashboard_fragment_container, container, false)
+    ): View? = inflater.inflate(R.layout.feature_navigation_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        DashboardFeatureComponent.get().inject(this)
+        injectDependencies()
 
         featureNavigator.setNavigationHost(
             activity!!,
@@ -45,14 +36,13 @@ internal class DashboardFragment : BaseFeatureFragment() {
             R.id.feature_navigation_host
         )
 
-        viewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(DashboardViewModel::class.java)
-
         if (savedInstanceState == null)
-            featureRouter.navigateTo(object : SupportAppScreen() {
-                override fun getFragment(): Fragment = VacanciesFragment()
-            })
+            featureRouter.navigateTo(getStartScreen())
     }
+
+    abstract fun injectDependencies()
+
+    abstract fun getStartScreen(): SupportAppScreen
 
     override fun onResume() {
         super.onResume()

@@ -1,13 +1,16 @@
 package jobajob.feature.favorites.di
 
+import androidx.fragment.app.Fragment
 import dagger.Component
-import jobajob.feature.favorites.FavoritesFragment
+import jobajob.feature.favorites.navigation.FavoritesNavigationFragment
+import jobajob.feature.favorites.presentation.favorites.FavoritesFragment
+import jobajob.library.uicomponents.navigation.FeatureNavigationModule
 import jobajob.library.utils.di.PerFeature
 import jobajob.library.utils.di.UtilsApi
 import jobajon.feature.favorites.di.FavoritesFeatureApi
 
 @Component(
-    modules = [FavoritesFeatureModule::class],
+    modules = [FavoritesFeatureModule::class, FeatureNavigationModule::class],
     dependencies = [FavoritesFeatureDependencies::class]
 )
 @PerFeature
@@ -43,5 +46,8 @@ abstract class FavoritesFeatureComponent : FavoritesFeatureApi {
     @PerFeature
     interface FeatureDependenciesComponent : FavoritesFeatureDependencies
 
+    override fun getFavoritesFragment(): Fragment = FavoritesFragment()
+
+    internal abstract fun inject(fragment: FavoritesNavigationFragment)
     internal abstract fun inject(fragment: FavoritesFragment)
 }

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
-import jobajob.library.uicomponents.presentation.BaseFeatureFragment
+import jobajob.library.uicomponents.navigation.BaseFeatureFragment
 import kotlinx.android.synthetic.main.fragment_vacancies.*
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppScreen

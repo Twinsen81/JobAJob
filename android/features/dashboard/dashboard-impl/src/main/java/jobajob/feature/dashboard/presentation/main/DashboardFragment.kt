@@ -12,7 +12,7 @@ import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.feature.dashboard.presentation.vacancies.VacanciesFragment
 import jobajob.library.uicomponents.navigation.BackButtonHandler
 import jobajob.library.uicomponents.navigation.FeatureNavigator
-import jobajob.library.uicomponents.presentation.BaseFeatureFragment
+import jobajob.library.uicomponents.navigation.BaseFeatureFragment
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject

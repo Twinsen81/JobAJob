@@ -2,6 +2,7 @@ package com.evartem.jobajob.presentation
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -11,10 +12,11 @@ import com.evartem.jobajob.di.FeatureInjector
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.feature.favorites.di.FavoritesFeatureComponent
 import jobajob.library.uicomponents.navigation.BackButtonHandler
+import jobajob.library.uicomponents.navigation.RootNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), RootNavigator {
 
     @Inject
     lateinit var features: FeatureInjector
@@ -30,6 +32,12 @@ class MainActivity : AppCompatActivity() {
         private const val VISIBLE_TAB_KEY = "VISIBLE_TAB_KEY"
         private const val BACKSTACK_KEY = "BACKSTACK_KEY"
     }
+
+    override var hideNavigationView: Boolean = false
+        set(hideMenu) {
+            bottom_navigation.visibility = if (hideMenu) View.GONE else View.VISIBLE
+            field = hideMenu
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -140,6 +148,8 @@ class MainActivity : AppCompatActivity() {
             FavoritesFeatureComponent.resetComponent()
         }
     }
+
+    override fun onSoftBackButtonPressed() = onBackPressed()
 
     override fun onBackPressed() {
         val currentVisibleFragment = fragManager.fragments.firstOrNull { it.isVisible }

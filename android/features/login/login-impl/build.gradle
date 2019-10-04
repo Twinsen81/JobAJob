@@ -1,4 +1,4 @@
-apply from:"$rootDir/${GradleTemplates.androidFeature}"
+apply from: "$rootDir/${GradleTemplates.androidFeature}"
 
 dependencies {
     implementation project(Modules.libraryUtils)

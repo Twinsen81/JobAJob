@@ -11,7 +11,7 @@ import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
 import jobajob.library.uicomponents.navigation.BaseFeatureFragment
-import kotlinx.android.synthetic.main.fragment_vacancies.*
+import kotlinx.android.synthetic.main.dashboard_fragment_vacancies.*
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
@@ -29,7 +29,7 @@ internal class VacanciesFragment : BaseFeatureFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_vacancies, container, false)
+    ): View? = inflater.inflate(R.layout.dashboard_fragment_vacancies, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -32,7 +32,7 @@ internal class DashboardFragment : BaseFeatureFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_container, container, false)
+    ): View? = inflater.inflate(R.layout.dashboard_fragment_container, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

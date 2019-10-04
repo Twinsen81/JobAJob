@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <!-- This file contains attributes and styles that are part of the public API-->
+        <!-- Users can find these with code completion while other ones from this module will remain-->
+        <!-- hidden, though the user can reference them but won't show up during code completion-->
+
+        <!-- Exposed drawables -->
+        <public name="ic_arrow_back" type="drawable" />
+
+</resources>

@@ -119,7 +119,6 @@ class MainActivity : AppCompatActivity(), RootNavigator {
             tabsBackStack.add(tab)
             return
         }
-
         tabsBackStack = tabsBackStack.subList(0, existingIndex + 1)
     }
 
@@ -163,5 +162,9 @@ class MainActivity : AppCompatActivity(), RootNavigator {
         }
 
         super.onBackPressed()
+    }
+
+    override fun onNeedUserAuthorization() {
+        startActivity(features.loginFeatureComponent().getLoginScreenIntent(this))
     }
 }

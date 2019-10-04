@@ -1,11 +1,11 @@
-package jobajob.feature.login
+package jobajob.feature.login.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import jobajob.feature.login.R
 import jobajob.feature.login.di.LoginFeatureComponent
-import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 internal class LoginActivity : AppCompatActivity() {
@@ -20,8 +20,5 @@ internal class LoginActivity : AppCompatActivity() {
         LoginFeatureComponent.get().inject(this)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
-
-        btnLogin.text = viewModel.getButtonLabel()
-        btnLogin.setOnClickListener { finish() }
     }
 }

@@ -1,5 +1,8 @@
 package jobajob.feature.login.di
 
+import android.content.Context
+import android.content.Intent
+
 interface LoginFeatureApi {
-    fun getLoginScreenIntent(email: String = "")
+    fun getLoginScreenIntent(context: Context): Intent
 }

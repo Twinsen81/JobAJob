@@ -1,7 +1,9 @@
 package jobajob.feature.login.di
 
+import android.content.Context
+import android.content.Intent
 import dagger.Component
-import jobajob.feature.login.LoginActivity
+import jobajob.feature.login.presentation.LoginActivity
 import jobajob.library.utils.di.PerFeature
 import jobajob.library.utils.di.UtilsApi
 
@@ -41,6 +43,9 @@ abstract class LoginFeatureComponent : LoginFeatureApi {
     @Component(dependencies = [UtilsApi::class])
     @PerFeature
     interface FeatureDependenciesComponent : LoginFeatureDependencies
+
+    override fun getLoginScreenIntent(context: Context): Intent =
+        Intent(context, LoginActivity::class.java)
 
     internal abstract fun inject(activity: LoginActivity)
 }

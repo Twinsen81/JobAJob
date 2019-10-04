@@ -52,5 +52,9 @@ internal class VacancyDetailFragment: BaseFeatureFragment() {
         dbVacTitle.text = "${dbVacTitle.text}  $vacancyId"
 
         hideRootNavigationView()
+
+        btnAuthorize.setOnClickListener {
+            requestUserAuthorization()
+        }
     }
 }

@@ -15,4 +15,9 @@ interface RootNavigator {
      * A feature's fragment calls this when an UI back button (e.g. on the toolbar) was clicked.
      */
     fun onSoftBackButtonPressed()
+
+    /**
+     * A feature calls this when it needs the user to be authorized to perform some action
+     */
+    fun onNeedUserAuthorization()
 }

@@ -27,5 +27,7 @@ abstract class BaseFeatureFragment : Fragment(), BackButtonHandler {
         rootNavigator.hideNavigationView = false
     }
 
+    fun requestUserAuthorization() = rootNavigator.onNeedUserAuthorization()
+
     override fun onBackPressed(): Boolean = false
 }

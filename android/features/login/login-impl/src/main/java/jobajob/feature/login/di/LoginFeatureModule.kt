@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import jobajob.feature.login.LoginViewModel
+import jobajob.feature.login.presentation.LoginViewModel
 import jobajob.library.uicomponents.di.FeatureViewModelFactoryModule
 import jobajob.library.uicomponents.di.ViewModelKey
 

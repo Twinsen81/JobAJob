@@ -5,6 +5,7 @@ dependencies {
     implementation Libraries.cicerone
 
     implementation Libraries.retrofitGson
+    implementation Libraries.retrofitRx
     implementation Libraries.okhttp
     implementation Libraries.okhttpLogging
     implementation Libraries.gson

@@ -10,5 +10,5 @@ import javax.inject.Qualifier
  */
 
 @Qualifier
-annotation class AppInterceptor
+annotation class RetrofitConverterFactory
 

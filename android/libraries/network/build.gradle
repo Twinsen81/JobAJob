@@ -1,0 +1,7 @@
+apply from:"$rootDir/${GradleTemplates.kotlinLibrary}"
+
+dependencies {
+    implementation Libraries.retrofit
+    implementation Libraries.retrofitGson
+    implementation Libraries.okhttp
+}

@@ -19,6 +19,8 @@ object Versions {
     const val dagger = "2.24"
     const val rxJava = "2.2.12"
     const val rxKotlin = "2.4.0"
+    const val retrofit = "2.6.2"
+    const val okhttp = "4.2.1"
 }
 
 object Libraries {
@@ -42,6 +44,14 @@ object Libraries {
     const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
     const val rxPreferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
 
+    // Network
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val retrofitRx = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+    const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
+    const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
+    const val gson = "com.google.code.gson:gson:2.8.6"
+
     // Misc
     const val timber = "com.jakewharton.timber:timber:4.7.1"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.0-beta-3"
@@ -51,6 +61,7 @@ object Libraries {
     const val testJunit = "junit:junit:4.12"
     const val testRunner = "androidx.test.ext:junit:1.1.1"
     const val testEspresso = "androidx.test.espresso:espresso-core:3.2.0"
+    const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
 
     // Gradle
     const val gradleAndroid = "com.android.tools.build:gradle:3.5.0"
@@ -61,6 +72,7 @@ object Libraries {
 object Modules {
     const val libraryModel = ":libraries:model"
     const val libraryUtils = ":libraries:utils"
+    const val libraryNetwork = ":libraries:network"
     const val libraryUiComponents = ":libraries:ui-components"
 
     const val libraryPreferencesApi = ":libraries:preferences:preferences-api"

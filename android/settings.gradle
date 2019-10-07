@@ -5,6 +5,7 @@ include ':features:login:login-api',
         ':features:favorites:favorites-api',
         ':features:favorites:favorites-impl'
 include ':libraries:utils',
+        ':libraries:network',
         ':libraries:model',
         ':libraries:ui-components',
         ':libraries:preferences:preferences-api',

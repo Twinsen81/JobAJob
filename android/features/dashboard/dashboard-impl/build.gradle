@@ -4,7 +4,14 @@ dependencies {
 
     implementation Libraries.cicerone
 
+    implementation Libraries.retrofitGson
+    implementation Libraries.okhttp
+    implementation Libraries.okhttpLogging
+    implementation Libraries.gson
+
+    implementation project(Modules.libraryModel)
     implementation project(Modules.libraryUtils)
     implementation project(Modules.libraryUiComponents)
+    implementation project(Modules.libraryNetwork)
     implementation project(Modules.featureDashboardApi)
 }

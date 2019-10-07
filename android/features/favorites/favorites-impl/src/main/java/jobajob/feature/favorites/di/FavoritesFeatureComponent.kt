@@ -10,8 +10,8 @@ import jobajob.library.utils.di.UtilsApi
 import jobajon.feature.favorites.di.FavoritesFeatureApi
 
 @Component(
-    modules = [FavoritesFeatureModule::class, FeatureNavigationModule::class],
-    dependencies = [FavoritesFeatureDependencies::class]
+    modules = [ViewModelModule::class, FeatureNavigationModule::class],
+    dependencies = [FeatureDependencies::class]
 )
 @PerFeature
 abstract class FavoritesFeatureComponent : FavoritesFeatureApi {
@@ -19,12 +19,12 @@ abstract class FavoritesFeatureComponent : FavoritesFeatureApi {
     companion object {
         private var featureComponent: FavoritesFeatureComponent? = null
 
-        fun initAndGet(dependencies: FavoritesFeatureDependencies): FavoritesFeatureApi {
+        fun initAndGet(dependencies: FeatureDependencies): FavoritesFeatureApi {
             if (featureComponent == null) {
                 synchronized(FavoritesFeatureComponent::class) {
                     if (featureComponent == null) {
                         featureComponent = DaggerFavoritesFeatureComponent.builder()
-                            .favoritesFeatureDependencies(dependencies)
+                            .featureDependencies(dependencies)
                             .build()
                     }
                 }
@@ -44,7 +44,7 @@ abstract class FavoritesFeatureComponent : FavoritesFeatureApi {
 
     @Component(dependencies = [UtilsApi::class])
     @PerFeature
-    interface FeatureDependenciesComponent : FavoritesFeatureDependencies
+    interface FeatureDependenciesComponent : FeatureDependencies
 
     override fun getFavoritesFragment(): Fragment = FavoritesFragment()
 

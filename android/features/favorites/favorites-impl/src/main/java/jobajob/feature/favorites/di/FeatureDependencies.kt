@@ -2,6 +2,6 @@ package jobajob.feature.favorites.di
 
 import jobajob.library.utils.Utils
 
-interface FavoritesFeatureDependencies {
+interface FeatureDependencies {
     fun utils(): Utils
 }

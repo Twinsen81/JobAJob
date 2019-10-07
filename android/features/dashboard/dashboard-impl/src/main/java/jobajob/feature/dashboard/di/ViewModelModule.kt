@@ -10,7 +10,7 @@ import jobajob.library.uicomponents.di.FeatureViewModelFactoryModule
 import jobajob.library.uicomponents.di.ViewModelKey
 
 @Module(includes = [FeatureViewModelFactoryModule::class])
-internal abstract class DashboardFeatureModule {
+internal abstract class ViewModelModule {
 
     @[Binds IntoMap ViewModelKey(VacanciesViewModel::class)]
     abstract fun bindViewModelVacancies(viewModel: VacanciesViewModel): ViewModel

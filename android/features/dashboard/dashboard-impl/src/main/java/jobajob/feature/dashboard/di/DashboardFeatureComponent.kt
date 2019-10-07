@@ -10,8 +10,8 @@ import jobajob.library.utils.di.PerFeature
 import jobajob.library.utils.di.UtilsApi
 
 @Component(
-    modules = [DashboardFeatureModule::class, FeatureNavigationModule::class, DashboardNetworkModule::class],
-    dependencies = [DashboardFeatureDependencies::class]
+    modules = [ViewModelModule::class, FeatureNavigationModule::class, NetworkModule::class],
+    dependencies = [FeatureDependencies::class]
 )
 @PerFeature
 abstract class DashboardFeatureComponent : DashboardFeatureApi {
@@ -19,12 +19,12 @@ abstract class DashboardFeatureComponent : DashboardFeatureApi {
     companion object {
         private var featureComponent: DashboardFeatureComponent? = null
 
-        fun initAndGet(dependencies: DashboardFeatureDependencies): DashboardFeatureApi {
+        fun initAndGet(dependencies: FeatureDependencies): DashboardFeatureApi {
             if (featureComponent == null) {
                 synchronized(DashboardFeatureComponent::class) {
                     if (featureComponent == null) {
                         featureComponent = DaggerDashboardFeatureComponent.builder()
-                            .dashboardFeatureDependencies(dependencies)
+                            .featureDependencies(dependencies)
                             .build()
                     }
                 }
@@ -44,7 +44,7 @@ abstract class DashboardFeatureComponent : DashboardFeatureApi {
 
     @Component(dependencies = [UtilsApi::class])
     @PerFeature
-    interface FeatureDependenciesComponent : DashboardFeatureDependencies
+    interface FeatureDependenciesComponent : FeatureDependencies
 
     override fun getDashboardFragment(): Fragment = DashboardNavigationFragment()
 

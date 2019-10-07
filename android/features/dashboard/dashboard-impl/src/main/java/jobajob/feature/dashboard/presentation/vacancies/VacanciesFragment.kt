@@ -51,8 +51,8 @@ internal class VacanciesFragment : BaseFeatureFragment() {
         }
 
         val runnable = Runnable {
-            val response = api.fetchVacancies().execute()
-            val data = response.body()!!.body()
+            val response = api.fetchVacancies().test()
+            response.assertValue {res -> res.isSuccessful}
         }
         AsyncTask.execute(runnable)
     }

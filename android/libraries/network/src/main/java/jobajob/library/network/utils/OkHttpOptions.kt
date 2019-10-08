@@ -1,4 +1,4 @@
-package jobajob.library.network
+package jobajob.library.network.utils
 
 import javax.inject.Inject
 

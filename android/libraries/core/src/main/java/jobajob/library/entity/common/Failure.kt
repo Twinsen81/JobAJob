@@ -11,9 +11,14 @@ sealed class Failure {
     class NetworkConnection(val exception: Throwable? = null, val message: String? = null) : Failure()
 
     /**
-     * Server-specific errors, e.g. 500 Internal Server Error
+     * Server-specific errors (5xx), e.g. 500 Internal Server Error
      */
     class ServerError(val exception: Throwable? = null, val message: String? = null) : Failure()
+
+    /**
+     * Need to authorize first or token expired (server returned 401)
+     */
+    class Unauthorized(val message: String? = null) : Failure()
 
     /**
      * Unexpected exceptions - errors in code

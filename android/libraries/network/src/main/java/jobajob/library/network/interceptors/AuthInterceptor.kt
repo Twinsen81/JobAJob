@@ -1,4 +1,4 @@
-package jobajob.library.network
+package jobajob.library.network.interceptors
 
 import okhttp3.Interceptor
 import okhttp3.Response

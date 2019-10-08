@@ -3,7 +3,7 @@ package jobajob.library.network.di
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.Multibinds
-import jobajob.library.network.OkHttpOptions
+import jobajob.library.network.utils.OkHttpOptions
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter

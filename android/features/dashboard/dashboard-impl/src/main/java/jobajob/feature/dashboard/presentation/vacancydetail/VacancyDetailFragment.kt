@@ -4,18 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
-import jobajob.library.uicomponents.navigation.BaseFeatureFragment
+import jobajob.library.uicomponents.presentation.BaseNavigationFragment
 import jobajob.library.uicomponents.util.withArgs
 import kotlinx.android.synthetic.main.dashboard_fragment_vacancy_detail.*
-import javax.inject.Inject
 
-internal class VacancyDetailFragment: BaseFeatureFragment() {
+internal class VacancyDetailFragment: BaseNavigationFragment() {
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: VacancyDetailViewModel
 
     private var vacancyId: Long = 0

@@ -1,32 +1,21 @@
 package jobajob.feature.dashboard.presentation.vacancies
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.data.remote.api.DashboardApi
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
-import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
-import jobajob.library.uicomponents.navigation.BaseFeatureFragment
-import kotlinx.android.synthetic.main.dashboard_fragment_vacancies.*
-import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.android.support.SupportAppScreen
+import jobajob.library.uicomponents.presentation.BaseNavigationFragment
 import javax.inject.Inject
 
 
-internal class VacanciesFragment : BaseFeatureFragment() {
+internal class VacanciesFragment : BaseNavigationFragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: VacanciesViewModel
 
-    @Inject
-    lateinit var featureRouter: Router
     @Inject
     lateinit var api: DashboardApi
 
@@ -44,16 +33,12 @@ internal class VacanciesFragment : BaseFeatureFragment() {
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(VacanciesViewModel::class.java)
 
-        btnVacancy.setOnClickListener {
+        /*btnVacancy.setOnClickListener {
             featureRouter.navigateTo(object : SupportAppScreen() {
                 override fun getFragment(): Fragment = VacancyDetailFragment.newInstance(6)
             })
-        }
+        }*/
 
-        val runnable = Runnable {
-            val response = api.fetchVacancies().test()
-            response.assertValue {res -> res.isSuccessful}
-        }
-        AsyncTask.execute(runnable)
+        viewModel.loadVacancies()
     }
 }

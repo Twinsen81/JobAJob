@@ -1,11 +1,24 @@
-package jobajob.library.uicomponents.navigation
+package jobajob.library.uicomponents.presentation
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
+import jobajob.library.uicomponents.navigation.BackButtonHandler
+import jobajob.library.uicomponents.navigation.RootNavigator
 import jobajob.library.uicomponents.widget.Toolbar
+import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
-abstract class BaseFeatureFragment : Fragment(), BackButtonHandler {
+/**
+ * A fragment of a feature that can navigate to other fragments and
+ * can handle the hardware BACK button.
+ * Each fragment that wants to support navigation backstack should
+ * inherit from this class.
+ */
+abstract class BaseNavigationFragment : BaseFragment(),
+    BackButtonHandler {
+
+    @Inject
+    lateinit var featureRouter: Router
 
     private lateinit var rootNavigator: RootNavigator
 

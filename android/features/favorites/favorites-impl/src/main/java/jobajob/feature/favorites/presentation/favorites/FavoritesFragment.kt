@@ -4,25 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import jobajob.feature.favorites.R
 import jobajob.feature.favorites.di.FavoritesFeatureComponent
-import jobajob.library.uicomponents.navigation.BaseFeatureFragment
+import jobajob.library.uicomponents.presentation.BaseNavigationFragment
 import kotlinx.android.synthetic.main.fragment_favorites.*
-import ru.terrakok.cicerone.Router
-import javax.inject.Inject
 import kotlin.random.Random
 
-internal class FavoritesFragment : BaseFeatureFragment() {
+internal class FavoritesFragment : BaseNavigationFragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: FavoritesViewModel
-
-    @Inject
-    lateinit var featureRouter: Router
 
     private val rnd = Random.nextInt()
 

@@ -1,23 +1,23 @@
-package jobajob.library.uicomponents.navigation
+package jobajob.library.uicomponents.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import jobajob.library.uicomponents.R
-import ru.terrakok.cicerone.Router
+import jobajob.library.uicomponents.navigation.BackButtonHandler
+import jobajob.library.uicomponents.navigation.FeatureNavigator
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
 
-abstract class FeatureNavigationHostFragment : BaseFeatureFragment() {
+/**
+ * This class should be inherited by the root screen of a feature.
+ * It provides independent navigation between the feature's screens (fragment).
+ */
+abstract class FeatureNavigationHostFragment : BaseNavigationFragment() {
 
     @Inject
     lateinit var featureNavigator: FeatureNavigator
-    @Inject
-    lateinit var featureRouter: Router
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,8 +40,16 @@ abstract class FeatureNavigationHostFragment : BaseFeatureFragment() {
             featureRouter.navigateTo(getStartScreen())
     }
 
+    /**
+     * Perform injection into this fragment, e.g.:
+     *
+     * Component.inject(this)
+     */
     abstract fun injectDependencies()
 
+    /**
+     * Provide the screen that will be shown when this feature starts
+     */
     abstract fun getStartScreen(): SupportAppScreen
 
     override fun onResume() {

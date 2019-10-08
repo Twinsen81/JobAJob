@@ -2,4 +2,6 @@ apply from:"$rootDir/${GradleTemplates.kotlinLibrary}"
 
 dependencies {
     implementation Libraries.gson
+    implementation Libraries.rxKotlin
+    implementation Libraries.rxJava
 }

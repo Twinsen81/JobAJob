@@ -36,8 +36,7 @@ internal class NetworkModule {
     @[Provides IntoSet RetrofitConverterFactory]
     fun provideGsonConverter(): Converter.Factory = GsonConverterFactory.create()
 
-    @Provides
-    @PerFeature
+    @[Provides PerFeature]
     fun provideDashboardApi(retrofit: Retrofit): DashboardApi =
         retrofit.create(DashboardApi::class.java)
 }

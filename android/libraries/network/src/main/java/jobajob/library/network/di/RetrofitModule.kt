@@ -14,26 +14,21 @@ import java.util.concurrent.TimeUnit
 @Module
 abstract class RetrofitModule {
 
-    @Multibinds
-    @OkHttpAppInterceptor
+    @[Multibinds OkHttpAppInterceptor]
     internal abstract fun applicationInterceptors(): Set<@JvmSuppressWildcards Interceptor>
 
-    @Multibinds
-    @OkHttpNetworkInterceptor
+    @[Multibinds OkHttpNetworkInterceptor]
     internal abstract fun networkInterceptors(): Set<@JvmSuppressWildcards Interceptor>
 
-    @Multibinds
-    @RetrofitCallAdapter
+    @[Multibinds RetrofitCallAdapter]
     internal abstract fun callAdapters(): Set<@JvmSuppressWildcards CallAdapter.Factory>
 
-    @Multibinds
-    @RetrofitConverterFactory
+    @[Multibinds RetrofitConverterFactory]
     internal abstract fun converterFactories(): Set<@JvmSuppressWildcards Converter.Factory>
 
     @Module
     companion object {
-        @Provides
-        @JvmStatic
+        @[Provides JvmStatic]
         fun provideOkhttp(
             @OkHttpAppInterceptor appInterceptors: Set<@JvmSuppressWildcards Interceptor>,
             @OkHttpNetworkInterceptor networkInterceptors: Set<@JvmSuppressWildcards Interceptor>,
@@ -54,8 +49,7 @@ abstract class RetrofitModule {
             return builder.build()
         }
 
-        @Provides
-        @JvmStatic
+        @[Provides JvmStatic]
         fun provideRetrofit(
             okHttpClient: OkHttpClient,
             @BaseUrl baseUrl: String,

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import jobajob.feature.dashboard.R
-import jobajob.feature.dashboard.data.DashboardApi
+import jobajob.feature.dashboard.data.remote.api.DashboardApi
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
 import jobajob.library.uicomponents.navigation.BaseFeatureFragment

@@ -70,7 +70,7 @@ object Libraries {
 }
 
 object Modules {
-    const val libraryModel = ":libraries:model"
+    const val libraryCore = ":libraries:core"
     const val libraryUtils = ":libraries:utils"
     const val libraryNetwork = ":libraries:network"
     const val libraryUiComponents = ":libraries:ui-components"

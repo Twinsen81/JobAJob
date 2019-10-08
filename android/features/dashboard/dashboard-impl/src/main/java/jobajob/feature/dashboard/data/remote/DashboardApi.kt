@@ -1,4 +1,4 @@
-package jobajob.feature.dashboard.data
+package jobajob.feature.dashboard.data.remote
 
 import io.reactivex.Single
 import jobajob.library.model.SpringRestResponse

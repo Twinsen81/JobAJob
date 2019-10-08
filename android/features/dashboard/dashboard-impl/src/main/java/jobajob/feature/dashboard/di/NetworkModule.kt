@@ -3,7 +3,7 @@ package jobajob.feature.dashboard.di
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
-import jobajob.feature.dashboard.data.DashboardApi
+import jobajob.feature.dashboard.data.remote.api.DashboardApi
 import jobajob.library.network.di.*
 import jobajob.library.utils.di.PerFeature
 import okhttp3.Interceptor

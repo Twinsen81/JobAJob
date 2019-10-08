@@ -1,7 +1,7 @@
 package jobajob.feature.dashboard.data.remote.entity
 
 import com.google.gson.annotations.SerializedName
-import jobajob.library.entity.spring.SpringRestResponse
+import jobajob.library.network.entity.spring.SpringRestResponse
 import jobajob.library.entity.vacancy.Vacancy
 
 internal class VacanciesResponse(

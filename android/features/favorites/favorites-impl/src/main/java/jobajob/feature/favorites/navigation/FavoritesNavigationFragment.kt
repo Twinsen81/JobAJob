@@ -3,7 +3,7 @@ package jobajob.feature.favorites.navigation
 import androidx.fragment.app.Fragment
 import jobajob.feature.favorites.di.FavoritesFeatureComponent
 import jobajob.feature.favorites.presentation.favorites.FavoritesFragment
-import jobajob.library.uicomponents.navigation.FeatureNavigationHostFragment
+import jobajob.library.uicomponents.presentation.FeatureNavigationHostFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 internal class FavoritesNavigationFragment : FeatureNavigationHostFragment() {

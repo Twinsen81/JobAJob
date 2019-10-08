@@ -1,4 +1,4 @@
-package jobajob.library.entity.spring
+package jobajob.library.network.entity.spring
 
 import com.google.gson.annotations.SerializedName
 

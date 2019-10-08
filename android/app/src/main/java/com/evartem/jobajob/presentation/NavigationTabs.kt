@@ -16,6 +16,14 @@ class NavigationTabs @Inject constructor(featureInjector: FeatureInjector) {
         NavigationTab.FAVORITES to
                 Tab(R.id.navigation_favorites) {
                     featureInjector.favoritesFeatureApi().getFavoritesFragment()
+                },
+        NavigationTab.RESUMES to
+                Tab(R.id.navigation_resumes) {
+                    StubFragment.newInstance("RESUMES")
+                },
+        NavigationTab.MORE to
+                Tab(R.id.navigation_more) {
+                    StubFragment.newInstance("MORE...")
                 }
     )
 

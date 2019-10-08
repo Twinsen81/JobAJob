@@ -10,7 +10,7 @@ import jobajob.library.utils.di.PerFeature
 import jobajob.library.utils.di.UtilsApi
 
 @Component(
-    modules = [ViewModelModule::class, FeatureNavigationModule::class, NetworkModule::class],
+    modules = [ViewModelModule::class, FeatureNavigationModule::class, NetworkModule::class, DataModule::class],
     dependencies = [FeatureDependencies::class]
 )
 @PerFeature

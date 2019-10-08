@@ -6,6 +6,9 @@ dependencies {
 
     implementation Libraries.retrofitGson
     implementation Libraries.retrofitRx
+    implementation Libraries.rxJava
+    implementation Libraries.rxKotlin
+    implementation Libraries.rxAndroid
     implementation Libraries.okhttp
     implementation Libraries.okhttpLogging
     implementation Libraries.gson

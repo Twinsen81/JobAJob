@@ -43,6 +43,7 @@ object Libraries {
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
     const val rxPreferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
+    const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
 
     // Network
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"

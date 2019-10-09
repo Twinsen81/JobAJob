@@ -1,5 +1,8 @@
 apply from:"$rootDir/${GradleTemplates.androidLibrary}"
 
+// LayoutContainer + Parcelable support
+androidExtensions { experimental = true }
+
 dependencies {
 
     implementation Libraries.cicerone
@@ -12,6 +15,8 @@ dependencies {
     implementation Libraries.okhttp
     implementation Libraries.okhttpLogging
     implementation Libraries.gson
+    implementation Libraries.xRecyclerView
+    implementation Libraries.xMaterial
 
     implementation project(Modules.libraryCore)
     implementation project(Modules.libraryUtils)

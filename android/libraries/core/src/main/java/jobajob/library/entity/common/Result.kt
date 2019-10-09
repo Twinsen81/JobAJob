@@ -11,7 +11,7 @@ sealed class Result<out S : Any, out E : Any> {
     val isSuccess get() = this is Success<S>
     val isError get() = this is Error<E>
 
-    fun either(onSuccessDo: (S) -> Any, onErrorDo: (E) -> Any): Any =
+    fun either(onSuccessDo: (S) -> Unit, onErrorDo: (E) -> Unit) =
         when (this) {
             is Success -> onSuccessDo(value)
             is Error -> onErrorDo(error)

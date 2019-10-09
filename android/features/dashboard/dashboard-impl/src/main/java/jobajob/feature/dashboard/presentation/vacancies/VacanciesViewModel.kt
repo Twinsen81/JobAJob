@@ -16,11 +16,11 @@ internal class VacanciesViewModel @Inject constructor(
     val vacancies get() = _vacancies as LiveData<List<Vacancy>>
 
     fun loadVacancies() {
-        getVacanciesUseCase(singleObserver { vacanciesListResult ->
-            when (vacanciesListResult) {
-                is Result.Success -> _vacancies.value = vacanciesListResult.value
-                is Result.Error -> handleFailure(vacanciesListResult.error)
-            }
-        })
+        getVacanciesUseCase(
+            singleObserver { result ->
+                result.either(
+                    { list -> _vacancies.value = list },
+                    { failure -> handleFailure(failure) })
+            })
     }
 }

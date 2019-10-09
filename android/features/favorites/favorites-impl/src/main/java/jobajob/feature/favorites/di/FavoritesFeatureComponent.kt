@@ -2,7 +2,7 @@ package jobajob.feature.favorites.di
 
 import androidx.fragment.app.Fragment
 import dagger.Component
-import jobajob.feature.favorites.navigation.FavoritesNavigationFragment
+import jobajob.feature.favorites.presentation.navigation.FavoritesNavigationFragment
 import jobajob.feature.favorites.presentation.favorites.FavoritesFragment
 import jobajob.library.uicomponents.navigation.FeatureNavigationModule
 import jobajob.library.utils.di.PerFeature

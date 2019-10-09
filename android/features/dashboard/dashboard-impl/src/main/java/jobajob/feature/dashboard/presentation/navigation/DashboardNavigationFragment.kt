@@ -1,4 +1,4 @@
-package jobajob.feature.dashboard.navigation
+package jobajob.feature.dashboard.presentation.navigation
 
 import androidx.fragment.app.Fragment
 import jobajob.feature.dashboard.di.DashboardFeatureComponent

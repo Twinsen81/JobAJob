@@ -2,7 +2,7 @@ package jobajob.feature.dashboard.di
 
 import androidx.fragment.app.Fragment
 import dagger.Component
-import jobajob.feature.dashboard.navigation.DashboardNavigationFragment
+import jobajob.feature.dashboard.presentation.navigation.DashboardNavigationFragment
 import jobajob.feature.dashboard.presentation.vacancies.VacanciesFragment
 import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
 import jobajob.library.uicomponents.navigation.FeatureNavigationModule

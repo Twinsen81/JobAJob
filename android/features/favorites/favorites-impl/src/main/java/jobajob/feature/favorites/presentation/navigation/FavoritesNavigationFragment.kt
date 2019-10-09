@@ -1,4 +1,4 @@
-package jobajob.feature.favorites.navigation
+package jobajob.feature.favorites.presentation.navigation
 
 import androidx.fragment.app.Fragment
 import jobajob.feature.favorites.di.FavoritesFeatureComponent

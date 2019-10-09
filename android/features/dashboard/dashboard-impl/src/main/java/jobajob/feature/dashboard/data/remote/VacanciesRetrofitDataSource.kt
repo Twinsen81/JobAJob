@@ -16,7 +16,7 @@ internal class VacanciesRetrofitDataSource @Inject constructor(private val api: 
             api.fetchVacancies()
                 .map { response -> mapSpringResponseToData(response.toResult()) }
         } catch (e: Throwable) {
-            Single.just(Result.Error(Failure.NetworkConnection(e)))
+            Single.just(Result.Error(Failure.ApplicationError(e)))
         }
     }
 

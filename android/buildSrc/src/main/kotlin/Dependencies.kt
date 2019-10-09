@@ -34,6 +34,7 @@ object Libraries {
     const val xConstraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val xPreference = "androidx.preference:preference:1.1.0"
     const val xMaterial = "com.google.android.material:material:1.0.0"
+    const val xRecyclerView = "androidx.recyclerview:recyclerview:1.0.0"
 
     // Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"

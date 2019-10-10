@@ -19,18 +19,12 @@ abstract class DashboardFeatureComponent : DashboardFeatureApi {
     companion object {
         private var featureComponent: DashboardFeatureComponent? = null
 
-        fun initAndGet(dependencies: FeatureDependencies): DashboardFeatureApi {
-            if (featureComponent == null) {
-                synchronized(DashboardFeatureComponent::class) {
-                    if (featureComponent == null) {
-                        featureComponent = DaggerDashboardFeatureComponent.builder()
-                            .featureDependencies(dependencies)
-                            .build()
-                    }
-                }
+        fun initAndGet(dependencies: FeatureDependencies): DashboardFeatureApi =
+            featureComponent ?: synchronized(this) {
+                featureComponent ?: DaggerDashboardFeatureComponent.builder()
+                    .featureDependencies(dependencies)
+                    .build().also { featureComponent = it }
             }
-            return featureComponent!!
-        }
 
         fun get(): DashboardFeatureComponent {
             require(featureComponent != null) { "You must call initAndGet prior this call!" }

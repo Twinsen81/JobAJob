@@ -19,18 +19,12 @@ abstract class FavoritesFeatureComponent : FavoritesFeatureApi {
     companion object {
         private var featureComponent: FavoritesFeatureComponent? = null
 
-        fun initAndGet(dependencies: FeatureDependencies): FavoritesFeatureApi {
-            if (featureComponent == null) {
-                synchronized(FavoritesFeatureComponent::class) {
-                    if (featureComponent == null) {
-                        featureComponent = DaggerFavoritesFeatureComponent.builder()
-                            .featureDependencies(dependencies)
-                            .build()
-                    }
-                }
+        fun initAndGet(dependencies: FeatureDependencies): FavoritesFeatureApi =
+            featureComponent ?: synchronized(this) {
+                featureComponent ?: DaggerFavoritesFeatureComponent.builder()
+                    .featureDependencies(dependencies)
+                    .build().also { featureComponent = it }
             }
-            return featureComponent!!
-        }
 
         fun get(): FavoritesFeatureComponent {
             require(featureComponent != null) { "You must call initAndGet prior this call!" }

@@ -17,18 +17,12 @@ abstract class LoginFeatureComponent : LoginFeatureApi {
     companion object {
         private var featureComponent: LoginFeatureComponent? = null
 
-        fun initAndGet(dependencies: FeatureDependencies): LoginFeatureApi {
-            if (featureComponent == null) {
-                synchronized(LoginFeatureComponent::class) {
-                    if (featureComponent == null) {
-                        featureComponent = DaggerLoginFeatureComponent.builder()
-                            .featureDependencies(dependencies)
-                            .build()
-                    }
-                }
+        fun initAndGet(dependencies: FeatureDependencies): LoginFeatureApi =
+            featureComponent ?: synchronized(this) {
+                featureComponent ?: DaggerLoginFeatureComponent.builder()
+                    .featureDependencies(dependencies)
+                    .build().also { featureComponent = it }
             }
-            return featureComponent!!
-        }
 
         fun get(): LoginFeatureComponent {
             require(featureComponent != null) { "You must call initAndGet prior this call!" }

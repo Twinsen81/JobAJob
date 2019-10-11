@@ -1,7 +1,12 @@
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
 # JobAJob
 
-A pet project to practise latest trends in Android software development, try out libraries and experiment with architectures. 
+A pet project to practise latest trends in Android software development, try out libraries and experiment with architectures.<BR/>
+
+#### Intro
+
+JobAJob is a fictional job search web site with RESTful API that lets employers and job seekers find each other. 
+The Android client app uses the API to display and edit the data on the web site.
 
 #### Backend
 

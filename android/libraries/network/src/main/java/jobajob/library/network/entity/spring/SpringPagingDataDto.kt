@@ -2,7 +2,7 @@ package jobajob.library.network.entity.spring
 
 import com.google.gson.annotations.SerializedName
 
-class SpringRestPagingData {
+class SpringPagingDataDto {
 
     @SerializedName("size")
     var size = 0

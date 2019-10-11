@@ -2,7 +2,7 @@ package jobajob.feature.dashboard.data.remote
 
 import io.reactivex.Single
 import jobajob.feature.dashboard.data.remote.api.DashboardApi
-import jobajob.feature.dashboard.data.remote.entity.VacanciesResponse
+import jobajob.feature.dashboard.data.remote.entity.VacanciesRemoteDto
 import jobajob.feature.dashboard.domain.gateway.VacanciesListResult
 import jobajob.library.entity.common.Failure
 import jobajob.library.entity.common.Result
@@ -14,15 +14,15 @@ internal class VacanciesRetrofitDataSource @Inject constructor(private val api: 
     override fun getVacancies(): Single<VacanciesListResult> {
         return try {
             api.fetchVacancies()
-                .map { response -> mapSpringResponseToData(response.toResult()) }
+                .map { response -> mapSpringResultToData(response.toResult()) }
         } catch (e: Throwable) {
             Single.just(Result.Error(Failure.ApplicationError(e)))
         }
     }
 
-    private fun mapSpringResponseToData(response: Result<VacanciesResponse, Failure>): VacanciesListResult =
-        when (response) {
-            is Result.Success -> Result.Success(response.value.embedded.data)
-            is Result.Error -> Result.Error(response.error)
+    private fun mapSpringResultToData(result: Result<VacanciesRemoteDto, Failure>): VacanciesListResult =
+        when (result) {
+            is Result.Success -> Result.Success(result.value.embedded.data)
+            is Result.Error -> Result.Error(result.error)
         }
 }

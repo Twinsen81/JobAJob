@@ -2,8 +2,8 @@ package jobajob.library.network.entity.spring
 
 import com.google.gson.annotations.SerializedName
 
-open class SpringRestResponse {
+open class SpringPagingDto {
 
     @SerializedName("page")
-    var pagingData: SpringRestPagingData? = null
+    var pagingData: SpringPagingDataDto? = null
 }

@@ -1,9 +1,12 @@
 apply from:"$rootDir/${GradleTemplates.kotlinLibrary}"
 
 dependencies {
+
+    // Retrofit
     implementation Libraries.retrofit
     implementation Libraries.okhttp
     implementation Libraries.gson
 
+    // Project's libraries
     implementation project(Modules.libraryCore)
 }

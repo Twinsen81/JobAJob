@@ -1,7 +1,7 @@
 package jobajob.feature.dashboard.data.remote.api
 
 import io.reactivex.Single
-import jobajob.feature.dashboard.data.remote.entity.VacanciesRemoteDto
+import jobajob.feature.dashboard.data.remote.dto.VacanciesRemoteDto
 import retrofit2.Response
 import retrofit2.http.GET
 

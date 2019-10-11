@@ -1,7 +1,7 @@
-package jobajob.feature.dashboard.data.remote.entity
+package jobajob.feature.dashboard.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
-import jobajob.library.network.entity.spring.SpringPagingDto
+import jobajob.library.network.dto.spring.SpringPagingDto
 import jobajob.library.entity.vacancy.Vacancy
 
 internal class VacanciesRemoteDto(
@@ -11,6 +11,6 @@ internal class VacanciesRemoteDto(
 
     inner class Embedded(
         @SerializedName("vacancies")
-        var data: List<Vacancy> = emptyList()
+        var data: List<VacancyRemoteDto> = emptyList()
     )
 }

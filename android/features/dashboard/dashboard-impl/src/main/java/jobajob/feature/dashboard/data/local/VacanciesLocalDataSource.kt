@@ -4,5 +4,5 @@ import io.reactivex.Single
 import jobajob.feature.dashboard.domain.gateway.VacanciesListResult
 
 internal interface VacanciesLocalDataSource {
-    fun getVacancies(): Single<VacanciesListResult>
+    fun getVacancies(): Single<VacanciesLocalDtoListResult>
 }

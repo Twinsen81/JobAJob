@@ -16,4 +16,10 @@ sealed class Result<out S : Any, out E : Any> {
             is Success -> onSuccessDo(value)
             is Error -> onErrorDo(error)
         }
+
+    fun <M : Any> mapSuccess(successMapper: (S) -> M): Result<M, E> =
+        when (this) {
+            is Error -> this
+            is Success -> Success(successMapper(value))
+        }
 }

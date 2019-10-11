@@ -1,26 +1,53 @@
-apply from:"$rootDir/${GradleTemplates.androidLibrary}"
+apply from: "$rootDir/${GradleTemplates.androidLibrary}"
 
 // LayoutContainer + Parcelable support
 androidExtensions { experimental = true }
 
+android {
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
+    }
+}
+
 dependencies {
 
-    implementation Libraries.cicerone
-
+    // Retrofit
     implementation Libraries.retrofitGson
     implementation Libraries.retrofitRx
-    implementation Libraries.rxJava
-    implementation Libraries.rxKotlin
-    implementation Libraries.rxAndroid
     implementation Libraries.okhttp
     implementation Libraries.okhttpLogging
     implementation Libraries.gson
+
+    // RxJava
+    implementation Libraries.rxJava
+    implementation Libraries.rxKotlin
+    implementation Libraries.rxAndroid
+
+    // AndroidX
     implementation Libraries.xRecyclerView
     implementation Libraries.xMaterial
 
+    // Room
+    implementation Libraries.roomRuntime
+    implementation Libraries.roomRx
+    implementation Libraries.roomKtx
+    kapt Libraries.roomCompiler
+
+    // Misc
+    implementation Libraries.cicerone
+
+    // Project's libraries
     implementation project(Modules.libraryCore)
     implementation project(Modules.libraryUtils)
     implementation project(Modules.libraryUiComponents)
     implementation project(Modules.libraryNetwork)
+
+    // Project's features
     implementation project(Modules.featureDashboardApi)
 }

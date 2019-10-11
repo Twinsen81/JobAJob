@@ -17,7 +17,7 @@ The app is connected to [Auth0](https://auth0.com) and requires authorization fo
 
 #### Android
 
-The app is developed with adherence to the following:
+The app is being developed with adherence to the following principles:
  * Modularization
  * Loose coupling between modules
  * Dependency injection

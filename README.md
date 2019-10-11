@@ -5,7 +5,7 @@ A pet project to practise latest trends in Android software development, try out
 
 #### Backend
 
-A very simple backend app is written in Kotlin with the help of the [Spring](https://start.spring.io) framework. This will serve as a backend for the Android client app.
+A very simple backend app has been written in Kotlin with the help of the [Spring](https://start.spring.io) framework. This serves as a backend for the Android client app.
 The app is deployed on [Heroku](https://jobajob.herokuapp.com) using a free account. The apps on free accounts are subjects to hibernation, 
 so it may take up to a minute for the app to wake up on the first request. 
 The app is connected to [Auth0](https://auth0.com) and requires authorization for C_UD operations, only reading is allowed for anonymous clients. 

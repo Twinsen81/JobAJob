@@ -15,6 +15,7 @@ object Config {
 object Versions {
     const val kotlin = "1.3.50"
     const val androidX = "1.1.0"
+    const val room = "2.2.0"
     const val lifecycle = "2.1.0"
     const val dagger = "2.24"
     const val rxJava = "2.2.12"
@@ -35,6 +36,12 @@ object Libraries {
     const val xPreference = "androidx.preference:preference:1.1.0"
     const val xMaterial = "com.google.android.material:material:1.0.0"
     const val xRecyclerView = "androidx.recyclerview:recyclerview:1.0.0"
+
+    //Room
+    const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+    const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
+    const val roomRx = "androidx.room:room-rxjava2:${Versions.room}"
 
     // Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
@@ -63,6 +70,7 @@ object Libraries {
     const val testJunit = "junit:junit:4.12"
     const val testRunner = "androidx.test.ext:junit:1.1.1"
     const val testEspresso = "androidx.test.espresso:espresso-core:3.2.0"
+    const val testRoom = "androidx.room:room-testing:${Versions.room}"
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
 
     // Gradle

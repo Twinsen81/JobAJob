@@ -6,7 +6,7 @@ import jobajob.library.entity.common.Result
 import jobajob.library.entity.vacancy.Vacancy
 
 internal interface VacanciesGateway {
-    fun getVacancies(): Single<VacanciesListResult>
+    fun getVacancies(page: Int): Single<VacanciesListResult>
 }
 
 internal typealias VacanciesListResult = Result<List<Vacancy>, Failure>

@@ -13,8 +13,8 @@ internal class VacanciesRepository @Inject constructor(
     private val localDataSource: VacanciesLocalDataSource,
     private val remoteDataSource: VacanciesRemoteDataSource
 ) : VacanciesGateway {
-    override fun getVacancies(): Single<VacanciesListResult> {
-        return remoteDataSource.getVacancies()
+    override fun getVacancies(page: Int): Single<VacanciesListResult> {
+        return remoteDataSource.getVacancies(page)
             .map { remoteResult -> mapRemoteToDomain(remoteResult) }
     }
 

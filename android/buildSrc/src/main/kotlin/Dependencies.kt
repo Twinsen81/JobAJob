@@ -37,6 +37,7 @@ object Libraries {
     const val xPreference = "androidx.preference:preference:1.1.0"
     const val xMaterial = "com.google.android.material:material:1.0.0"
     const val xRecyclerView = "androidx.recyclerview:recyclerview:1.0.0"
+    const val xPaging = "androidx.paging:paging-runtime:2.1.0"
 
     //Room
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"

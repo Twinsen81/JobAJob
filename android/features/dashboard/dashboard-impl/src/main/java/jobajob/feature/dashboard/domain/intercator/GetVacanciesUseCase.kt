@@ -10,7 +10,9 @@ import javax.inject.Inject
 internal class GetVacanciesUseCase @Inject constructor(
     private val vacanciesRepository: VacanciesGateway,
     observeOn: Scheduler
-): SingleUseCase<VacanciesListResult, Unit>(observeOn) {
-    override fun buildUseCaseSingle(params: Unit?): Single<VacanciesListResult> =
-        vacanciesRepository.getVacancies()
+): SingleUseCase<VacanciesListResult, GetVacanciesUseCase.Params>(observeOn) {
+    override fun buildUseCaseSingle(params: Params?): Single<VacanciesListResult> =
+        vacanciesRepository.getVacancies(params!!.page)
+
+    data class Params(val page: Int)
 }

@@ -2,14 +2,15 @@ package jobajob.feature.dashboard.presentation.vacancies
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import jobajob.feature.dashboard.R
 import jobajob.library.entity.vacancy.Vacancy
 import jobajob.library.uicomponents.util.ChangePayload
 
 internal class VacanciesAdapter(
     private val itemClickListener: ((clickedItem: Vacancy) -> Unit)? = null
-) : ListAdapter<Vacancy, VacancyViewHolder>(VacanciesDiffUtilCallback()) {
+) : PagedListAdapter<Vacancy, VacancyViewHolder>(VacanciesDiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VacancyViewHolder {
         val viewHolder = VacancyViewHolder(
@@ -22,17 +23,19 @@ internal class VacanciesAdapter(
         return viewHolder
     }
 
-    fun setData(data: List<Vacancy>) = submitList(data.map { it.copy() })
-
-    override fun getItemId(position: Int) = getItem(position).id
+    override fun getItemId(position: Int) = getItem(position)?.id ?: RecyclerView.NO_ID
 
     override fun getItemViewType(position: Int): Int = R.layout.dashboard_item_vacancy
 
-    override fun onBindViewHolder(holder: VacancyViewHolder, position: Int) =
-        holder.onBind(getItem(position), ChangePayload(null))
+    override fun onBindViewHolder(holder: VacancyViewHolder, position: Int) {
+        val item = getItem(position)
+        item?.also { holder.onBind(it, ChangePayload(null)) }
+    }
 
     override fun onBindViewHolder(
         holder: VacancyViewHolder, position: Int, payloads: MutableList<Any>
-    ) =
-        holder.onBind(getItem(position), ChangePayload(payloads))
+    ) {
+        val item = getItem(position)
+        item?.also { holder.onBind(item, ChangePayload(payloads)) }
+    }
 }

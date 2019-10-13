@@ -11,9 +11,9 @@ import javax.inject.Inject
 
 internal class VacanciesRetrofitDataSource @Inject constructor(private val api: DashboardApi) :
     VacanciesRemoteDataSource {
-    override fun getVacancies(): Single<VacanciesRemoteDtoListResult> {
+    override fun getVacancies(page: Int): Single<VacanciesRemoteDtoListResult> {
         return try {
-            api.fetchVacancies()
+            api.fetchVacancies(page)
                 .map { response -> mapSpringResultToData(response.toResult()) }
         } catch (e: Throwable) {
             Single.just(Result.Error(Failure.ApplicationError(e)))

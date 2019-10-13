@@ -21,6 +21,6 @@ internal class VacanciesViewModel @Inject constructor(
                 result.either(
                     { list -> _vacancies.value = list },
                     { failure -> handleFailure(failure) })
-            })
+            }, GetVacanciesUseCase.Params(0))
     }
 }

@@ -32,6 +32,7 @@ dependencies {
     // AndroidX
     implementation Libraries.xRecyclerView
     implementation Libraries.xMaterial
+    implementation Libraries.xPaging
 
     // Room
     implementation Libraries.roomRuntime

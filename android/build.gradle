@@ -10,7 +10,8 @@ buildscript {
         classpath Libraries.gradleAndroid
         classpath Libraries.gradleKotlin
         classpath Libraries.gradleVersions
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+        classpath "com.google.gms:google-services:${Versions.googleServices}"
     }
 }
 

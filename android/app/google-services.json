@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "31807166824",
+    "firebase_url": "https://jobajob81.firebaseio.com",
+    "project_id": "jobajob81",
+    "storage_bucket": "jobajob81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31807166824:android:3a57732f345d07336b1edd",
+        "android_client_info": {
+          "package_name": "com.evartem.jobajob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31807166824-gt7erj9msp95li03h3h81a9899jhkiob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChCf3OJKkjad-TaJk3NayF5vhb-hkx4RQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31807166824-gt7erj9msp95li03h3h81a9899jhkiob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

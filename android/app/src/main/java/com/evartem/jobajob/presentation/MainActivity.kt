@@ -1,6 +1,9 @@
 package com.evartem.jobajob.presentation
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +12,8 @@ import androidx.fragment.app.FragmentManager
 import com.evartem.jobajob.R
 import com.evartem.jobajob.di.AppComponent
 import com.evartem.jobajob.di.FeatureInjector
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.messaging.RemoteMessage
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.feature.favorites.di.FavoritesFeatureComponent
 import jobajob.library.uicomponents.navigation.BackButtonHandler
@@ -31,6 +36,13 @@ class MainActivity : AppCompatActivity(), RootNavigator {
     companion object {
         private const val VISIBLE_TAB_KEY = "VISIBLE_TAB_KEY"
         private const val BACKSTACK_KEY = "BACKSTACK_KEY"
+        private const val NOTIFICATION_KEY = "NOTIFICATION_KEY"
+
+        fun createNotificationIntent(context: Context, message: RemoteMessage): Intent {
+            val notificationIntent = Intent(context, MainActivity::class.java)
+            notificationIntent.putExtra(NOTIFICATION_KEY, message)
+            return notificationIntent
+        }
     }
 
     override var hideNavigationView: Boolean = false
@@ -59,6 +71,8 @@ class MainActivity : AppCompatActivity(), RootNavigator {
                     )
                 )
             )
+
+        intent
     }
 
     private fun restoreState(state: Bundle) {
@@ -166,5 +180,23 @@ class MainActivity : AppCompatActivity(), RootNavigator {
 
     override fun onNeedUserAuthorization() {
         startActivity(features.loginFeatureComponent().getLoginScreenIntent(this))
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        intent?.also {
+
+            // TODO: Refactor the intent's payload type and handle data from both - system tray
+            //  and the FCMService.onMessageReceived
+            if (it.hasExtra(NOTIFICATION_KEY)) {
+                val message: RemoteMessage = it.getParcelableExtra(NOTIFICATION_KEY)!!
+                Snackbar.make(
+                    mainLayout,
+                    message.notification?.body ?: "FCM message",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 }

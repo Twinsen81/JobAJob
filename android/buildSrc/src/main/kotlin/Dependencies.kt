@@ -15,6 +15,7 @@ object Config {
 object Versions {
     const val kotlin = "1.3.50"
     const val androidX = "1.1.0"
+    const val googleServices = "4.3.2"
     const val room = "2.2.0"
     const val lifecycle = "2.1.0"
     const val dagger = "2.24"
@@ -60,6 +61,10 @@ object Libraries {
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
     const val gson = "com.google.code.gson:gson:2.8.6"
+
+    // Firebase
+    const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.2.0"
+    const val firebaseCloudMessaging = "com.google.firebase:firebase-messaging:20.0.0"
 
     // Misc
     const val timber = "com.jakewharton.timber:timber:4.7.1"

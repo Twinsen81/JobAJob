@@ -48,6 +48,10 @@ dependencies {
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
 
+    // Firebase
+    implementation Libraries.firebaseAnalytics
+    implementation Libraries.firebaseCloudMessaging
+
     // Misc
     implementation Libraries.kotlin
     implementation Libraries.cicerone
@@ -58,3 +62,5 @@ dependencies {
     androidTestImplementation Libraries.testRunner
     androidTestImplementation Libraries.testEspresso
 }
+
+apply plugin: 'com.google.gms.google-services'

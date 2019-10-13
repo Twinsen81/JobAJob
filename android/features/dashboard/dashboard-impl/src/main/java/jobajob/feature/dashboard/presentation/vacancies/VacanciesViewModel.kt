@@ -2,6 +2,8 @@ package jobajob.feature.dashboard.presentation.vacancies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import jobajob.feature.dashboard.domain.intercator.GetVacanciesUseCase
 import jobajob.library.entity.vacancy.Vacancy
 import jobajob.library.uicomponents.presentation.BaseViewModel
@@ -14,6 +16,17 @@ internal class VacanciesViewModel @Inject constructor(
 
     private val _vacancies: MutableLiveData<List<Vacancy>> = MutableLiveData()
     val vacancies get() = _vacancies as LiveData<List<Vacancy>>
+
+    private val pagedListConfig = PagedList.Config.Builder()
+        .setEnablePlaceholders(true)
+        .setInitialLoadSizeHint(10)
+        .setPageSize(20)
+        .build()
+    //val noteList = LivePagedListBuilder<Int, Vacancy>(getNotesUseCase.allNotes(), pagedListConfig).build()
+
+    init {
+
+    }
 
     fun loadVacancies() {
         getVacanciesUseCase(

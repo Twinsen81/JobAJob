@@ -41,8 +41,6 @@ internal class VacanciesFragment : BaseNavigationFragment() {
             ViewModelProviders.of(this, viewModelFactory).get(VacanciesViewModel::class.java)
 
         setupRecyclerView()
-
-        viewModel.loadVacancies()
     }
 
     private fun setupRecyclerView() {
@@ -65,6 +63,6 @@ internal class VacanciesFragment : BaseNavigationFragment() {
     override fun onStart() {
         super.onStart()
 
-        viewModel.vacancies.observe(viewLifecycleOwner, Observer { recyclerViewAdapter.setData(it) })
+        viewModel.vacancies.observe(viewLifecycleOwner, Observer { recyclerViewAdapter.submitList(it) })
     }
 }

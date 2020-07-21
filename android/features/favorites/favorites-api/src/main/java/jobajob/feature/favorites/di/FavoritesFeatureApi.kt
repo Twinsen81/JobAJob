@@ -1,4 +1,4 @@
-package jobajon.feature.favorites.di
+package jobajob.feature.favorites.di
 
 import androidx.fragment.app.Fragment
 

@@ -23,7 +23,7 @@ class FeatureNavigator @Inject constructor(
             ciceroneNavigator = SupportAppNavigator(activity, fragmentManager, containerId)
     }
 
-    fun startNavigator() = ciceroneNavigatorHolder.setNavigator(ciceroneNavigator)
+    fun startNavigator() = ciceroneNavigatorHolder.setNavigator(ciceroneNavigator!!)
 
     fun pauseNavigator() = ciceroneNavigatorHolder.removeNavigator()
 

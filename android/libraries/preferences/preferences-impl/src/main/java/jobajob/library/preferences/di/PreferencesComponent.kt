@@ -1,6 +1,7 @@
 package jobajob.library.preferences.di
 
 import android.app.Application
+import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import jobajob.library.preferences.PreferencesApi
@@ -21,12 +22,12 @@ interface PreferencesComponent : PreferencesApi {
 
         private var preferencesComponent: PreferencesComponent? = null
 
-        fun initAndGet(application: Application): PreferencesApi {
+        fun initAndGet(appContext: Context): PreferencesApi {
             if (preferencesComponent == null) {
                 synchronized(PreferencesComponent::class) {
                     if (preferencesComponent == null) {
                         preferencesComponent = DaggerPreferencesComponent.builder()
-                            .application(application)
+                            .application(appContext as Application)
                             .build()
                     }
                 }

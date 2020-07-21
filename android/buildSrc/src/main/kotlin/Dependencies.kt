@@ -13,16 +13,19 @@ object Config {
 }
 
 object Versions {
-    const val kotlin = "1.3.50"
+    const val kotlin = "1.3.72"
     const val androidX = "1.1.0"
+    const val androidXKtx = "1.3.0"
     const val googleServices = "4.3.2"
     const val room = "2.2.0"
-    const val lifecycle = "2.1.0"
-    const val dagger = "2.24"
-    const val rxJava = "2.2.12"
+    const val lifecycle = "2.2.0"
+    const val dagger = "2.28.1"
+    const val hilt = "2.28-alpha"
+    const val rxJava = "2.2.19"
     const val rxKotlin = "2.4.0"
-    const val retrofit = "2.6.2"
-    const val okhttp = "4.2.1"
+    const val retrofit = "2.9.0"
+    const val okhttp = "4.7.2"
+    const val flipper = "0.48.0"
 }
 
 object Libraries {
@@ -30,13 +33,13 @@ object Libraries {
 
     // AndroidX
     const val xAppCompat = "androidx.appcompat:appcompat:${Versions.androidX}"
-    const val xCoreKtx = "androidx.core:core-ktx:${Versions.androidX}"
+    const val xCoreKtx = "androidx.core:core-ktx:${Versions.androidXKtx}"
     const val xLifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
     const val xLifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val xConstraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val xPreference = "androidx.preference:preference:1.1.0"
     const val xMaterial = "com.google.android.material:material:1.0.0"
-    const val xRecyclerView = "androidx.recyclerview:recyclerview:1.0.0"
+    const val xRecyclerView = "androidx.recyclerview:recyclerview:1.1.0"
     const val xPaging = "androidx.paging:paging-runtime:2.1.0"
 
     //Room
@@ -48,6 +51,8 @@ object Libraries {
     // Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
 
     // Rx
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
@@ -67,41 +72,28 @@ object Libraries {
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.2.0"
     const val firebaseCloudMessaging = "com.google.firebase:firebase-messaging:20.0.0"
 
+    // Flipper
+    const val flipper = "com.facebook.flipper:flipper:${Versions.flipper}"
+    const val flipperNoop = "com.facebook.flipper:flipper-noop:${Versions.flipper}"
+    const val flipperSoloader = "com.facebook.soloader:soloader:0.9.0"
+    const val flipperNetworkPlugin = "com.facebook.flipper:flipper-network-plugin:${Versions.flipper}"
+
     // Misc
     const val timber = "com.jakewharton.timber:timber:4.7.1"
-    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.0-beta-3"
-    const val cicerone = "ru.terrakok.cicerone:cicerone:5.0.0"
+    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.4"
+    const val cicerone = "ru.terrakok.cicerone:cicerone:5.1.1"
 
     // Tests
-    const val testJunit = "junit:junit:4.12"
+    const val testJunit = "junit:junit:4.13"
     const val testRunner = "androidx.test.ext:junit:1.1.1"
     const val testEspresso = "androidx.test.espresso:espresso-core:3.2.0"
     const val testRoom = "androidx.room:room-testing:${Versions.room}"
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
 
     // Gradle
-    const val gradleAndroid = "com.android.tools.build:gradle:3.5.0"
+    const val gradleAndroid = "com.android.tools.build:gradle:4.0.0"
     const val gradleKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-    const val gradleVersions = "com.github.ben-manes:gradle-versions-plugin:0.25.0"
-}
-
-object Modules {
-    const val libraryCore = ":libraries:core"
-    const val libraryUtils = ":libraries:utils"
-    const val libraryNetwork = ":libraries:network"
-    const val libraryUiComponents = ":libraries:ui-components"
-
-    const val libraryPreferencesApi = ":libraries:preferences:preferences-api"
-    const val libraryPreferencesImpl = ":libraries:preferences:preferences-impl"
-
-    const val featureLoginApi = ":features:login:login-api"
-    const val featureLoginImpl = ":features:login:login-impl"
-
-    const val featureDashboardApi = ":features:dashboard:dashboard-api"
-    const val featureDashboardImpl = ":features:dashboard:dashboard-impl"
-
-    const val featureFavoritesApi = ":features:favorites:favorites-api"
-    const val featureFavoritesImpl = ":features:favorites:favorites-impl"
+    const val gradleVersions = "com.github.ben-manes:gradle-versions-plugin:0.28.0"
 }
 
 object GradleTemplates {

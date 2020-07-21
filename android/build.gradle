@@ -1,5 +1,4 @@
 buildscript {
-    ext.kotlin_version = '1.3.50'
 
     repositories {
         google()
@@ -12,6 +11,7 @@ buildscript {
         classpath Libraries.gradleVersions
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         classpath "com.google.gms:google-services:${Versions.googleServices}"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
     }
 }
 

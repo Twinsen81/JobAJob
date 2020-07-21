@@ -1,13 +1,12 @@
 package com.evartem.jobajob
 
 import android.app.Application
-import com.evartem.jobajob.di.AppComponent
 
-class JobajobApplication: Application() {
+open class JobajobApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
 
-        AppComponent.init(this)
+        //AppComponent.init(this)
     }
 }

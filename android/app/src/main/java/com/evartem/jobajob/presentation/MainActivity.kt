@@ -3,17 +3,16 @@ package com.evartem.jobajob.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.evartem.jobajob.R
-import com.evartem.jobajob.di.AppComponent
 import com.evartem.jobajob.di.FeatureInjector
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.messaging.RemoteMessage
+import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.feature.favorites.di.FavoritesFeatureComponent
 import jobajob.library.uicomponents.navigation.BackButtonHandler
@@ -21,6 +20,7 @@ import jobajob.library.uicomponents.navigation.RootNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), RootNavigator {
 
     @Inject
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), RootNavigator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        AppComponent.get().inject(this)
+        //AppComponent.get().inject(this)
 
         fragManager = supportFragmentManager
 
@@ -179,7 +179,7 @@ class MainActivity : AppCompatActivity(), RootNavigator {
     }
 
     override fun onNeedUserAuthorization() {
-        startActivity(features.loginFeatureComponent().getLoginScreenIntent(this))
+        //startActivity(features.loginFeatureComponent().getLoginScreenIntent(this))
     }
 
     override fun onNewIntent(intent: Intent?) {

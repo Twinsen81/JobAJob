@@ -1,10 +1,6 @@
 package com.evartem.jobajob.di
 
-import android.app.Application
-import com.evartem.jobajob.presentation.MainActivity
-import dagger.Component
-import javax.inject.Singleton
-
+/*
 @Singleton
 @Component(modules = [AppModule::class])
 abstract class AppComponent {
@@ -26,4 +22,4 @@ abstract class AppComponent {
     }
 
     abstract fun inject(activity: MainActivity)
-}
+}*/

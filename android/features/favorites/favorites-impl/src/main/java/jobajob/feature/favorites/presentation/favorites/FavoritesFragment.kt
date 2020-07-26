@@ -4,16 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.favorites.R
-import jobajob.feature.favorites.di.FavoritesFeatureComponent
-import jobajob.library.uicomponents.presentation.BaseNavigationFragment
+import jobajob.library.utils.di.UtilsApi
 import kotlinx.android.synthetic.main.fragment_favorites.*
+import javax.inject.Inject
 import kotlin.random.Random
 
-internal class FavoritesFragment : BaseNavigationFragment() {
+@AndroidEntryPoint
+internal class FavoritesFragment : Fragment() {
 
-    private lateinit var viewModel: FavoritesViewModel
+    private val viewModel: FavoritesViewModel by viewModels()
+
+    @Inject
+    lateinit var utilsApi: UtilsApi
 
     private val rnd = Random.nextInt()
 
@@ -26,11 +32,6 @@ internal class FavoritesFragment : BaseNavigationFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        FavoritesFeatureComponent.get().inject(this)
-
-        viewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
-
-        dbTitle.text = "${dbTitle.text}  $rnd"
+        dbTitle.text = "FavID:  ${utilsApi.utils().generateRandomUserId()}"
     }
 }

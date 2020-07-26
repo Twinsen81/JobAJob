@@ -1,0 +1,32 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'idea'
+apply plugin: 'dagger.hilt.android.plugin'
+
+idea {
+    module {
+        sourceDirs += file('build/generated/source/kapt/main')
+        generatedSourceDirs += file('build/generated/source/kapt/main')
+    }
+}
+
+android {
+    buildTypes {
+        release {
+            minifyEnabled true
+        }
+    }
+}
+
+dependencies {
+
+    // Dagger
+    implementation Libraries.dagger
+    kapt Libraries.daggerCompiler
+    implementation Libraries.hilt
+    kapt Libraries.hiltCompiler
+    implementation Libraries.hiltAndroidX
+    kapt Libraries.hiltCompilerAndroidX
+}

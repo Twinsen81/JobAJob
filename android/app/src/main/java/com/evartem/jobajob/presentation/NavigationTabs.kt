@@ -3,19 +3,21 @@ package com.evartem.jobajob.presentation
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import com.evartem.jobajob.R
-import com.evartem.jobajob.di.FeatureInjector
+import jobajob.feature.dashboard.api.DashboardFeatureApi
+import jobajob.feature.favorites.api.FavoritesFeatureApi
 import javax.inject.Inject
 
-class NavigationTabs @Inject constructor(featureInjector: FeatureInjector) {
+class NavigationTabs @Inject constructor(private val dashboardFeatureApi: DashboardFeatureApi,
+                                         private val favoritesFeatureApi: FavoritesFeatureApi) {
 
     private val tabs = mapOf(
         NavigationTab.DASHBOARD to
                 Tab(R.id.navigation_dashboard) {
-                    featureInjector.dashboardFeatureApi().getDashboardFragment()
+                    dashboardFeatureApi.getDashboardFragment()
                 },
         NavigationTab.FAVORITES to
                 Tab(R.id.navigation_favorites) {
-                    featureInjector.favoritesFeatureApi().getFavoritesFragment()
+                    favoritesFeatureApi.getFavoritesFragment()
                 },
         NavigationTab.RESUMES to
                 Tab(R.id.navigation_resumes) {

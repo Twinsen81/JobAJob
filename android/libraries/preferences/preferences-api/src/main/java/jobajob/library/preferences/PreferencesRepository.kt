@@ -4,12 +4,18 @@ import io.reactivex.Observable
 import io.reactivex.functions.Consumer
 
 interface PreferencesRepository {
-    fun observeString(preferenceName: PreferenceName, defaultValue: String = ""): Observable<String>
-    fun assignString(preferenceName: PreferenceName): Consumer<in String>
+    fun getString(preferenceName: StringPreference, defaultValue: String = ""): String
+    fun observeString(preferenceName: StringPreference, defaultValue: String = ""): Observable<String>
+    fun assignString(preferenceName: StringPreference): Consumer<in String>
+    fun setString(preferenceName: StringPreference, value: String)
 
-    fun observeBoolean(preferenceName: PreferenceName, defaultValue: Boolean = false): Observable<Boolean>
-    fun assignBoolean(preferenceName: PreferenceName): Consumer<in Boolean>
+    fun getBoolean(preferenceName: BooleanPreference, defaultValue: Boolean): Boolean
+    fun observeBoolean(preferenceName: BooleanPreference, defaultValue: Boolean): Observable<Boolean>
+    fun assignBoolean(preferenceName: BooleanPreference): Consumer<in Boolean>
+    fun setBoolean(preferenceName: BooleanPreference, value: Boolean)
 
-    fun observeInt(preferenceName: PreferenceName, defaultValue: Int = 0): Observable<Int>
-    fun assignInt(preferenceName: PreferenceName): Consumer<in Int>
+    fun getInt(preferenceName: IntPreference, defaultValue: Int): Int
+    fun observeInt(preferenceName: IntPreference, defaultValue: Int): Observable<Int>
+    fun assignInt(preferenceName: IntPreference): Consumer<in Int>
+    fun setInt(preferenceName: IntPreference, value: Int)
 }

@@ -1,0 +1,6 @@
+apply from:"$rootDir/${GradleTemplates.androidLibrary}"
+
+dependencies {
+    api project(Modules.libraryPreferencesApi)
+    api project(Modules.libraryPreferencesImpl)
+}

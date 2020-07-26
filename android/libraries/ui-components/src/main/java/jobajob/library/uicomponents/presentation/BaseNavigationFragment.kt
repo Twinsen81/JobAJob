@@ -2,6 +2,7 @@ package jobajob.library.uicomponents.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import jobajob.library.uicomponents.navigation.BackButtonHandler
 import jobajob.library.uicomponents.navigation.RootNavigator
 import jobajob.library.uicomponents.widget.Toolbar
@@ -14,7 +15,7 @@ import javax.inject.Inject
  * Each fragment that wants to support navigation backstack should
  * inherit from this class.
  */
-abstract class BaseNavigationFragment : BaseFragment(),
+abstract class BaseNavigationFragment : Fragment(),
     BackButtonHandler {
 
     @Inject
@@ -25,7 +26,7 @@ abstract class BaseNavigationFragment : BaseFragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rootNavigator = activity!! as RootNavigator
+        rootNavigator = requireActivity() as RootNavigator
         showRootNavigationView()
 
         val toolbar = view.findViewWithTag<Toolbar?>("jobajob.library.uicomponents.widget.Toolbar")

@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.R
-import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.library.uicomponents.presentation.BaseNavigationFragment
 import jobajob.library.uicomponents.util.withArgs
 import kotlinx.android.synthetic.main.dashboard_fragment_vacancy_detail.*
 
+@AndroidEntryPoint
 internal class VacancyDetailFragment: BaseNavigationFragment() {
 
-    private lateinit var viewModel: VacancyDetailViewModel
+    private val viewModel: VacancyDetailViewModel by viewModels()
 
     private var vacancyId: Long = 0
 
@@ -41,10 +42,6 @@ internal class VacancyDetailFragment: BaseNavigationFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        DashboardFeatureComponent.get().inject(this)
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(VacancyDetailViewModel::class.java)
 
         dbVacTitle.text = "${dbVacTitle.text}  $vacancyId"
 

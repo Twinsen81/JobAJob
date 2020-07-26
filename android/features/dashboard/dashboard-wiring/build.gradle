@@ -1,0 +1,6 @@
+apply from: "$rootDir/${GradleTemplates.androidFeature}"
+
+dependencies {
+    api project(Modules.featureDashboardApi)
+    api project(Modules.featureDashboardImpl)
+}

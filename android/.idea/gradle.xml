@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -14,24 +16,27 @@
             <option value="$PROJECT_DIR$/features/dashboard" />
             <option value="$PROJECT_DIR$/features/dashboard/dashboard-api" />
             <option value="$PROJECT_DIR$/features/dashboard/dashboard-impl" />
+            <option value="$PROJECT_DIR$/features/dashboard/dashboard-wiring" />
             <option value="$PROJECT_DIR$/features/favorites" />
             <option value="$PROJECT_DIR$/features/favorites/favorites-api" />
             <option value="$PROJECT_DIR$/features/favorites/favorites-impl" />
+            <option value="$PROJECT_DIR$/features/favorites/favorites-wiring" />
             <option value="$PROJECT_DIR$/features/login" />
             <option value="$PROJECT_DIR$/features/login/login-api" />
             <option value="$PROJECT_DIR$/features/login/login-impl" />
+            <option value="$PROJECT_DIR$/features/login/login-wiring" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/core" />
             <option value="$PROJECT_DIR$/libraries/network" />
             <option value="$PROJECT_DIR$/libraries/preferences" />
             <option value="$PROJECT_DIR$/libraries/preferences/preferences-api" />
             <option value="$PROJECT_DIR$/libraries/preferences/preferences-impl" />
+            <option value="$PROJECT_DIR$/libraries/preferences/preferences-wiring" />
             <option value="$PROJECT_DIR$/libraries/ui-components" />
             <option value="$PROJECT_DIR$/libraries/utils" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

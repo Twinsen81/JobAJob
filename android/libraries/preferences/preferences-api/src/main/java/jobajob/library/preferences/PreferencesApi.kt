@@ -1,5 +1,5 @@
 package jobajob.library.preferences
 
 interface PreferencesApi {
-    fun getPreferencesRepository(): PreferencesRepository
+    fun getPreferencesRepository(fileName: String): PreferencesRepository
 }

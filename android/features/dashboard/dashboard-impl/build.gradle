@@ -1,4 +1,4 @@
-apply from: "$rootDir/${GradleTemplates.androidLibrary}"
+apply from: "$rootDir/${GradleTemplates.androidFeature}"
 
 // LayoutContainer + Parcelable support
 androidExtensions { experimental = true }
@@ -7,12 +7,16 @@ android {
     defaultConfig {
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [
+                arguments += [
                         "room.incremental"     : "true",
                         "room.expandProjection": "true"]
             }
         }
     }
+}
+
+kapt {
+    correctErrorTypes true
 }
 
 dependencies {

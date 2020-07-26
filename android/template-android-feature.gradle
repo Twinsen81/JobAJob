@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'idea'
 apply plugin: 'com.github.ben-manes.versions'
 
@@ -25,6 +26,7 @@ dependencies {
     // AndroidX
     implementation Libraries.xAppCompat
     implementation Libraries.xCoreKtx
+    implementation Libraries.xFragmentKtx
     implementation Libraries.xConstraintLayout
     implementation Libraries.xLifecycle
     implementation Libraries.xLifecycleViewModel
@@ -32,11 +34,13 @@ dependencies {
     // Dagger
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
+    implementation Libraries.hilt
+    kapt Libraries.hiltCompiler
+    implementation Libraries.hiltAndroidX
+    kapt Libraries.hiltCompilerAndroidX
 
     // Misc
     implementation Libraries.kotlin
-    implementation Libraries.cicerone
-    implementation Libraries.xLifecycleViewModel
 
     // Tests
     testImplementation Libraries.testJunit

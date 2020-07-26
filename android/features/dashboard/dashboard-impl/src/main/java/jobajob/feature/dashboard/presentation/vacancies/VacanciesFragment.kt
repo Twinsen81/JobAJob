@@ -4,22 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.data.remote.api.DashboardApi
-import jobajob.feature.dashboard.di.DashboardFeatureComponent
 import jobajob.library.uicomponents.presentation.BaseNavigationFragment
 import kotlinx.android.synthetic.main.dashboard_fragment_vacancies.*
 import javax.inject.Inject
 
-internal class VacanciesFragment : BaseNavigationFragment() {
+@AndroidEntryPoint
+internal class VacanciesFragment: BaseNavigationFragment() {
 
-    private lateinit var viewModel: VacanciesViewModel
+    private val viewModel: VacanciesViewModel by viewModels()
     private lateinit var recyclerViewAdapter: VacanciesAdapter
     private lateinit var recyclerViewLayoutManager: LinearLayoutManager
 
@@ -35,11 +36,6 @@ internal class VacanciesFragment : BaseNavigationFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        DashboardFeatureComponent.get().inject(this)
-
-        viewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(VacanciesViewModel::class.java)
-
         setupRecyclerView()
     }
 
@@ -49,7 +45,7 @@ internal class VacanciesFragment : BaseNavigationFragment() {
         vacanciesRecyclerView.layoutManager = recyclerViewLayoutManager
 
         recyclerViewAdapter = VacanciesAdapter { clickedMessage ->
-            Snackbar.make(view!!, clickedMessage.id.toString(), Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(requireView(), clickedMessage.id.toString(), Snackbar.LENGTH_SHORT).show()
             /* featureRouter.navigateTo(object : SupportAppScreen() {
                  override fun getFragment(): Fragment = VacancyDetailFragment.newInstance(6)
                        })

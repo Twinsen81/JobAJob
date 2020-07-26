@@ -28,10 +28,8 @@ abstract class FeatureNavigationHostFragment : BaseNavigationFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        injectDependencies()
-
         featureNavigator.setNavigationHost(
-            activity!!,
+            requireActivity(),
             childFragmentManager,
             R.id.feature_navigation_host
         )
@@ -39,13 +37,6 @@ abstract class FeatureNavigationHostFragment : BaseNavigationFragment() {
         if (savedInstanceState == null)
             featureRouter.navigateTo(getStartScreen())
     }
-
-    /**
-     * Perform injection into this fragment, e.g.:
-     *
-     * Component.inject(this)
-     */
-    abstract fun injectDependencies()
 
     /**
      * Provide the screen that will be shown when this feature starts
@@ -75,5 +66,4 @@ abstract class FeatureNavigationHostFragment : BaseNavigationFragment() {
         featureRouter.exit()
         return true
     }
-
 }

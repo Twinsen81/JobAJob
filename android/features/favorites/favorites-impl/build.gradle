@@ -4,4 +4,7 @@ dependencies {
     implementation project(Modules.libraryUtils)
     implementation project(Modules.libraryUiComponents)
     implementation project(Modules.featureFavoritesApi)
+
+    // Misc
+    implementation Libraries.cicerone
 }

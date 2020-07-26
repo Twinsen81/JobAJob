@@ -1,24 +1,31 @@
 package jobajob.feature.login.presentation
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
+import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.login.R
-import jobajob.feature.login.di.LoginFeatureComponent
-import javax.inject.Inject
 
+@AndroidEntryPoint
 internal class LoginActivity : AppCompatActivity() {
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: LoginViewModel
+    companion object {
+        private const val EXTRA_USER_NAME = "EXTRA_USER_NAME"
+
+        fun createIntent(context: Context, userName: String? = null) : Intent =
+            Intent(context, LoginActivity::class.java).apply {
+                userName?.let{ putExtra(EXTRA_USER_NAME, it)}
+            }
+    }
+
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
 
-        LoginFeatureComponent.get().inject(this)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
     }
 }

@@ -1,16 +1,13 @@
 package jobajob.feature.dashboard.presentation.navigation
 
 import androidx.fragment.app.Fragment
-import jobajob.feature.dashboard.di.DashboardFeatureComponent
+import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.presentation.vacancies.VacanciesFragment
 import jobajob.library.uicomponents.presentation.FeatureNavigationHostFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
+@AndroidEntryPoint
 internal class DashboardNavigationFragment : FeatureNavigationHostFragment() {
-
-    override fun injectDependencies() =
-        DashboardFeatureComponent.get().inject(this)
-
 
     override fun getStartScreen(): SupportAppScreen =
         object : SupportAppScreen() {

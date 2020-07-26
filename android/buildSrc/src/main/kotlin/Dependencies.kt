@@ -15,12 +15,14 @@ object Config {
 object Versions {
     const val kotlin = "1.3.72"
     const val androidX = "1.1.0"
-    const val androidXKtx = "1.3.0"
+    const val androidXKtxCore = "1.3.0"
+    const val androidXKtxFragment = "1.2.5"
     const val googleServices = "4.3.2"
     const val room = "2.2.0"
     const val lifecycle = "2.2.0"
-    const val dagger = "2.28.1"
-    const val hilt = "2.28-alpha"
+    const val dagger = "2.28.3"
+    const val hilt = "2.28.3-alpha"
+    const val hiltAndroidX = "1.0.0-alpha02"
     const val rxJava = "2.2.19"
     const val rxKotlin = "2.4.0"
     const val retrofit = "2.9.0"
@@ -33,7 +35,8 @@ object Libraries {
 
     // AndroidX
     const val xAppCompat = "androidx.appcompat:appcompat:${Versions.androidX}"
-    const val xCoreKtx = "androidx.core:core-ktx:${Versions.androidXKtx}"
+    const val xCoreKtx = "androidx.core:core-ktx:${Versions.androidXKtxCore}"
+    const val xFragmentKtx = "androidx.fragment:fragment-ktx:${Versions.androidXKtxFragment}"
     const val xLifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
     const val xLifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val xConstraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
@@ -53,6 +56,8 @@ object Libraries {
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val hiltAndroidX = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltAndroidX}"
+    const val hiltCompilerAndroidX = "androidx.hilt:hilt-compiler:${Versions.hiltAndroidX}"
 
     // Rx
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
@@ -100,4 +105,5 @@ object GradleTemplates {
     const val kotlinLibrary = "template-kotlin-library.gradle"
     const val androidLibrary = "template-android-library.gradle"
     const val androidFeature = "template-android-feature.gradle"
+    const val androidWiring = "template-android-wiring.gradle"
 }

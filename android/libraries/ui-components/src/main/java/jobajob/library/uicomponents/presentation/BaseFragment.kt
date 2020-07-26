@@ -1,4 +1,5 @@
 package jobajob.library.uicomponents.presentation
+/*
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -8,4 +9,4 @@ abstract class BaseFragment: Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-}
+}*/

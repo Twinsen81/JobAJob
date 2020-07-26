@@ -1,0 +1,6 @@
+apply from:"$rootDir/${GradleTemplates.androidWiring}"
+
+dependencies {
+    api project(Modules.featureFavoritesApi)
+    api project(Modules.featureFavoritesImpl)
+}

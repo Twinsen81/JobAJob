@@ -1,47 +1,52 @@
 package jobajob.library.preferences
 
-import android.app.Application
-import androidx.preference.PreferenceManager
+import android.content.Context
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import io.reactivex.Observable
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-internal class SharedPreferencesRepository @Inject constructor(application: Application) :
-    PreferencesRepository {
+internal class SharedPreferencesRepository @Inject constructor(
+    context: Context,
+    fileName: String
+) : PreferencesRepository {
 
     private val rxSharedPreferences =
-        RxSharedPreferences.create(PreferenceManager.getDefaultSharedPreferences(application))
+        RxSharedPreferences.create(context.getSharedPreferences(fileName, Context.MODE_PRIVATE))
 
-    override fun observeString(
-        preferenceName: PreferenceName,
-        defaultValue: String
-    ): Observable<String> =
+    override fun getString(preferenceName: StringPreference, defaultValue: String): String =
+        rxSharedPreferences.getString(preferenceName.name, defaultValue).get()
+
+    override fun observeString(preferenceName: StringPreference, defaultValue: String): Observable<String> =
         rxSharedPreferences.getString(preferenceName.name, defaultValue).asObservable()
 
-
-    override fun assignString(preferenceName: PreferenceName): Consumer<in String> =
+    override fun assignString(preferenceName: StringPreference): Consumer<in String> =
         rxSharedPreferences.getString(preferenceName.name).asConsumer()
 
-    override fun observeBoolean(
-        preferenceName: PreferenceName,
-        defaultValue: Boolean
-    ): Observable<Boolean> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun setString(preferenceName: StringPreference, value: String) =
+        rxSharedPreferences.getString(preferenceName.name).set(value)
 
-    override fun assignBoolean(preferenceName: PreferenceName): Consumer<Boolean> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getBoolean(preferenceName: BooleanPreference, defaultValue: Boolean): Boolean =
+        rxSharedPreferences.getBoolean(preferenceName.name, defaultValue).get()
 
-    override fun observeInt(preferenceName: PreferenceName, defaultValue: Int): Observable<Int> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun observeBoolean(preferenceName: BooleanPreference, defaultValue: Boolean): Observable<Boolean> =
+        rxSharedPreferences.getBoolean(preferenceName.name, defaultValue).asObservable()
 
-    override fun assignInt(preferenceName: PreferenceName): Consumer<Int> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun assignBoolean(preferenceName: BooleanPreference): Consumer<in Boolean> =
+        rxSharedPreferences.getBoolean(preferenceName.name).asConsumer()
 
+    override fun setBoolean(preferenceName: BooleanPreference, value: Boolean) =
+        rxSharedPreferences.getBoolean(preferenceName.name).set(value)
+
+    override fun getInt(preferenceName: IntPreference, defaultValue: Int): Int =
+        rxSharedPreferences.getInteger(preferenceName.name, defaultValue).get()
+
+    override fun observeInt(preferenceName: IntPreference, defaultValue: Int): Observable<Int> =
+        rxSharedPreferences.getInteger(preferenceName.name, defaultValue).asObservable()
+
+    override fun assignInt(preferenceName: IntPreference): Consumer<in Int> =
+        rxSharedPreferences.getInteger(preferenceName.name).asConsumer()
+
+    override fun setInt(preferenceName: IntPreference, value: Int) =
+        rxSharedPreferences.getInteger(preferenceName.name).set(value)
 }

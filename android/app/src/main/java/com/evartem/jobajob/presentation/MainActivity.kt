@@ -9,12 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.evartem.jobajob.R
-import com.evartem.jobajob.di.FeatureInjector
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
-import jobajob.feature.dashboard.di.DashboardFeatureComponent
-import jobajob.feature.favorites.di.FavoritesFeatureComponent
+import jobajob.feature.login.api.LoginFeatureApi
 import jobajob.library.uicomponents.navigation.BackButtonHandler
 import jobajob.library.uicomponents.navigation.RootNavigator
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,10 +22,10 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), RootNavigator {
 
     @Inject
-    lateinit var features: FeatureInjector
+    lateinit var navigationTabs: NavigationTabs
 
     @Inject
-    lateinit var navigationTabs: NavigationTabs
+    lateinit var loginFeatureApi: LoginFeatureApi
 
     private lateinit var fragManager: FragmentManager
 
@@ -55,8 +53,6 @@ class MainActivity : AppCompatActivity(), RootNavigator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //AppComponent.get().inject(this)
-
         fragManager = supportFragmentManager
 
         bottom_navigation.setOnNavigationItemSelectedListener(this::onBottomNavigationItemSelected)
@@ -71,8 +67,6 @@ class MainActivity : AppCompatActivity(), RootNavigator {
                     )
                 )
             )
-
-        intent
     }
 
     private fun restoreState(state: Bundle) {
@@ -153,15 +147,6 @@ class MainActivity : AppCompatActivity(), RootNavigator {
         super.onSaveInstanceState(outState)
     }
 
-    override fun onPause() {
-        super.onPause()
-
-        if (isFinishing) {
-            DashboardFeatureComponent.resetComponent()
-            FavoritesFeatureComponent.resetComponent()
-        }
-    }
-
     override fun onSoftBackButtonPressed() = onBackPressed()
 
     override fun onBackPressed() {
@@ -179,7 +164,7 @@ class MainActivity : AppCompatActivity(), RootNavigator {
     }
 
     override fun onNeedUserAuthorization() {
-        //startActivity(features.loginFeatureComponent().getLoginScreenIntent(this))
+        startActivity(loginFeatureApi.getLoginScreenIntent(this))
     }
 
     override fun onNewIntent(intent: Intent?) {

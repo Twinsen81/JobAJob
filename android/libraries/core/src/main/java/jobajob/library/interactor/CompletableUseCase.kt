@@ -1,4 +1,4 @@
-package jobajob.library.intercator
+package jobajob.library.interactor
 
 import io.reactivex.Completable
 import io.reactivex.Scheduler

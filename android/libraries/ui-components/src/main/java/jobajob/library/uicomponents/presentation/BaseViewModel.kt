@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.observers.DisposableSingleObserver
 import jobajob.library.entity.common.Failure
-import jobajob.library.intercator.UseCase
+import jobajob.library.interactor.UseCase
 
 /**
  * Base class for view models that provides automatic observer disposing,

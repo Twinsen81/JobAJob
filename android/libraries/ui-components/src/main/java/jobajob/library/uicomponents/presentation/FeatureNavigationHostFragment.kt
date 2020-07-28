@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import jobajob.library.uicomponents.R
 import jobajob.library.uicomponents.navigation.BackButtonHandler
 import jobajob.library.uicomponents.navigation.FeatureNavigator
+import ru.terrakok.cicerone.Cicerone
+import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppScreen
-import javax.inject.Inject
 
 /**
  * This class should be inherited by the root screen of a feature.
@@ -16,8 +17,9 @@ import javax.inject.Inject
  */
 abstract class FeatureNavigationHostFragment : BaseNavigationFragment() {
 
-    @Inject
-    lateinit var featureNavigator: FeatureNavigator
+    private val cicerone: Cicerone<Router> = Cicerone.create()
+    val featureRouter = cicerone.router
+    private val featureNavigator: FeatureNavigator = FeatureNavigator(featureRouter, cicerone.navigatorHolder)
 
     override fun onCreateView(
         inflater: LayoutInflater,

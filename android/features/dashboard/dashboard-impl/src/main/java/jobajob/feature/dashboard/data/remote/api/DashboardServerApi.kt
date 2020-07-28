@@ -6,8 +6,8 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-internal interface DashboardApi {
+internal interface DashboardServerApi {
 
     @GET("vacancies")
-    fun fetchVacancies(@Query("page") page: Int) : Single<Response<VacanciesRemoteDto>>
+    fun fetchVacancies(@Query("page") page: Int): Single<Response<VacanciesRemoteDto>>
 }

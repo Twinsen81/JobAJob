@@ -7,7 +7,6 @@ import jobajob.library.uicomponents.navigation.BackButtonHandler
 import jobajob.library.uicomponents.navigation.RootNavigator
 import jobajob.library.uicomponents.widget.Toolbar
 import ru.terrakok.cicerone.Router
-import javax.inject.Inject
 
 /**
  * A fragment of a feature that can navigate to other fragments and
@@ -15,13 +14,21 @@ import javax.inject.Inject
  * Each fragment that wants to support navigation backstack should
  * inherit from this class.
  */
-abstract class BaseNavigationFragment : Fragment(),
-    BackButtonHandler {
-
-    @Inject
-    lateinit var featureRouter: Router
+abstract class BaseNavigationFragment : Fragment(), BackButtonHandler {
 
     private lateinit var rootNavigator: RootNavigator
+    protected val router: Router
+        get() {
+            var parent: Fragment? = parentFragment
+            while (parent != null) {
+                if (parent is FeatureNavigationHostFragment) return parent.featureRouter
+                parent = parent.parentFragment
+            }
+            throw IllegalStateException(
+                "Fragment ${this.javaClass.simpleName} must have FeatureNavigationHostFragment as " +
+                        "the parent"
+            )
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -12,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.R
-import jobajob.feature.dashboard.data.remote.api.DashboardApi
+import jobajob.feature.dashboard.data.remote.api.DashboardServerApi
+import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
 import jobajob.library.uicomponents.presentation.BaseNavigationFragment
 import kotlinx.android.synthetic.main.dashboard_fragment_vacancies.*
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,7 +28,7 @@ internal class VacanciesFragment: BaseNavigationFragment() {
     private lateinit var recyclerViewLayoutManager: LinearLayoutManager
 
     @Inject
-    lateinit var api: DashboardApi
+    lateinit var serverApi: DashboardServerApi
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,10 +49,9 @@ internal class VacanciesFragment: BaseNavigationFragment() {
 
         recyclerViewAdapter = VacanciesAdapter { clickedMessage ->
             Snackbar.make(requireView(), clickedMessage.id.toString(), Snackbar.LENGTH_SHORT).show()
-            /* featureRouter.navigateTo(object : SupportAppScreen() {
-                 override fun getFragment(): Fragment = VacancyDetailFragment.newInstance(6)
-                       })
-                   */
+            router.navigateTo(object : SupportAppScreen() {
+                override fun getFragment(): Fragment = VacancyDetailFragment.newInstance(6)
+            })
         }
 
         vacanciesRecyclerView.adapter = recyclerViewAdapter

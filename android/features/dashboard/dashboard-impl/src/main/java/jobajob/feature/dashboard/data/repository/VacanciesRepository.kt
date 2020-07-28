@@ -1,11 +1,11 @@
 package jobajob.feature.dashboard.data.repository
 
 import io.reactivex.Single
+import jobajob.feature.dashboard.api.VacanciesGateway
+import jobajob.feature.dashboard.api.VacanciesListResult
 import jobajob.feature.dashboard.data.local.VacanciesLocalDataSource
 import jobajob.feature.dashboard.data.remote.VacanciesRemoteDataSource
 import jobajob.feature.dashboard.data.remote.VacanciesRemoteDtoListResult
-import jobajob.feature.dashboard.domain.gateway.VacanciesGateway
-import jobajob.feature.dashboard.domain.gateway.VacanciesListResult
 import jobajob.library.entity.vacancy.Vacancy
 import javax.inject.Inject
 

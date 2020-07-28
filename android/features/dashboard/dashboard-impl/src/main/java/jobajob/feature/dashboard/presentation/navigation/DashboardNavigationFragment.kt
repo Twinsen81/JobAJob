@@ -6,7 +6,7 @@ import jobajob.feature.dashboard.presentation.vacancies.VacanciesFragment
 import jobajob.library.uicomponents.presentation.FeatureNavigationHostFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
-@AndroidEntryPoint
+@AndroidEntryPoint()
 internal class DashboardNavigationFragment : FeatureNavigationHostFragment() {
 
     override fun getStartScreen(): SupportAppScreen =

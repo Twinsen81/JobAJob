@@ -1,4 +1,4 @@
-apply from: "$rootDir/${GradleTemplates.androidFeature}"
+apply from: "$rootDir/${GradleTemplates.androidWiring}"
 
 dependencies {
     api project(Modules.featureDashboardApi)

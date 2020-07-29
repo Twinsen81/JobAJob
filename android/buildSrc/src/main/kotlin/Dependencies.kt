@@ -96,7 +96,7 @@ object Libraries {
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
 
     // Gradle
-    const val gradleAndroid = "com.android.tools.build:gradle:4.0.0"
+    const val gradleAndroid = "com.android.tools.build:gradle:4.0.1"
     const val gradleKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val gradleVersions = "com.github.ben-manes:gradle-versions-plugin:0.28.0"
 }

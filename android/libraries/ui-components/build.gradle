@@ -6,14 +6,5 @@ dependencies {
     implementation Libraries.rxJava
     implementation Libraries.rxKotlin
 
-    // Retrofit
-    implementation Libraries.retrofit
-    implementation Libraries.retrofitRx
-    implementation Libraries.retrofitGson
-    implementation Libraries.okhttp
-    implementation Libraries.okhttpLogging
-    implementation Libraries.gson
-
     implementation project(Modules.libraryCore)
-    implementation project(Modules.libraryUtils)
 }

@@ -8,18 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.favorites.R
-import jobajob.library.utils.di.UtilsApi
 import kotlinx.android.synthetic.main.fragment_favorites.*
-import javax.inject.Inject
 import kotlin.random.Random
 
 @AndroidEntryPoint
 internal class FavoritesFragment : Fragment() {
 
     private val viewModel: FavoritesViewModel by viewModels()
-
-    @Inject
-    lateinit var utilsApi: UtilsApi
 
     private val rnd = Random.nextInt()
 
@@ -32,6 +27,6 @@ internal class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dbTitle.text = "FavID:  ${utilsApi.utils().generateRandomUserId()}"
+        dbTitle.text = "FavID:  $rnd"
     }
 }

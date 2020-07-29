@@ -49,7 +49,6 @@ dependencies {
 
     // Project's libraries
     implementation project(Modules.libraryCore)
-    implementation project(Modules.libraryUtils)
     implementation project(Modules.libraryUiComponents)
     implementation project(Modules.libraryNetwork)
 

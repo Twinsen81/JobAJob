@@ -1,3 +1,4 @@
+include ':libraries:network-wiring'
 include ':features:dashboard:dashboard-wiring'
 include ':libraries:preferences:preferences-wiring'
 include ':features:login:login-wiring'
@@ -8,8 +9,7 @@ include ':features:login:login-api',
         ':features:dashboard:dashboard-impl',
         ':features:favorites:favorites-api',
         ':features:favorites:favorites-impl'
-include ':libraries:utils',
-        ':libraries:network',
+include ':libraries:network',
         ':libraries:core',
         ':libraries:ui-components',
         ':libraries:preferences:preferences-api',

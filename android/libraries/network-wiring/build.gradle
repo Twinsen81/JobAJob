@@ -1,0 +1,7 @@
+apply from:"$rootDir/${GradleTemplates.androidWiring}"
+
+dependencies {
+    api project(Modules.libraryNetwork)
+
+    implementation Libraries.okhttp
+}

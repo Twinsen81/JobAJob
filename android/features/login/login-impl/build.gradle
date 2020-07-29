@@ -1,7 +1,6 @@
 apply from: "$rootDir/${GradleTemplates.androidFeature}"
 
 dependencies {
-    implementation project(Modules.libraryUtils)
     implementation project(Modules.libraryUiComponents)
     implementation project(Modules.featureLoginApi)
 }

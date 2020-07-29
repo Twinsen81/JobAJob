@@ -31,9 +31,9 @@ dependencies {
     implementation project(Modules.featureFavoritesWiring)
 
     implementation project(Modules.libraryCore)
-    implementation project(Modules.libraryUtils)
     implementation project(Modules.libraryUiComponents)
     implementation project(Modules.libraryPreferencesWiring)
+    implementation project(Modules.libraryNetworkWiring)
 
     // AndroidX
     implementation Libraries.xAppCompat

@@ -1,8 +1,8 @@
 
 object Modules {
     const val libraryCore = ":libraries:core"
-    const val libraryUtils = ":libraries:utils"
     const val libraryNetwork = ":libraries:network"
+    const val libraryNetworkWiring = ":libraries:network-wiring"
     const val libraryUiComponents = ":libraries:ui-components"
 
     const val libraryPreferencesApi = ":libraries:preferences:preferences-api"

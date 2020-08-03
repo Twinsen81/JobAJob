@@ -15,6 +15,9 @@ object NetworkWiring {
     @Singleton
     fun provideOkhttp(): OkHttpClient {
         val builder = OkHttpClient.Builder()
+        if (BuildConfig.DEBUG) {
+            FlipperNetworkPluginHelper.addOkHttpInterceptor(builder)
+        }
         return builder.build()
     }
 }

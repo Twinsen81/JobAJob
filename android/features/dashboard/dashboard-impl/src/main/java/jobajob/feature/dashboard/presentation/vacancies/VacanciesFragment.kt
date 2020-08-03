@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.data.remote.api.DashboardServerApi
@@ -47,10 +46,9 @@ internal class VacanciesFragment: BaseNavigationFragment() {
         recyclerViewLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         vacanciesRecyclerView.layoutManager = recyclerViewLayoutManager
 
-        recyclerViewAdapter = VacanciesAdapter { clickedMessage ->
-            Snackbar.make(requireView(), clickedMessage.id.toString(), Snackbar.LENGTH_SHORT).show()
+        recyclerViewAdapter = VacanciesAdapter { clickedVacancy ->
             router.navigateTo(object : SupportAppScreen() {
-                override fun getFragment(): Fragment = VacancyDetailFragment.newInstance(6)
+                override fun getFragment(): Fragment = VacancyDetailFragment.newInstance(clickedVacancy.id)
             })
         }
 

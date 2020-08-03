@@ -1,4 +1,4 @@
-package jobajob.feature.dashboard.wiring
+package jobajob.feature.dashboard.devapp.di
 
 import dagger.Module
 import dagger.Provides
@@ -10,7 +10,7 @@ import jobajob.feature.dashboard.api.DashboardFeatureApi
 
 @Module
 @InstallIn(ApplicationComponent::class)
-internal object DashboardWiring {
+object DashboardDevAppWiring {
 
     @Provides
     fun provideDashboardFeature(apiImpl: DashboardApiImpl): DashboardFeatureApi = apiImpl

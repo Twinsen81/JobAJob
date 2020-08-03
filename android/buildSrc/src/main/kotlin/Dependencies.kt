@@ -70,7 +70,6 @@ object Libraries {
     const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val retrofitRx = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
-    const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
     const val gson = "com.google.code.gson:gson:2.8.6"
 
     // Firebase
@@ -106,4 +105,5 @@ object GradleTemplates {
     const val androidLibrary = "template-android-library.gradle"
     const val androidFeature = "template-android-feature.gradle"
     const val androidWiring = "template-android-wiring.gradle"
+    const val androidDevApp = "template-android-devapp.gradle"
 }

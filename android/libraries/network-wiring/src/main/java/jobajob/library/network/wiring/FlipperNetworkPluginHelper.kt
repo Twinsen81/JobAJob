@@ -1,13 +1,11 @@
-package jobajob.library.network
+package jobajob.library.network.wiring
 
 import com.facebook.flipper.core.FlipperClient
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
-import com.facebook.flipper.plugins.network.NetworkReporter.Header
-import com.facebook.flipper.plugins.network.NetworkReporter.RequestInfo
-import com.facebook.flipper.plugins.network.NetworkReporter.ResponseInfo
+import com.facebook.flipper.plugins.network.NetworkReporter.*
 import okhttp3.OkHttpClient
-import java.util.UUID
+import java.util.*
 
 /**
  * Класс для взаимодействия с сетевым плагином Flipper.
@@ -21,6 +19,8 @@ object FlipperNetworkPluginHelper {
      * Зарегистрировать экземпляр сетевого плагина в клиенте
      */
     fun register(flipperClient: FlipperClient) {
+        if (!BuildConfig.DEBUG) return
+
         flipperClient.addPlugin(networkFlipperPlugin)
     }
 
@@ -28,6 +28,8 @@ object FlipperNetworkPluginHelper {
      * Добавить Flipper-перехватчик для логирования okHttp-запросов
      */
     fun addOkHttpInterceptor(okHttpBuilder: OkHttpClient.Builder) {
+        if (!BuildConfig.DEBUG) return
+
         okHttpBuilder.addNetworkInterceptor(FlipperOkhttpInterceptor(networkFlipperPlugin))
     }
 
@@ -35,6 +37,7 @@ object FlipperNetworkPluginHelper {
      * Логировать сетевое событие в окно "Network"
      */
     fun logEvent(eventName: String, jsonData: String) {
+        if (!BuildConfig.DEBUG) return
 
         val requestId = UUID.randomUUID().toString()
         val timeStamp = System.currentTimeMillis()

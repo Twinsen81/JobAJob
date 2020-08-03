@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
+import jobajob.feature.dashboard.api.DashboardBaseUrl
 import jobajob.feature.dashboard.api.VacanciesGateway
 import jobajob.feature.dashboard.data.local.VacanciesLocalDataSource
 import jobajob.feature.dashboard.data.local.VacanciesRoomDataSource
@@ -28,8 +29,7 @@ internal object DashboardFeatureModule {
 
     @Provides
     @FeatureInternal
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        val baseUrl = "https://jobajob.herokuapp.com/"
+    fun provideRetrofit(okHttpClient: OkHttpClient, @DashboardBaseUrl baseUrl: String): Retrofit {
 
         val builder = Retrofit.Builder()
             .baseUrl(baseUrl)

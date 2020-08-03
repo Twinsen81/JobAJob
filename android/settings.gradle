@@ -1,3 +1,4 @@
+include ':features:dashboard:dashboard-devapp'
 include ':libraries:network-wiring'
 include ':features:dashboard:dashboard-wiring'
 include ':libraries:preferences:preferences-wiring'

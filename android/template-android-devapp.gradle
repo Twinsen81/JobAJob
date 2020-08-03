@@ -3,37 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
-apply from: 'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/gradle/projectDependencyGraph.gradle'
-apply plugin: 'com.google.gms.google-services'
-
-android {
-    defaultConfig {
-        applicationId Config.appId
-        versionCode Config.versionCode
-        versionName Config.versionName
-    }
-    buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-kapt {
-    correctErrorTypes true
-}
 
 dependencies {
-
-    // App modules
-    implementation project(Modules.featureLoginWiring)
-    implementation project(Modules.featureDashboardWiring)
-    implementation project(Modules.featureFavoritesWiring)
-
-    implementation project(Modules.libraryCore)
-    implementation project(Modules.libraryUiComponents)
-    implementation project(Modules.libraryPreferencesWiring)
-    implementation project(Modules.libraryNetworkWiring)
 
     // AndroidX
     implementation Libraries.xAppCompat
@@ -51,16 +22,6 @@ dependencies {
     kapt Libraries.hiltCompiler
     implementation Libraries.hiltAndroidX
     kapt Libraries.hiltCompilerAndroidX
-
-    // Retrofit
-    implementation Libraries.retrofitGson
-    implementation Libraries.retrofitRx
-    implementation Libraries.okhttp
-    implementation Libraries.gson
-
-    // Firebase
-    implementation Libraries.firebaseAnalytics
-    implementation Libraries.firebaseCloudMessaging
 
     // Flipper
     debugImplementation Libraries.flipper

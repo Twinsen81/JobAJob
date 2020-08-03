@@ -1,4 +1,4 @@
-package com.evartem.jobajob
+package jobajob.feature.dashboard.devapp
 
 import android.app.Application
 import com.facebook.flipper.android.AndroidFlipperClient
@@ -11,7 +11,7 @@ import dagger.hilt.android.HiltAndroidApp
 import jobajob.library.network.wiring.FlipperNetworkPluginHelper
 
 @HiltAndroidApp
-class JobajobApplication: Application() {
+class DevApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

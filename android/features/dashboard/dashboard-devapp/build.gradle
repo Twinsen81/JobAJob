@@ -1,0 +1,33 @@
+apply from: "$rootDir/${GradleTemplates.androidDevApp}"
+apply plugin: 'kotlin-android'
+
+android {
+    defaultConfig {
+        applicationId "jobajob.feature.dashboard.devapp"
+        versionCode 1
+        versionName "1.0"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // App modules
+    implementation project(Modules.featureDashboardApi)
+    implementation project(Modules.featureDashboardImpl)
+
+    implementation project(Modules.libraryUiComponents)
+    implementation project(Modules.libraryNetworkWiring)
+    implementation project(Modules.libraryCore)
+
+    // Retrofit
+    implementation Libraries.retrofitGson
+    implementation Libraries.retrofitRx
+    implementation Libraries.okhttp
+    implementation Libraries.gson
+}

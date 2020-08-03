@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/dashboard" />
             <option value="$PROJECT_DIR$/features/dashboard/dashboard-api" />
+            <option value="$PROJECT_DIR$/features/dashboard/dashboard-devapp" />
             <option value="$PROJECT_DIR$/features/dashboard/dashboard-impl" />
             <option value="$PROJECT_DIR$/features/dashboard/dashboard-wiring" />
             <option value="$PROJECT_DIR$/features/favorites" />

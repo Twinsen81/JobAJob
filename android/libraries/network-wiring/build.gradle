@@ -4,4 +4,10 @@ dependencies {
     api project(Modules.libraryNetwork)
 
     implementation Libraries.okhttp
+
+    // Flipper
+    debugImplementation Libraries.flipper
+    debugImplementation Libraries.flipperSoloader
+    debugImplementation Libraries.flipperNetworkPlugin
+    releaseImplementation Libraries.flipperNoop
 }

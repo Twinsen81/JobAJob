@@ -86,6 +86,7 @@ object Libraries {
     const val timber = "com.jakewharton.timber:timber:4.7.1"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.4"
     const val cicerone = "ru.terrakok.cicerone:cicerone:5.1.1"
+    const val fragNav = "com.ncapdevi:frag-nav:3.2.0"
 
     // Tests
     const val testJunit = "junit:junit:4.13"

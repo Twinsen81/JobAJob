@@ -32,6 +32,7 @@ dependencies {
 
     implementation project(Modules.libraryCore)
     implementation project(Modules.libraryUiComponents)
+    implementation project(Modules.libraryNavigationWiring)
     implementation project(Modules.libraryPreferencesWiring)
     implementation project(Modules.libraryNetworkWiring)
 
@@ -70,7 +71,7 @@ dependencies {
 
     // Misc
     implementation Libraries.kotlin
-    implementation Libraries.cicerone
+    implementation Libraries.fragNav
     debugImplementation Libraries.leakCanary
 
     // Tests

@@ -1,3 +1,6 @@
+include ':libraries:navigation:navigation-wiring'
+include ':libraries:navigation:navigation-impl'
+include ':libraries:navigation:navigation-api'
 include ':features:dashboard:dashboard-devapp'
 include ':libraries:network-wiring'
 include ':features:dashboard:dashboard-wiring'

@@ -22,6 +22,7 @@ dependencies {
     implementation project(Modules.featureDashboardImpl)
 
     implementation project(Modules.libraryUiComponents)
+    implementation project(Modules.libraryNavigationWiring)
     implementation project(Modules.libraryNetworkWiring)
     implementation project(Modules.libraryCore)
 

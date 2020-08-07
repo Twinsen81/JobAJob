@@ -25,12 +25,12 @@ interface ScreenNavigator {
     fun initialize(
         fragmentManager: FragmentManager,
         containerId: Int,
-        tabsNumber: Int,
+        tabsNumber: Int = 1,
         initialTabIndex: Int = 0,
         savedInstanceState: Bundle? = null,
         rootTabFragmentCreator: (tabIndex: Int) -> Fragment,
-        onTabChanged: ((fragment: Fragment?, tabIndex: Int) -> Unit)?,
-        onFragmentChanged: ((fragment: Fragment?, transactionType: FragmentTransactionType) -> Unit)?
+        onTabChanged: ((fragment: Fragment?, tabIndex: Int) -> Unit)? = null,
+        onFragmentChanged: ((fragment: Fragment?, transactionType: FragmentTransactionType) -> Unit)? = null
     )
 
     /**

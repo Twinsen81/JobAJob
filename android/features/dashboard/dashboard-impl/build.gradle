@@ -43,12 +43,10 @@ dependencies {
     implementation Libraries.roomKtx
     kapt Libraries.roomCompiler
 
-    // Misc
-    implementation Libraries.cicerone
-
     // Project's libraries
     implementation project(Modules.libraryCore)
     implementation project(Modules.libraryUiComponents)
+    implementation project(Modules.libraryNavigationApi)
     implementation project(Modules.libraryNetwork)
 
     // Project's features

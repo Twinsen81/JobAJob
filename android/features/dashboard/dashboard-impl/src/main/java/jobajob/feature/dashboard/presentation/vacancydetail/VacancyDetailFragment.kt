@@ -4,15 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.R
-import jobajob.library.uicomponents.presentation.BaseNavigationFragment
+import jobajob.library.navigation.api.ScreenNavigator
 import jobajob.library.uicomponents.util.withArgs
 import kotlinx.android.synthetic.main.dashboard_fragment_vacancy_detail.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
-internal class VacancyDetailFragment: BaseNavigationFragment() {
+internal class VacancyDetailFragment : Fragment() {
+
+    @Inject
+    lateinit var screenNavigator: ScreenNavigator
 
     private val viewModel: VacancyDetailViewModel by viewModels()
 
@@ -21,7 +26,7 @@ internal class VacancyDetailFragment: BaseNavigationFragment() {
     companion object {
         private const val VACANCY_ID_KEY = "vacancy_id"
 
-        fun newInstance(vacancyId: Long)  =
+        fun newInstance(vacancyId: Long) =
             VacancyDetailFragment().withArgs {
                 putLong(VACANCY_ID_KEY, vacancyId)
             }
@@ -43,12 +48,15 @@ internal class VacancyDetailFragment: BaseNavigationFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        toolbar.backNavigationListener = { screenNavigator.goBack() }
+
         dbVacTitle.text = "${dbVacTitle.text}  $vacancyId"
 
-        hideRootNavigationView()
+        //hideRootNavigationView()
 
         btnAuthorize.setOnClickListener {
-            requestUserAuthorization()
+            //requestUserAuthorization()
         }
     }
 }

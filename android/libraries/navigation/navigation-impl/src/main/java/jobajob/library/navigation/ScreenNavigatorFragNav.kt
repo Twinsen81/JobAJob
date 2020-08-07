@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.ncapdevi.fragnav.FragNavController
+import com.ncapdevi.fragnav.FragNavSwitchController
+import com.ncapdevi.fragnav.FragNavTransactionOptions
+import com.ncapdevi.fragnav.tabhistory.UnlimitedTabHistoryStrategy
 import jobajob.library.navigation.api.FragmentTransactionType
 import jobajob.library.navigation.api.ScreenNavigator
 
@@ -45,6 +48,12 @@ class ScreenNavigatorFragNav : ScreenNavigator {
                     onTabChanged?.invoke(fragment, index) ?: Unit
             }
 
+            navigationStrategy = UnlimitedTabHistoryStrategy(object : FragNavSwitchController {
+                override fun switchTab(index: Int, transactionOptions: FragNavTransactionOptions?) {
+                    fragNavController.switchTab(index)
+                }
+            })
+
             initialize(initialTabIndex, savedInstanceState)
         }
     }
@@ -66,6 +75,11 @@ class ScreenNavigatorFragNav : ScreenNavigator {
             fragNavController.popFragments(depth)
             true
         } else {
+/*            if (fragNavController.isRootFragment) {
+                false
+            } else {
+                fragNavController.popFragment()
+            }*/
             fragNavController.popFragment()
         }
     }

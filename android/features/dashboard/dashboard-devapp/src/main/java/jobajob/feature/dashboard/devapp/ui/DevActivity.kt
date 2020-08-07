@@ -5,31 +5,26 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.api.DashboardFeatureApi
 import jobajob.feature.dashboard.devapp.R
-import jobajob.library.uicomponents.navigation.RootNavigator
+import jobajob.library.navigation.api.ScreenNavigator
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class DevActivity : AppCompatActivity(), RootNavigator {
+class DevActivity : AppCompatActivity() {
 
     @Inject
     lateinit var dashboardFeatureApi: DashboardFeatureApi
+
+    @Inject
+    lateinit var screenNavigator: ScreenNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dev)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.main_container, dashboardFeatureApi.getDashboardFragment())
-                .commit()
-        }
+        screenNavigator.initialize(
+            fragmentManager = supportFragmentManager,
+            containerId = R.id.main_container,
+            rootTabFragmentCreator = { dashboardFeatureApi.getDashboardFragment() }
+        )
     }
-
-    override var hideNavigationView: Boolean
-        get() = false
-        set(value) {}
-
-    override fun onSoftBackButtonPressed() = Unit
-
-    override fun onNeedUserAuthorization() = Unit
 }

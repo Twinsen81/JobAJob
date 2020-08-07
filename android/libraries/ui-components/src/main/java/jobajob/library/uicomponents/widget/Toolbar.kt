@@ -1,6 +1,5 @@
 package jobajob.library.uicomponents.widget
 
-import android.app.Activity
 import android.content.Context
 import android.text.TextUtils
 import android.util.AttributeSet
@@ -26,14 +25,18 @@ class Toolbar @JvmOverloads constructor(
     private var titleTextAppearance: Int = 0
     private var titleTextColor: Int = 0
 
+    var backNavigationListener: (() -> Unit)? = null
+
     init {
         context.theme.obtainStyledAttributes(
-                attrs,
-                R.styleable.Toolbar,
-                defStyleAttr,
-                defStyle).apply {
+            attrs,
+            R.styleable.Toolbar,
+            defStyleAttr,
+            defStyle
+        ).apply {
             try {
-                val iconColor = getColor(R.styleable.Toolbar_navigationIconColor, ContextCompat.getColor(context, R.color.icons))
+                val iconColor =
+                    getColor(R.styleable.Toolbar_navigationIconColor, ContextCompat.getColor(context, R.color.icons))
                 setNavigationIconColor(iconColor)
                 titleTextAppearance = getResourceId(androidx.appcompat.R.styleable.Toolbar_titleTextAppearance, 0)
                 setTitleTextAppearance(context, titleTextAppearance)
@@ -47,10 +50,10 @@ class Toolbar @JvmOverloads constructor(
             }
         }
 
-        setNavigationOnClickListener { (context as Activity).finish() }
+        setNavigationOnClickListener { backNavigationListener?.invoke() }
     }
 
-    fun setNavigationIconColor(color: Int) {
+    private fun setNavigationIconColor(color: Int) {
         navigationIcon?.let { DrawableCompat.setTint(it, color) }
     }
 

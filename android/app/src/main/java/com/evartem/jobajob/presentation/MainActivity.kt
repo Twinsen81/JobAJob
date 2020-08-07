@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.evartem.jobajob.R
@@ -16,12 +15,12 @@ import jobajob.feature.favorites.api.FavoritesFeatureApi
 import jobajob.feature.login.api.LoginFeatureApi
 import jobajob.library.navigation.api.FragmentTransactionType
 import jobajob.library.navigation.api.ScreenNavigator
-import jobajob.library.uicomponents.navigation.RootNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+import javax.inject.Provider
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), RootNavigator {
+class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var loginFeatureApi: LoginFeatureApi
@@ -35,6 +34,14 @@ class MainActivity : AppCompatActivity(), RootNavigator {
     @Inject
     lateinit var screenNavigator: ScreenNavigator
 
+    private val tabs = Tabs(
+        listOf(
+            R.id.navigation_dashboard to Provider { dashboardFeatureApi.getDashboardFragment() },
+            R.id.navigation_favorites to Provider { favoritesFeatureApi.getFavoritesFragment() },
+            R.id.navigation_resumes to Provider { StubFragment.newInstance("RESUMES") },
+            R.id.navigation_more to Provider { StubFragment.newInstance("MORE...") }
+        )
+    )
 
     companion object {
         private const val NOTIFICATION_KEY = "NOTIFICATION_KEY"
@@ -46,11 +53,11 @@ class MainActivity : AppCompatActivity(), RootNavigator {
         }
     }
 
-    override var hideNavigationView: Boolean = false
+/*    override var hideNavigationView: Boolean = false
         set(hideMenu) {
             bottom_navigation.visibility = if (hideMenu) View.GONE else View.VISIBLE
             field = hideMenu
-        }
+        }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,122 +66,43 @@ class MainActivity : AppCompatActivity(), RootNavigator {
         bottom_navigation.setOnNavigationItemSelectedListener(this::onBottomNavigationItemSelected)
 
         screenNavigator.initialize(
+            //TODO: commonBackStack = true,
             fragmentManager = supportFragmentManager,
             containerId = R.id.main_container,
             tabsNumber = 4,
             initialTabIndex = 0,
             savedInstanceState = savedInstanceState,
             rootTabFragmentCreator = this::createRootFragment,
+            //TODO: onSwitchToFullScreen - make one StateChanged method instead of these three !
             onTabChanged = this::onTabChanged,
             onFragmentChanged = this::onFragmentChanged
         )
     }
 
-    private fun createRootFragment(tabIndex: Int): Fragment {
-        return when (tabIndex) {
-            0 -> dashboardFeatureApi.getDashboardFragment()
-            1 -> favoritesFeatureApi.getFavoritesFragment()
-            2 -> StubFragment.newInstance("RESUMES")
-            3 -> StubFragment.newInstance("MORE...")
-            else -> throw IllegalArgumentException("Unknown root fragment with index $tabIndex")
-        }
-    }
+    private fun createRootFragment(tabIndex: Int): Fragment = tabs.getFragmentByIndex(tabIndex)
 
     @Suppress("UNUSED_PARAMETER")
-    private fun onTabChanged(fragment: Fragment?, tabIndex: Int) = Unit
+    private fun onTabChanged(fragment: Fragment?, tabIndex: Int) {
+        val newSelectedItemId = tabs.getNavMenuIdByIndex(tabIndex)
+        if (bottom_navigation.selectedItemId != newSelectedItemId)
+            bottom_navigation.selectedItemId = newSelectedItemId
+    }
 
     @Suppress("UNUSED_PARAMETER")
     private fun onFragmentChanged(fragment: Fragment?, transactionType: FragmentTransactionType) = Unit
 
-/*
-    private fun restoreState(state: Bundle) {
-
-        if (state.containsKey(VISIBLE_TAB_KEY)) {
-            val visibleTab = NavigationTab.valueOf(
-                state.getString(
-                    VISIBLE_TAB_KEY
-                )!!
-            )
-            hideAllTabsBut(visibleTab)
-        }
-
-        if (state.containsKey(BACKSTACK_KEY))
-            tabsBackStack = state.getStringArray(BACKSTACK_KEY)!!
-                .toList().map { NavigationTab.valueOf(it) }
-                .toMutableList()
-    }*/
-
     private fun onBottomNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.navigation_dashboard -> screenNavigator.switchTab(0)
-            R.id.navigation_favorites -> screenNavigator.switchTab(1)
-            R.id.navigation_resumes -> screenNavigator.switchTab(2)
-            R.id.navigation_more -> screenNavigator.switchTab(3)
-            else -> throw IllegalArgumentException("Unknown bottom navigation item with id: ${item.itemId}")
-        }
+        screenNavigator.switchTab(tabs.getTabIndexByNavMenuId(item.itemId))
         return true
     }
-/*
-    private fun navigateOrBackTo(tab: NavigationTab) {
-        val currentVisibleFragment: Fragment? = fragManager.fragments.firstOrNull { it.isVisible }
-        val existingFragmentToShow = fragManager.findFragmentByTag(tab.name)
-
-        if (currentVisibleFragment != null && existingFragmentToShow != null && currentVisibleFragment === existingFragmentToShow) return
-
-        val transaction = fragManager.beginTransaction()
-
-        if (existingFragmentToShow == null)
-            transaction.add(R.id.main_container, navigationTabs.getFragmentForTab(tab), tab.name)
-
-        if (currentVisibleFragment != null) transaction.hide(currentVisibleFragment)
-
-        if (existingFragmentToShow != null) transaction.show(existingFragmentToShow)
-
-        transaction.commitNow()
-        setTopOfBackStack(tab)
-
-        bottom_navigation.menu.findItem(navigationTabs.getMenuItemIdForTab(tab)).isChecked = true
-    }
-
-    private fun hideAllTabsBut(tab: NavigationTab) {
-        val transaction = fragManager.beginTransaction()
-        fragManager.fragments.forEach {
-            if (it.tag != tab.name)
-                transaction.hide(it)
-        }
-        transaction.commitNow()
-    }
-
-    private fun setTopOfBackStack(tab: NavigationTab) {
-        val existingIndex = tabsBackStack.indexOf(tab)
-        if (existingIndex == -1) {
-            tabsBackStack.add(tab)
-            return
-        }
-        tabsBackStack = tabsBackStack.subList(0, existingIndex + 1)
-    }
-
-    private fun goBackTabsBackStack(): NavigationTab? {
-        if (tabsBackStack.size > 1) {
-            tabsBackStack.removeAt(tabsBackStack.size - 1)
-            return tabsBackStack.last()
-        }
-        return null
-    }*/
 
     override fun onSaveInstanceState(outState: Bundle) {
         screenNavigator.onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
     }
 
-    override fun onSoftBackButtonPressed() = onBackPressed()
-
     override fun onBackPressed() {
         if (!screenNavigator.goBack()) super.onBackPressed()
-    }
-
-    override fun onNeedUserAuthorization() {
-        startActivity(loginFeatureApi.getLoginScreenIntent(this))
     }
 
     override fun onNewIntent(intent: Intent?) {

@@ -14,13 +14,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.data.remote.api.DashboardServerApi
 import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
-import jobajob.library.uicomponents.presentation.BaseNavigationFragment
+import jobajob.library.navigation.api.ScreenNavigator
 import kotlinx.android.synthetic.main.dashboard_fragment_vacancies.*
-import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
 
 @AndroidEntryPoint
-internal class VacanciesFragment: BaseNavigationFragment() {
+internal class VacanciesFragment : Fragment() {
 
     private val viewModel: VacanciesViewModel by viewModels()
     private lateinit var recyclerViewAdapter: VacanciesAdapter
@@ -28,6 +27,9 @@ internal class VacanciesFragment: BaseNavigationFragment() {
 
     @Inject
     lateinit var serverApi: DashboardServerApi
+
+    @Inject
+    lateinit var screenNavigator: ScreenNavigator
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,9 +49,7 @@ internal class VacanciesFragment: BaseNavigationFragment() {
         vacanciesRecyclerView.layoutManager = recyclerViewLayoutManager
 
         recyclerViewAdapter = VacanciesAdapter { clickedVacancy ->
-            router.navigateTo(object : SupportAppScreen() {
-                override fun getFragment(): Fragment = VacancyDetailFragment.newInstance(clickedVacancy.id)
-            })
+            screenNavigator.navigateTo(VacancyDetailFragment.newInstance(clickedVacancy.id))
         }
 
         vacanciesRecyclerView.adapter = recyclerViewAdapter

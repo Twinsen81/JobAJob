@@ -48,12 +48,11 @@ internal class VacancyDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        screenNavigator.hideNavigation()
 
         toolbar.backNavigationListener = { screenNavigator.goBack() }
 
         dbVacTitle.text = "${dbVacTitle.text}  $vacancyId"
-
-        //hideRootNavigationView()
 
         btnAuthorize.setOnClickListener {
             //requestUserAuthorization()

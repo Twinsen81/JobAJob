@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.evartem.jobajob.R
@@ -13,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.api.DashboardFeatureApi
 import jobajob.feature.favorites.api.FavoritesFeatureApi
 import jobajob.feature.login.api.LoginFeatureApi
-import jobajob.library.navigation.api.FragmentTransactionType
+import jobajob.library.navigation.api.NavigationEvent
 import jobajob.library.navigation.api.ScreenNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -53,11 +54,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-/*    override var hideNavigationView: Boolean = false
-        set(hideMenu) {
-            bottom_navigation.visibility = if (hideMenu) View.GONE else View.VISIBLE
-            field = hideMenu
-        }*/
+    var hideNavigationView: Boolean = false
+        set(hide) {
+            bottom_navigation.visibility = if (hide) View.GONE else View.VISIBLE
+            field = hide
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,30 +67,33 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener(this::onBottomNavigationItemSelected)
 
         screenNavigator.initialize(
-            //TODO: commonBackStack = true,
             fragmentManager = supportFragmentManager,
             containerId = R.id.main_container,
             tabsNumber = 4,
-            initialTabIndex = 0,
             savedInstanceState = savedInstanceState,
             rootTabFragmentCreator = this::createRootFragment,
-            //TODO: onSwitchToFullScreen - make one StateChanged method instead of these three !
-            onTabChanged = this::onTabChanged,
-            onFragmentChanged = this::onFragmentChanged
+            eventListener = this::onNavigationEvent
         )
     }
 
     private fun createRootFragment(tabIndex: Int): Fragment = tabs.getFragmentByIndex(tabIndex)
 
-    @Suppress("UNUSED_PARAMETER")
-    private fun onTabChanged(fragment: Fragment?, tabIndex: Int) {
-        val newSelectedItemId = tabs.getNavMenuIdByIndex(tabIndex)
-        if (bottom_navigation.selectedItemId != newSelectedItemId)
-            bottom_navigation.selectedItemId = newSelectedItemId
-    }
+    private fun onNavigationEvent(event: NavigationEvent) {
+        when (event) {
+            is NavigationEvent.TabChanged -> {
+                val newSelectedItemId = tabs.getNavMenuIdByIndex(event.tabIndex)
+                if (bottom_navigation.selectedItemId != newSelectedItemId)
+                    bottom_navigation.selectedItemId = newSelectedItemId
+            }
+            is NavigationEvent.FragmentChanged -> {
+                hideNavigationView = false
+            }
+            is NavigationEvent.HideNavigation -> {
+                hideNavigationView = true
+            }
+        }
 
-    @Suppress("UNUSED_PARAMETER")
-    private fun onFragmentChanged(fragment: Fragment?, transactionType: FragmentTransactionType) = Unit
+    }
 
     private fun onBottomNavigationItemSelected(item: MenuItem): Boolean {
         screenNavigator.switchTab(tabs.getTabIndexByNavMenuId(item.itemId))

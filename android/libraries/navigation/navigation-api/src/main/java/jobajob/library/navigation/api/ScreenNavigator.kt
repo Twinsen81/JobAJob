@@ -17,20 +17,21 @@ interface ScreenNavigator {
      * @param containerId the container in the activity's layout where the fragments will be inflated
      * @param tabsNumber the number of root fragments - "tabs" that have independent back stack
      * @param initialTabIndex this tab will be shown on the app's start (zero-based index of the tab)
+     * @param commonBackStack true - one back stack for all tabs (the back action can switch tabs),
+     * false - each tab has it's own back stack (the back action on the root fragment of the tab will close the app)
      * @param savedInstanceState the activity's saved state to restore the navigation state
      * @param rootTabFragmentCreator a callback for dynamic root fragment (tab) creation
-     * @param onTabChanged a listener to notify about the selected tab
-     * @param onFragmentChanged a listener to notify about fragment transactions
+     * @param eventListener a listener to notify about navigation events (a tab/fragment change, etc.)
      */
     fun initialize(
         fragmentManager: FragmentManager,
         containerId: Int,
         tabsNumber: Int = 1,
         initialTabIndex: Int = 0,
+        commonBackStack: Boolean = true,
         savedInstanceState: Bundle? = null,
         rootTabFragmentCreator: (tabIndex: Int) -> Fragment,
-        onTabChanged: ((fragment: Fragment?, tabIndex: Int) -> Unit)? = null,
-        onFragmentChanged: ((fragment: Fragment?, transactionType: FragmentTransactionType) -> Unit)? = null
+        eventListener: ((navigationEvent: NavigationEvent) -> Unit)? = null
     )
 
     /**
@@ -62,4 +63,14 @@ interface ScreenNavigator {
      * Call this in the activity's onSaveInstanceState to save the navigation state
      */
     fun onSaveInstanceState(outState: Bundle)
+
+    /**
+     * Delete the reference to the event listener passed in the [initialize] function
+     */
+    fun removeEventListener()
+
+    /**
+     * Hide the navigation view until the next fragment transaction
+     */
+    fun hideNavigation()
 }

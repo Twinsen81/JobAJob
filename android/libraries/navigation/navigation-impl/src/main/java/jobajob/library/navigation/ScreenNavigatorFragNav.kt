@@ -8,6 +8,7 @@ import com.ncapdevi.fragnav.FragNavSwitchController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
 import com.ncapdevi.fragnav.tabhistory.UnlimitedTabHistoryStrategy
 import jobajob.library.navigation.api.FragmentTransactionType
+import jobajob.library.navigation.api.NavigationEvent
 import jobajob.library.navigation.api.ScreenNavigator
 
 /**
@@ -17,17 +18,23 @@ class ScreenNavigatorFragNav : ScreenNavigator {
 
     private lateinit var fragNavController: FragNavController
 
+    private var eventListener: ((navigationEvent: NavigationEvent) -> Unit)? = null
+
+    private var commonBackStack = true
+
     override fun initialize(
         fragmentManager: FragmentManager,
         containerId: Int,
         tabsNumber: Int,
         initialTabIndex: Int,
+        commonBackStack: Boolean,
         savedInstanceState: Bundle?,
         rootTabFragmentCreator: (tabIndex: Int) -> Fragment,
-        onTabChanged: ((fragment: Fragment?, tabIndex: Int) -> Unit)?,
-        onFragmentChanged: ((fragment: Fragment?, transactionType: FragmentTransactionType) -> Unit)?
+        eventListener: ((navigationEvent: NavigationEvent) -> Unit)?
     ) {
         fragNavController = FragNavController(fragmentManager, containerId)
+        this.eventListener = eventListener
+        this.commonBackStack = commonBackStack
 
         fragNavController.apply {
 
@@ -42,10 +49,13 @@ class ScreenNavigatorFragNav : ScreenNavigator {
                 override fun onFragmentTransaction(
                     fragment: Fragment?,
                     transactionType: FragNavController.TransactionType
-                ) = onFragmentChanged?.invoke(fragment, transactionType.toApiType()) ?: Unit
+                ) {
+                    eventListener?.invoke(NavigationEvent.FragmentChanged(fragment, transactionType.toApiType()))
+                }
 
-                override fun onTabTransaction(fragment: Fragment?, index: Int) =
-                    onTabChanged?.invoke(fragment, index) ?: Unit
+                override fun onTabTransaction(fragment: Fragment?, index: Int) {
+                    eventListener?.invoke(NavigationEvent.TabChanged(fragment, index))
+                }
             }
 
             navigationStrategy = UnlimitedTabHistoryStrategy(object : FragNavSwitchController {
@@ -75,11 +85,18 @@ class ScreenNavigatorFragNav : ScreenNavigator {
             fragNavController.popFragments(depth)
             true
         } else {
-/*            if (fragNavController.isRootFragment) {
-                false
-            } else {
+            if (commonBackStack) {
                 fragNavController.popFragment()
-            }*/
+            } else {
+                goBackIfNotRootFragment()
+            }
+        }
+    }
+
+    private fun goBackIfNotRootFragment(): Boolean {
+        return if (fragNavController.isRootFragment) {
+            false
+        } else {
             fragNavController.popFragment()
         }
     }
@@ -90,6 +107,14 @@ class ScreenNavigatorFragNav : ScreenNavigator {
 
     override fun onSaveInstanceState(outState: Bundle) {
         fragNavController.onSaveInstanceState(outState)
+    }
+
+    override fun removeEventListener() {
+        eventListener = null
+    }
+
+    override fun hideNavigation() {
+        eventListener?.invoke(NavigationEvent.HideNavigation)
     }
 
     private fun FragNavController.TransactionType.toApiType(): FragmentTransactionType =

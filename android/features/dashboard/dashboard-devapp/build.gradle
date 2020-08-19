@@ -25,6 +25,7 @@ dependencies {
     implementation project(Modules.libraryNavigationWiring)
     implementation project(Modules.libraryNetworkWiring)
     implementation project(Modules.libraryCore)
+    implementation project(Modules.libraryFlipperWiring)
 
     // Retrofit
     implementation Libraries.retrofitGson

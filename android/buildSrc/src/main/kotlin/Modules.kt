@@ -4,6 +4,7 @@ object Modules {
     const val libraryNetwork = ":libraries:network"
     const val libraryNetworkWiring = ":libraries:network-wiring"
     const val libraryUiComponents = ":libraries:ui-components"
+    const val libraryFlipperWiring = ":libraries:logger-flipper-wiring"
 
     const val libraryPreferencesApi = ":libraries:preferences:preferences-api"
     const val libraryPreferencesImpl = ":libraries:preferences:preferences-impl"

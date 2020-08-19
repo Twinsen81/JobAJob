@@ -35,6 +35,7 @@ dependencies {
     implementation project(Modules.libraryNavigationWiring)
     implementation project(Modules.libraryPreferencesWiring)
     implementation project(Modules.libraryNetworkWiring)
+    implementation project(Modules.libraryFlipperWiring)
 
     // AndroidX
     implementation Libraries.xAppCompat
@@ -62,12 +63,6 @@ dependencies {
     // Firebase
     implementation Libraries.firebaseAnalytics
     implementation Libraries.firebaseCloudMessaging
-
-    // Flipper
-    debugImplementation Libraries.flipper
-    debugImplementation Libraries.flipperSoloader
-    debugImplementation Libraries.flipperNetworkPlugin
-    releaseImplementation Libraries.flipperNoop
 
     // Misc
     implementation Libraries.kotlin

@@ -23,12 +23,6 @@ dependencies {
     implementation Libraries.hiltAndroidX
     kapt Libraries.hiltCompilerAndroidX
 
-    // Flipper
-    debugImplementation Libraries.flipper
-    debugImplementation Libraries.flipperSoloader
-    debugImplementation Libraries.flipperNetworkPlugin
-    releaseImplementation Libraries.flipperNoop
-
     // Misc
     implementation Libraries.kotlin
     implementation Libraries.cicerone

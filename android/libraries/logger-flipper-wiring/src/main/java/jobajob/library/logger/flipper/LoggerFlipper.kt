@@ -1,43 +1,54 @@
-package jobajob.library.network.wiring
+package jobajob.library.logger.flipper
 
-import com.facebook.flipper.core.FlipperClient
+import android.content.Context
+import com.facebook.flipper.android.AndroidFlipperClient
+import com.facebook.flipper.plugins.databases.DatabasesFlipperPlugin
+import com.facebook.flipper.plugins.inspector.DescriptorMapping
+import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.facebook.flipper.plugins.network.NetworkReporter.*
+import com.facebook.flipper.plugins.sharedpreferences.SharedPreferencesFlipperPlugin
+import com.facebook.flipper.plugins.sharedpreferences.SharedPreferencesFlipperPlugin.SharedPreferencesDescriptor
+import com.facebook.soloader.SoLoader
+import jobajob.library.network.logger.NetworkLogger
 import okhttp3.OkHttpClient
 import java.util.*
 
 /**
- * Класс для взаимодействия с сетевым плагином Flipper.
- * Хранит синглтон-экземпляр сетевого плагина Flipper + позволяет логировать произвольные события в окно "Network"
+ * Логер на базе Flipper.
+ * Логирует сетевые события, позволяет получить доступ к БД, shared preferences, view hierarchy
  */
-object FlipperNetworkPluginHelper {
+class LoggerFlipper : NetworkLogger {
 
     private val networkFlipperPlugin = NetworkFlipperPlugin()
 
-    /**
-     * Зарегистрировать экземпляр сетевого плагина в клиенте
-     */
-    fun register(flipperClient: FlipperClient) {
-        if (!BuildConfig.DEBUG) return
+    fun init(applicationContext: Context): NetworkLogger {
+        SoLoader.init(applicationContext, false)
 
-        flipperClient.addPlugin(networkFlipperPlugin)
+        val client = AndroidFlipperClient.getInstance(applicationContext)
+        client.addPlugin(networkFlipperPlugin)
+        client.addPlugin(InspectorFlipperPlugin(applicationContext, DescriptorMapping.withDefaults()))
+        client.addPlugin(DatabasesFlipperPlugin(applicationContext))
+        client.addPlugin(
+            SharedPreferencesFlipperPlugin(
+                applicationContext, listOf(
+                    SharedPreferencesDescriptor("JobAJob", Context.MODE_PRIVATE)
+                )
+            )
+        )
+        client.start()
+        return this
     }
 
-    /**
-     * Добавить Flipper-перехватчик для логирования okHttp-запросов
-     */
-    fun addOkHttpInterceptor(okHttpBuilder: OkHttpClient.Builder) {
-        if (!BuildConfig.DEBUG) return
-
+    override fun addOkHttpInterceptor(okHttpBuilder: OkHttpClient.Builder) {
         okHttpBuilder.addNetworkInterceptor(FlipperOkhttpInterceptor(networkFlipperPlugin))
     }
 
     /**
      * Логировать сетевое событие в окно "Network"
      */
-    fun logEvent(eventName: String, jsonData: String) {
-        if (!BuildConfig.DEBUG) return
+    override fun logEvent(eventName: String, jsonData: String) {
 
         val requestId = UUID.randomUUID().toString()
         val timeStamp = System.currentTimeMillis()

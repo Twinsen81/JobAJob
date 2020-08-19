@@ -28,6 +28,7 @@
             <option value="$PROJECT_DIR$/features/login/login-wiring" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/core" />
+            <option value="$PROJECT_DIR$/libraries/logger-flipper-wiring" />
             <option value="$PROJECT_DIR$/libraries/navigation" />
             <option value="$PROJECT_DIR$/libraries/navigation/navigation-api" />
             <option value="$PROJECT_DIR$/libraries/navigation/navigation-impl" />

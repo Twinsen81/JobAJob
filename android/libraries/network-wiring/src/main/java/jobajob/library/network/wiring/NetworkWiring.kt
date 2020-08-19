@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import jobajob.library.network.logger.NetworkLogger
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
@@ -13,11 +14,9 @@ object NetworkWiring {
 
     @Provides
     @Singleton
-    fun provideOkhttp(): OkHttpClient {
+    fun provideOkhttp(networkLogger: NetworkLogger): OkHttpClient {
         val builder = OkHttpClient.Builder()
-        if (BuildConfig.DEBUG) {
-            FlipperNetworkPluginHelper.addOkHttpInterceptor(builder)
-        }
+        networkLogger.addOkHttpInterceptor(builder)
         return builder.build()
     }
 }

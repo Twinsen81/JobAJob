@@ -5,6 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply from: 'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/gradle/projectDependencyGraph.gradle'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     defaultConfig {
@@ -62,12 +63,14 @@ dependencies {
 
     // Firebase
     implementation Libraries.firebaseAnalytics
+    implementation Libraries.firebaseCrashlytics
     implementation Libraries.firebaseCloudMessaging
 
     // Misc
     implementation Libraries.kotlin
     implementation Libraries.fragNav
     debugImplementation Libraries.leakCanary
+    implementation Libraries.timber
 
     // Tests
     testImplementation Libraries.testJunit

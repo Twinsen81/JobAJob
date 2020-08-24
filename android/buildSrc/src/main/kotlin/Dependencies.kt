@@ -17,7 +17,8 @@ object Versions {
     const val androidX = "1.1.0"
     const val androidXKtxCore = "1.3.0"
     const val androidXKtxFragment = "1.2.5"
-    const val googleServices = "4.3.2"
+    const val googleServicesGradle = "4.3.3"
+    const val crashlyticsGradle = "2.2.0"
     const val room = "2.2.0"
     const val lifecycle = "2.2.0"
     const val dagger = "2.28.3"
@@ -73,7 +74,8 @@ object Libraries {
     const val gson = "com.google.code.gson:gson:2.8.6"
 
     // Firebase
-    const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.2.0"
+    const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.5.0"
+    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics:17.2.1"
     const val firebaseCloudMessaging = "com.google.firebase:firebase-messaging:20.0.0"
 
     // Flipper

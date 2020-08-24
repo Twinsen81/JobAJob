@@ -16,6 +16,7 @@ import jobajob.feature.favorites.api.FavoritesFeatureApi
 import jobajob.feature.login.api.LoginFeatureApi
 import jobajob.library.navigation.api.NavigationEvent
 import jobajob.library.navigation.api.ScreenNavigator
+import jobajob.library.uicomponents.analytics.AnalyticsScreenViewEvent
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 import javax.inject.Provider
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
         when (event) {
             is NavigationEvent.TabChanged -> {
                 val newSelectedItemId = tabs.getNavMenuIdByIndex(event.tabIndex)
+                logTabChanged(newSelectedItemId)
                 if (bottom_navigation.selectedItemId != newSelectedItemId)
                     bottom_navigation.selectedItemId = newSelectedItemId
             }
@@ -98,6 +100,17 @@ class MainActivity : AppCompatActivity() {
     private fun onBottomNavigationItemSelected(item: MenuItem): Boolean {
         screenNavigator.switchTab(tabs.getTabIndexByNavMenuId(item.itemId))
         return true
+    }
+
+    private fun logTabChanged(menuId: Int) {
+        val screenName = when (menuId) {
+            R.id.navigation_dashboard -> "dashboard"
+            R.id.navigation_favorites -> "favorites"
+            R.id.navigation_resumes -> "resumes"
+            R.id.navigation_more -> "more"
+            else -> "unknown tab screen name"
+        }
+        AnalyticsScreenViewEvent(screenName)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

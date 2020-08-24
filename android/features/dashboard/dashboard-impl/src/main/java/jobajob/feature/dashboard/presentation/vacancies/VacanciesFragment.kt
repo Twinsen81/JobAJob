@@ -15,6 +15,7 @@ import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.data.remote.api.DashboardServerApi
 import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
 import jobajob.library.navigation.api.ScreenNavigator
+import jobajob.library.uicomponents.analytics.AnalyticsViewVacancyEvent
 import kotlinx.android.synthetic.main.dashboard_fragment_vacancies.*
 import javax.inject.Inject
 
@@ -39,7 +40,6 @@ internal class VacanciesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupRecyclerView()
     }
 
@@ -49,6 +49,7 @@ internal class VacanciesFragment : Fragment() {
         vacanciesRecyclerView.layoutManager = recyclerViewLayoutManager
 
         recyclerViewAdapter = VacanciesAdapter { clickedVacancy ->
+            AnalyticsViewVacancyEvent(clickedVacancy.id.toString())
             screenNavigator.navigateTo(VacancyDetailFragment.newInstance(clickedVacancy.id))
         }
 

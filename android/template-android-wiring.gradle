@@ -29,4 +29,7 @@ dependencies {
     kapt Libraries.hiltCompiler
     implementation Libraries.hiltAndroidX
     kapt Libraries.hiltCompilerAndroidX
+
+    // Misc
+    implementation Libraries.timber
 }

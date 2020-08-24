@@ -41,6 +41,7 @@ dependencies {
 
     // Misc
     implementation Libraries.kotlin
+    implementation Libraries.timber
 
     // Tests
     testImplementation Libraries.testJunit

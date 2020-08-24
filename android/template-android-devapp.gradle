@@ -27,6 +27,7 @@ dependencies {
     implementation Libraries.kotlin
     implementation Libraries.cicerone
     debugImplementation Libraries.leakCanary
+    implementation Libraries.timber
 
     // Tests
     testImplementation Libraries.testJunit

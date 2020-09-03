@@ -4,6 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.multibindings.IntoMap
+import dagger.multibindings.StringKey
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import jobajob.feature.dashboard.api.DashboardBaseUrl
@@ -14,6 +16,8 @@ import jobajob.feature.dashboard.data.remote.VacanciesRemoteDataSource
 import jobajob.feature.dashboard.data.remote.VacanciesServerDataSource
 import jobajob.feature.dashboard.data.remote.api.DashboardServerApi
 import jobajob.feature.dashboard.data.repository.VacanciesRepository
+import jobajob.feature.dashboard.presentation.deeplink.VacanciesDeeplinkResolver
+import jobajob.library.uicomponents.deeplink.DeeplinkResolver
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -53,4 +57,9 @@ internal object DashboardFeatureModule {
 
     @Provides
     fun provideVacanciesGateway(repository: VacanciesRepository): VacanciesGateway = repository
+
+    @Provides
+    @IntoMap
+    @StringKey("vacancies")
+    fun provideDeeplinkResolver(): DeeplinkResolver = VacanciesDeeplinkResolver()
 }

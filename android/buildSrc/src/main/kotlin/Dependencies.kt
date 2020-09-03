@@ -74,7 +74,7 @@ object Libraries {
     const val gson = "com.google.code.gson:gson:2.8.6"
 
     // Firebase
-    const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.5.0"
+    const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx:17.5.0"
     const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics:17.2.1"
     const val firebaseCloudMessaging = "com.google.firebase:firebase-messaging:20.0.0"
 

@@ -8,7 +8,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.evartem.jobajob.R
-import com.google.android.material.snackbar.Snackbar
+import com.evartem.jobajob.deeplink.DeepLinkDestination
+import com.evartem.jobajob.deeplink.DeeplinkParser
 import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.api.DashboardFeatureApi
@@ -18,6 +19,7 @@ import jobajob.library.navigation.api.NavigationEvent
 import jobajob.library.navigation.api.ScreenNavigator
 import jobajob.library.uicomponents.analytics.AnalyticsScreenViewEvent
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -36,14 +38,16 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var screenNavigator: ScreenNavigator
 
-    private val tabs = Tabs(
+    @Inject
+    lateinit var deeplinkParser: DeeplinkParser
+
+    private val tabs =
         listOf(
-            R.id.navigation_dashboard to Provider { dashboardFeatureApi.getDashboardFragment() },
-            R.id.navigation_favorites to Provider { favoritesFeatureApi.getFavoritesFragment() },
-            R.id.navigation_resumes to Provider { StubFragment.newInstance("RESUMES") },
-            R.id.navigation_more to Provider { StubFragment.newInstance("MORE...") }
+            Tab(0, "dashboard", R.id.navigation_dashboard, Provider { dashboardFeatureApi.getDashboardFragment() }),
+            Tab(1, "favorites", R.id.navigation_favorites, Provider { favoritesFeatureApi.getFavoritesFragment() }),
+            Tab(2, "resumes", R.id.navigation_resumes, Provider { StubFragment.newInstance("RESUMES") }),
+            Tab(3, "more", R.id.navigation_more, Provider { StubFragment.newInstance("MORE...") })
         )
-    )
 
     companion object {
         private const val NOTIFICATION_KEY = "NOTIFICATION_KEY"
@@ -55,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    var hideNavigationView: Boolean = false
+    private var hideNavigationView: Boolean = false
         set(hide) {
             bottom_navigation.visibility = if (hide) View.GONE else View.VISIBLE
             field = hide
@@ -75,14 +79,60 @@ class MainActivity : AppCompatActivity() {
             rootTabFragmentCreator = this::createRootFragment,
             eventListener = this::onNavigationEvent
         )
+
+        handleDeepLink()
     }
 
-    private fun createRootFragment(tabIndex: Int): Fragment = tabs.getFragmentByIndex(tabIndex)
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        setIntent(intent)
+        handleDeepLink()
+/*        intent?.also {
+
+            // TODO: Refactor the intent's payload type and handle data from both - system tray
+            //  and the FCMService.onMessageReceived
+            if (it.hasExtra(NOTIFICATION_KEY)) {
+                val message: RemoteMessage = it.getParcelableExtra(NOTIFICATION_KEY)!!
+                Snackbar.make(
+                    mainLayout,
+                    message.notification?.body ?: "FCM message",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+        }*/
+    }
+
+    private fun handleDeepLink() {
+        intent?.data?.let { uri ->
+            Timber.v("Handling deeplink: $uri")
+            val destination = deeplinkParser.parse(uri)
+            if (destination != null) {
+                goToDeeplinkDestination(destination)
+            } else {
+                Timber.w("Failed to handle the deeplink: $uri")
+            }
+        }
+    }
+
+    private fun goToDeeplinkDestination(destination: DeepLinkDestination) {
+        val destinationTabIndex = tabs.indexByName(destination.tabName)
+        if (destinationTabIndex != null) {
+            screenNavigator.switchTab(destinationTabIndex)
+            destination.fragment?.also { destinationFragment ->
+                screenNavigator.navigateTo(destinationFragment)
+            }
+        } else {
+            Timber.e("Unknown tab \"${destination.tabName}\" in the deeplink: ${destination.deeplink}")
+        }
+    }
+
+    private fun createRootFragment(tabIndex: Int): Fragment = tabs.fragmentByIndex(tabIndex)
 
     private fun onNavigationEvent(event: NavigationEvent) {
         when (event) {
             is NavigationEvent.TabChanged -> {
-                val newSelectedItemId = tabs.getNavMenuIdByIndex(event.tabIndex)
+                val newSelectedItemId = tabs.menuIdByIndex(event.tabIndex)
                 logTabChanged(newSelectedItemId)
                 if (bottom_navigation.selectedItemId != newSelectedItemId)
                     bottom_navigation.selectedItemId = newSelectedItemId
@@ -98,20 +148,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onBottomNavigationItemSelected(item: MenuItem): Boolean {
-        screenNavigator.switchTab(tabs.getTabIndexByNavMenuId(item.itemId))
+        screenNavigator.switchTab(tabs.indexByMenuId(item.itemId))
         return true
     }
 
-    private fun logTabChanged(menuId: Int) {
-        val screenName = when (menuId) {
-            R.id.navigation_dashboard -> "dashboard"
-            R.id.navigation_favorites -> "favorites"
-            R.id.navigation_resumes -> "resumes"
-            R.id.navigation_more -> "more"
-            else -> "unknown tab screen name"
-        }
-        AnalyticsScreenViewEvent(screenName)
-    }
+    private fun logTabChanged(menuId: Int) = AnalyticsScreenViewEvent(tabs.nameByMenuId(menuId))
 
     override fun onSaveInstanceState(outState: Bundle) {
         screenNavigator.onSaveInstanceState(outState)
@@ -120,23 +161,5 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (!screenNavigator.goBack()) super.onBackPressed()
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-
-        intent?.also {
-
-            // TODO: Refactor the intent's payload type and handle data from both - system tray
-            //  and the FCMService.onMessageReceived
-            if (it.hasExtra(NOTIFICATION_KEY)) {
-                val message: RemoteMessage = it.getParcelableExtra(NOTIFICATION_KEY)!!
-                Snackbar.make(
-                    mainLayout,
-                    message.notification?.body ?: "FCM message",
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
-        }
     }
 }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "31807166824-q64o74e2rl9qvks5hs2iq2h5mmrl68sl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.evartem.jobajob",
+            "certificate_hash": "bce1cca738019acdc8486fb244dd5b56a328ae03"
+          }
+        },
+        {
           "client_id": "31807166824-gt7erj9msp95li03h3h81a9899jhkiob.apps.googleusercontent.com",
           "client_type": 3
         }

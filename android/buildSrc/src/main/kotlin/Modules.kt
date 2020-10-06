@@ -14,6 +14,8 @@ object Modules {
     const val libraryNavigationImpl = ":libraries:navigation:navigation-impl"
     const val libraryNavigationWiring = ":libraries:navigation:navigation-wiring"
 
+    const val librarySession = ":libraries:session"
+
     const val featureLoginApi = ":features:login:login-api"
     const val featureLoginImpl = ":features:login:login-impl"
     const val featureLoginWiring = ":features:login:login-wiring"

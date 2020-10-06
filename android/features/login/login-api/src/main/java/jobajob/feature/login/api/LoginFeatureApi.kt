@@ -1,8 +1,8 @@
 package jobajob.feature.login.api
 
-import android.content.Context
-import android.content.Intent
+import androidx.fragment.app.FragmentActivity
 
 interface LoginFeatureApi {
-    fun getLoginScreenIntent(context: Context): Intent
+    fun login(activity: FragmentActivity)
+    fun logout(activity: FragmentActivity)
 }

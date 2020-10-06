@@ -1,0 +1,9 @@
+apply from:"$rootDir/${GradleTemplates.kotlinLibrary}"
+
+dependencies {
+
+    // Project's libraries
+    implementation project(Modules.libraryCore)
+
+    implementation Libraries.coroutinesCore
+}

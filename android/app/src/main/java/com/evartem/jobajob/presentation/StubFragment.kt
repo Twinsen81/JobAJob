@@ -4,21 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import jobajob.library.uicomponents.util.withArgs
-import androidx.constraintlayout.widget.ConstraintLayout
 import android.widget.TextView
-import androidx.core.view.ViewCompat
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.ViewCompat
+import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
+import jobajob.feature.login.api.LoginFeatureApi
+import jobajob.library.uicomponents.util.withArgs
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class StubFragment: Fragment() {
+
+    @Inject
+    lateinit var loginFeatureApi: LoginFeatureApi
 
     private var stubTitle = "To be implemented..."
 
     companion object {
         private const val TITLE_ID_KEY = "title_id"
 
-        fun newInstance(title: String)  =
+        fun newInstance(title: String) =
             StubFragment().withArgs {
                 putString(TITLE_ID_KEY, title)
             }
@@ -46,8 +53,15 @@ class StubFragment: Fragment() {
         title.textSize = 25f
         title.id = ViewCompat.generateViewId()
         title.layoutParams = ConstraintLayout.LayoutParams(
-                ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT
+            ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT
         )
+        title.setOnClickListener {
+            //startActivity(loginFeatureApi.getLoginScreenIntent(requireActivity()))
+            if (stubTitle.toLowerCase() == "resumes")
+                loginFeatureApi.getLoginScreenIntent(requireActivity())
+            else
+                loginFeatureApi.logout(requireActivity())
+        }
         constraintLayout.addView(title)
 
         val constraintSet = ConstraintSet()

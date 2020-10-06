@@ -14,20 +14,15 @@ import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.api.DashboardFeatureApi
 import jobajob.feature.favorites.api.FavoritesFeatureApi
-import jobajob.feature.login.api.LoginFeatureApi
 import jobajob.library.navigation.api.NavigationEvent
 import jobajob.library.navigation.api.ScreenNavigator
 import jobajob.library.uicomponents.analytics.AnalyticsScreenViewEvent
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import javax.inject.Inject
-import javax.inject.Provider
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var loginFeatureApi: LoginFeatureApi
 
     @Inject
     lateinit var dashboardFeatureApi: DashboardFeatureApi
@@ -43,10 +38,10 @@ class MainActivity : AppCompatActivity() {
 
     private val tabs =
         listOf(
-            Tab(0, "dashboard", R.id.navigation_dashboard, Provider { dashboardFeatureApi.getDashboardFragment() }),
-            Tab(1, "favorites", R.id.navigation_favorites, Provider { favoritesFeatureApi.getFavoritesFragment() }),
-            Tab(2, "resumes", R.id.navigation_resumes, Provider { StubFragment.newInstance("RESUMES") }),
-            Tab(3, "more", R.id.navigation_more, Provider { StubFragment.newInstance("MORE...") })
+            Tab(0, "dashboard", R.id.navigation_dashboard) { dashboardFeatureApi.getDashboardFragment() },
+            Tab(1, "favorites", R.id.navigation_favorites) { favoritesFeatureApi.getFavoritesFragment() },
+            Tab(2, "resumes", R.id.navigation_resumes) { StubFragment.newInstance("RESUMES") },
+            Tab(3, "more", R.id.navigation_more) { StubFragment.newInstance("MORE...") }
         )
 
     companion object {

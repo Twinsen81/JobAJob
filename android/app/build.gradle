@@ -32,6 +32,7 @@ dependencies {
     implementation project(Modules.featureFavoritesWiring)
 
     implementation project(Modules.libraryCore)
+    implementation project(Modules.librarySession)
     implementation project(Modules.libraryUiComponents)
     implementation project(Modules.libraryNavigationWiring)
     implementation project(Modules.libraryPreferencesWiring)

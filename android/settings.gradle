@@ -1,3 +1,4 @@
+include ':libraries:session'
 include ':libraries:logger-flipper-wiring'
 include ':libraries:navigation:navigation-wiring'
 include ':libraries:navigation:navigation-impl'

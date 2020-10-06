@@ -13,11 +13,11 @@ object Config {
 }
 
 object Versions {
-    const val kotlin = "1.3.72"
+    const val kotlin = "1.4.10"
     const val androidX = "1.1.0"
     const val androidXKtxCore = "1.3.0"
     const val androidXKtxFragment = "1.2.5"
-    const val googleServicesGradle = "4.3.3"
+    const val googleServicesGradle = "4.3.4"
     const val crashlyticsGradle = "2.2.0"
     const val room = "2.2.0"
     const val lifecycle = "2.2.0"
@@ -26,6 +26,7 @@ object Versions {
     const val hiltAndroidX = "1.0.0-alpha02"
     const val rxJava = "2.2.19"
     const val rxKotlin = "2.4.0"
+    const val coroutines = "1.3.9"
     const val retrofit = "2.9.0"
     const val okhttp = "4.7.2"
     const val flipper = "0.48.0"
@@ -60,6 +61,11 @@ object Libraries {
     const val hiltAndroidX = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltAndroidX}"
     const val hiltCompilerAndroidX = "androidx.hilt:hilt-compiler:${Versions.hiltAndroidX}"
 
+    // Coroutines
+
+    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+
     // Rx
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
@@ -73,9 +79,11 @@ object Libraries {
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val gson = "com.google.code.gson:gson:2.8.6"
 
-    // Firebase
+    // Firebase, Play services
+    const val firebaseAuth = "com.google.firebase:firebase-auth-ktx:19.4.0"
+    const val firebaseAuthUI = "com.firebaseui:firebase-ui-auth:6.2.0"
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx:17.5.0"
-    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics:17.2.1"
+    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics:17.2.2"
     const val firebaseCloudMessaging = "com.google.firebase:firebase-messaging:20.0.0"
 
     // Flipper

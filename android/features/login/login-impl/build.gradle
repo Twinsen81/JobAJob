@@ -3,4 +3,8 @@ apply from: "$rootDir/${GradleTemplates.androidFeature}"
 dependencies {
     implementation project(Modules.libraryUiComponents)
     implementation project(Modules.featureLoginApi)
+    implementation project(Modules.librarySession)
+
+    implementation Libraries.firebaseAuth
+    implementation Libraries.firebaseAuthUI
 }

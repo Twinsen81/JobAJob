@@ -39,6 +39,7 @@
             <option value="$PROJECT_DIR$/libraries/preferences/preferences-api" />
             <option value="$PROJECT_DIR$/libraries/preferences/preferences-impl" />
             <option value="$PROJECT_DIR$/libraries/preferences/preferences-wiring" />
+            <option value="$PROJECT_DIR$/libraries/session" />
             <option value="$PROJECT_DIR$/libraries/ui-components" />
           </set>
         </option>

@@ -25,6 +25,11 @@ sealed class AuthenticationData {
         val uid: String,
 
         /**
+         * Authentication token that can be used to access resources on the server on behalf of the user
+         */
+        val authToken: String?,
+
+        /**
          * First/second/nick name to show in the UI
          */
         val displayName: String?,

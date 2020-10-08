@@ -16,7 +16,6 @@ class SessionManagerImpl : SessionManager {
         get() = _authDataFlow.value
 
     override fun setAuthenticationData(data: AuthenticationData) {
-        println("New auth data received: $data")
         _authDataFlow.value = data
     }
 }

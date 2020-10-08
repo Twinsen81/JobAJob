@@ -26,6 +26,8 @@
             <option value="$PROJECT_DIR$/features/login/login-api" />
             <option value="$PROJECT_DIR$/features/login/login-impl" />
             <option value="$PROJECT_DIR$/features/login/login-wiring" />
+            <option value="$PROJECT_DIR$/features/vacancies" />
+            <option value="$PROJECT_DIR$/features/vacancies/vacancies-api" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/core" />
             <option value="$PROJECT_DIR$/libraries/logger-flipper-wiring" />

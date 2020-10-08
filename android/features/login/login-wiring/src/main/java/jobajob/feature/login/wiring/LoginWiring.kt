@@ -14,5 +14,5 @@ object LoginWiring {
 
     @Provides
     @ActivityScoped
-    fun provideLoginFeature(): LoginFeatureApi = LoginFeatureApiImpl
+    fun provideLoginFeature(apiImpl: LoginFeatureApiImpl): LoginFeatureApi = apiImpl
 }

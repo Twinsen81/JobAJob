@@ -11,6 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.login.api.LoginFeatureApi
+import jobajob.library.session.AuthenticationData
+import jobajob.library.session.Session
 import jobajob.library.uicomponents.util.withArgs
 import javax.inject.Inject
 
@@ -19,6 +21,9 @@ class StubFragment: Fragment() {
 
     @Inject
     lateinit var loginFeatureApi: LoginFeatureApi
+
+    @Inject
+    lateinit var session: Session
 
     private var stubTitle = "To be implemented..."
 
@@ -56,12 +61,13 @@ class StubFragment: Fragment() {
             ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT
         )
         title.setOnClickListener {
-            //startActivity(loginFeatureApi.getLoginScreenIntent(requireActivity()))
-            if (stubTitle.toLowerCase() == "resumes")
-                loginFeatureApi.getLoginScreenIntent(requireActivity())
-            else
+            if (session.authData is AuthenticationData.User) {
                 loginFeatureApi.logout(requireActivity())
+            } else {
+                loginFeatureApi.login(requireActivity())
+            }
         }
+
         constraintLayout.addView(title)
 
         val constraintSet = ConstraintSet()

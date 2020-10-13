@@ -28,8 +28,5 @@ dependencies {
     implementation project(Modules.libraryFlipperWiring)
 
     // Retrofit
-    implementation Libraries.retrofitGson
-    implementation Libraries.retrofitRx
     implementation Libraries.okhttp
-    implementation Libraries.gson
 }

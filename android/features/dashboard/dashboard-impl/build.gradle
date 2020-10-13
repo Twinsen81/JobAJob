@@ -21,17 +21,6 @@ kapt {
 
 dependencies {
 
-    // Retrofit
-    implementation Libraries.retrofitGson
-    implementation Libraries.retrofitRx
-    implementation Libraries.okhttp
-    implementation Libraries.gson
-
-    // RxJava
-    implementation Libraries.rxJava
-    implementation Libraries.rxKotlin
-    implementation Libraries.rxAndroid
-
     // AndroidX
     implementation Libraries.xRecyclerView
     implementation Libraries.xMaterial
@@ -39,7 +28,6 @@ dependencies {
 
     // Room
     implementation Libraries.roomRuntime
-    implementation Libraries.roomRx
     implementation Libraries.roomKtx
     kapt Libraries.roomCompiler
 

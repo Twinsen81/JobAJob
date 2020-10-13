@@ -3,13 +3,13 @@ package jobajob.feature.dashboard.devapp.di
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import jobajob.feature.dashboard.api.DashboardApiImpl
 import jobajob.feature.dashboard.api.DashboardBaseUrl
 import jobajob.feature.dashboard.api.DashboardFeatureApi
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object DashboardDevAppWiring {
 
     @Provides

@@ -3,8 +3,4 @@ apply from:"$rootDir/${GradleTemplates.androidLibrary}"
 dependencies {
     // Project's libraries
     implementation project(Modules.libraryCore)
-
-    // Rx
-    implementation Libraries.rxKotlin
-    implementation Libraries.rxJava
 }

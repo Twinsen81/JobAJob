@@ -28,14 +28,14 @@ dependencies {
 
     // App modules
     implementation project(Modules.featureLoginWiring)
-    implementation project(Modules.featureDashboardWiring)
+    //implementation project(Modules.featureDashboardWiring)
+    implementation project(Modules.featureDashboardImpl)
     implementation project(Modules.featureFavoritesWiring)
 
     implementation project(Modules.libraryCore)
     implementation project(Modules.librarySession)
     implementation project(Modules.libraryUiComponents)
     implementation project(Modules.libraryNavigationWiring)
-    implementation project(Modules.libraryPreferencesWiring)
     implementation project(Modules.libraryNetworkWiring)
     implementation project(Modules.libraryFlipperWiring)
 
@@ -53,14 +53,10 @@ dependencies {
     kapt Libraries.daggerCompiler
     implementation Libraries.hilt
     kapt Libraries.hiltCompiler
-    implementation Libraries.hiltAndroidX
-    kapt Libraries.hiltCompilerAndroidX
+    implementation Libraries.hiltAndroid
 
     // Retrofit
-    implementation Libraries.retrofitGson
-    implementation Libraries.retrofitRx
     implementation Libraries.okhttp
-    implementation Libraries.gson
 
     // Firebase
     implementation Libraries.firebaseAnalytics

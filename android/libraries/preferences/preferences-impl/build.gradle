@@ -1,7 +1,0 @@
-apply from:"$rootDir/${GradleTemplates.androidLibrary}"
-
-dependencies {
-    implementation project(Modules.libraryPreferencesApi)
-    implementation Libraries.xPreference
-    implementation Libraries.rxPreferences
-}

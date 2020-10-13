@@ -20,12 +20,10 @@ dependencies {
     kapt Libraries.daggerCompiler
     implementation Libraries.hilt
     kapt Libraries.hiltCompiler
-    implementation Libraries.hiltAndroidX
-    kapt Libraries.hiltCompilerAndroidX
+    implementation Libraries.hiltAndroid
 
     // Misc
     implementation Libraries.kotlin
-    implementation Libraries.cicerone
     debugImplementation Libraries.leakCanary
     implementation Libraries.timber
 

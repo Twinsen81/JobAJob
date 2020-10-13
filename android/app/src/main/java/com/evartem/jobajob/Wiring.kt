@@ -3,7 +3,7 @@ package com.evartem.jobajob
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import jobajob.library.session.Session
 import jobajob.library.session.SessionManager
 import jobajob.library.session.SessionManagerImpl
@@ -15,7 +15,7 @@ import javax.inject.Singleton
  */
 @ExperimentalCoroutinesApi
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object AppWiring {
 
     @[Provides Singleton]

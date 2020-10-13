@@ -21,19 +21,17 @@ object Versions {
     const val crashlyticsGradle = "2.2.0"
     const val room = "2.2.0"
     const val lifecycle = "2.2.0"
-    const val dagger = "2.28.3"
-    const val hilt = "2.28.3-alpha"
-    const val hiltAndroidX = "1.0.0-alpha02"
-    const val rxJava = "2.2.19"
-    const val rxKotlin = "2.4.0"
+    const val dagger = "2.29.1"
+    const val hilt = "2.29.1-alpha"
     const val coroutines = "1.3.9"
     const val retrofit = "2.9.0"
-    const val okhttp = "4.7.2"
+    const val okhttp = "4.9.0"
     const val flipper = "0.48.0"
 }
 
 object Libraries {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+    const val kotlinXSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0"
 
     // AndroidX
     const val xAppCompat = "androidx.appcompat:appcompat:${Versions.androidX}"
@@ -51,33 +49,23 @@ object Libraries {
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
     const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
-    const val roomRx = "androidx.room:room-rxjava2:${Versions.room}"
 
     // Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
-    const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
-    const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
-    const val hiltAndroidX = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltAndroidX}"
-    const val hiltCompilerAndroidX = "androidx.hilt:hilt-compiler:${Versions.hiltAndroidX}"
+    const val hilt = "com.google.dagger:hilt-core:${Versions.hilt}"
+    const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
+    const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltTesting = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
 
     // Coroutines
-
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 
-    // Rx
-    const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
-    const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
-    const val rxPreferences = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
-    const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
-
     // Network
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-    const val retrofitRx = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+    const val retrofitKotlinXSerialization = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
-    const val gson = "com.google.code.gson:gson:2.8.6"
 
     // Firebase, Play services
     const val firebaseAuth = "com.google.firebase:firebase-auth-ktx:19.4.0"
@@ -95,7 +83,6 @@ object Libraries {
     // Misc
     const val timber = "com.jakewharton.timber:timber:4.7.1"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.4"
-    const val cicerone = "ru.terrakok.cicerone:cicerone:5.1.1"
     const val fragNav = "com.ncapdevi:frag-nav:3.2.0"
 
     // Tests

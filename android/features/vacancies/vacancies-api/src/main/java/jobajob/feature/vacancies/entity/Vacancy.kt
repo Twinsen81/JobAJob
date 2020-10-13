@@ -1,23 +1,68 @@
 package jobajob.feature.vacancies.entity
 
-data class Vacancy(val id: String)
-/*
+import java.util.*
 
-"title": "Senior Android Developer",
-"field": "IT",
-"date": "2020-08-26",
-"salary_min": 100000,
-"salary_max": 200000,
-"salary_type": "net",
-"city": "Ufa",
-"company_id": "-ccMGrM16QDxJ3mpOg05LX",
-"company_name": "Drones Inc.",
-"company_logo": "https://picsum.photos/seed/dronesinc/200.jpg",
-"required_experience": "3-6 years",
-"work_schedule": "Full day",
-"required_skills": [
-"Java",
-"Kotlin",
-"Android SDK",
-"English B1"
-*/
+/**
+ * Information about a vacancy (an open position at a company)
+ */
+data class Vacancy(
+    /**
+     * Id at the backend
+     */
+    val id: String,
+
+    /**
+     * The open position
+     */
+    val title: String,
+
+    /**
+     * The industry that the vacancy is related to
+     */
+    val industry: Industry,
+
+    /**
+     * The date and time when the vacancy was created or last updated
+     */
+    val date: Date,
+
+    /**
+     * Minimum salary offered
+     */
+    val salaryMin: Int?,
+
+    /**
+     * Maximum salary offered
+     */
+    val salaryMax: Int?,
+
+    /**
+     * The type of the salary offered
+     */
+    val salaryType: SalaryType?,
+
+    /**
+     * The location of the work site
+     */
+    val location: EmployerLocation,
+
+    /**
+     * Short info about the employer
+     */
+    val employer: EmployerShort,
+
+    /**
+     * Required work experience
+     */
+    val experience: RequiredExperience,
+
+    /**
+     * The work schedule of the vacancy
+     */
+    val schedule: WorkSchedule,
+
+    /**
+     * A set of skills required/desired to take the position
+     */
+    val skills: List<String>,
+)

@@ -1,10 +1,5 @@
 apply from:"$rootDir/${GradleTemplates.androidLibrary}"
 
 dependencies {
-
-    implementation Libraries.cicerone
-    implementation Libraries.rxJava
-    implementation Libraries.rxKotlin
-
     implementation project(Modules.libraryCore)
 }

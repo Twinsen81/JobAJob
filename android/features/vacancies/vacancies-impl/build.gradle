@@ -1,0 +1,24 @@
+apply plugin: 'kotlinx-serialization'
+apply from:"$rootDir/${GradleTemplates.kotlinLibrary}"
+
+
+dependencies {
+
+    // Project's libraries
+    implementation project(Modules.libraryCore)
+    implementation project(Modules.librarySession)
+    implementation project(Modules.libraryNetwork)
+    implementation project(Modules.featureVacanciesApi)
+
+    implementation Libraries.coroutinesCore
+
+
+    implementation Libraries.kotlinXSerialization
+    implementation Libraries.okhttp
+    implementation Libraries.retrofit
+    implementation Libraries.retrofitKotlinXSerialization
+
+    implementation Libraries.hilt
+
+    kapt Libraries.hiltCompiler
+}

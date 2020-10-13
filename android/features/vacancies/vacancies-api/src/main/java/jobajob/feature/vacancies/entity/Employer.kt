@@ -11,6 +11,11 @@ data class Employer(
     val id: String,
 
     /**
+     * The company's name (business name)
+     */
+    val name: String,
+
+    /**
      * The official web site address
      */
     val webSiteUrl: String?,
@@ -18,7 +23,7 @@ data class Employer(
     /**
      * Logo of the company
      */
-    val logo: String?,
+    val logoUrl: String?,
 
     /**
      * Images of the office, team, etc - anything related to the job

@@ -1,9 +1,22 @@
 package jobajob.feature.vacancies.entity
 
-class PromoVacancy {
+/**
+ * A promoted vacancy (paid promotion)
+ */
+data class PromoVacancy(
 
-    /*"-MGytJ9VyUInZRgkrHTv5q": {
-        "title": "Math Teacher - Grades 9 - 12",
-        "company_name": "ALOHA",
-        "company_logo": "https://picsum.photos/seed/aloha/200.jpg"*/
-}
+    /**
+     * Id at the backend
+     */
+    val id: String,
+
+    /**
+     * The open position
+     */
+    val title: String,
+
+    /**
+     * The employer who offers the vacancy
+     */
+    val employer: EmployerShort,
+)

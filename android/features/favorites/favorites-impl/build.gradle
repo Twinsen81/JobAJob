@@ -5,16 +5,5 @@ dependencies {
     implementation project(Modules.featureFavoritesApi)
 
     // Retrofit
-    implementation Libraries.retrofitGson
-    implementation Libraries.retrofitRx
     implementation Libraries.okhttp
-    implementation Libraries.gson
-
-    // RxJava
-    implementation Libraries.rxJava
-    implementation Libraries.rxKotlin
-    implementation Libraries.rxAndroid
-
-    // Misc
-    implementation Libraries.cicerone
 }

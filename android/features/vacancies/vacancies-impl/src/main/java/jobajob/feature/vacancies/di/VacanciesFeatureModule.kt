@@ -6,8 +6,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import jobajob.feature.vacancies.api.VacanciesBaseUrl
+import jobajob.feature.vacancies.network.FirebaseAuthInterceptor
 import jobajob.feature.vacancies.network.VacanciesServerApi
+import jobajob.feature.vacancies.usecase.GetVacanciesUseCase
+import jobajob.feature.vacancies.usecase.GetVacanciesUseCaseImpl
 import jobajob.library.network.logger.NetworkLogger
+import jobajob.library.session.Session
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -17,7 +21,6 @@ import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import javax.inject.Named
 
 @ExperimentalSerializationApi
 @ExperimentalCoroutinesApi
@@ -31,9 +34,13 @@ internal object VacanciesFeatureModule {
 
     @Provides
     @FeatureInternal
+    fun provideAuthInterceptor(session: Session): Interceptor = FirebaseAuthInterceptor(session)
+
+    @Provides
+    @FeatureInternal
     fun provideOkHttp(
         networkLogger: NetworkLogger,
-        @FeatureInternal @Named("auth") authInterceptor: Interceptor
+        @FeatureInternal authInterceptor: Interceptor
     ): OkHttpClient {
         val builder = OkHttpClient.Builder()
         networkLogger.addOkHttpInterceptor(builder)
@@ -60,4 +67,10 @@ internal object VacanciesFeatureModule {
     @Provides
     fun provideVacanciesServerApi(@FeatureInternal retrofit: Retrofit): VacanciesServerApi =
         retrofit.create(VacanciesServerApi::class.java)
+
+    @Provides
+    fun provideGetVacanciesUseCase(
+        serverApi: VacanciesServerApi,
+        @FeatureInternal dispatcher: CoroutineDispatcher
+    ): GetVacanciesUseCase = GetVacanciesUseCaseImpl(serverApi, dispatcher)
 }

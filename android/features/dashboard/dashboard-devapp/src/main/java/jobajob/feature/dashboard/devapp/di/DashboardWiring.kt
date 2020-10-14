@@ -5,9 +5,14 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import jobajob.feature.dashboard.api.DashboardApiImpl
-import jobajob.feature.dashboard.api.DashboardBaseUrl
 import jobajob.feature.dashboard.api.DashboardFeatureApi
+import jobajob.library.session.Session
+import jobajob.library.session.SessionManager
+import jobajob.library.session.SessionManagerImpl
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import javax.inject.Singleton
 
+@ExperimentalCoroutinesApi
 @Module
 @InstallIn(SingletonComponent::class)
 object DashboardDevAppWiring {
@@ -15,7 +20,9 @@ object DashboardDevAppWiring {
     @Provides
     fun provideDashboardFeature(apiImpl: DashboardApiImpl): DashboardFeatureApi = apiImpl
 
+    @[Provides Singleton]
+    fun provideSessionManager(): SessionManager = SessionManagerImpl()
+
     @Provides
-    @DashboardBaseUrl
-    fun getBaseUrl() = "https://jobajob.herokuapp.com/"
+    fun provideSession(sessionManager: SessionManager): Session = sessionManager
 }

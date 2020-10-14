@@ -3,6 +3,7 @@ package jobajob.feature.vacancies.entity
 /**
  * The location of the employer's office/headquarters
  */
+@Serializable
 data class EmployerLocation(
 
     /**

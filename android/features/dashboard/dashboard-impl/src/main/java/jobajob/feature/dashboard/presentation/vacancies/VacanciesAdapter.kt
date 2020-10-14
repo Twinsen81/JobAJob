@@ -3,9 +3,8 @@ package jobajob.feature.dashboard.presentation.vacancies
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import jobajob.feature.dashboard.R
-import jobajob.library.entity.vacancy.Vacancy
+import jobajob.feature.vacancies.entity.Vacancy
 import jobajob.library.uicomponents.util.ChangePayload
 
 internal class VacanciesAdapter(
@@ -23,7 +22,7 @@ internal class VacanciesAdapter(
         return viewHolder
     }
 
-    override fun getItemId(position: Int) = getItem(position)?.id ?: RecyclerView.NO_ID
+    //override fun getItemId(position: Int) = getItem(position)?.id ?: RecyclerView.NO_ID
 
     override fun getItemViewType(position: Int): Int = R.layout.dashboard_item_vacancy
 

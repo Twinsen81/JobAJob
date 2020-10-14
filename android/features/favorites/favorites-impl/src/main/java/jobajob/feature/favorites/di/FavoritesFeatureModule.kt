@@ -1,15 +1,6 @@
 package jobajob.feature.favorites.di
 
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import jobajob.feature.favorites.FavoritesServerApi
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-
+/*
 @Module
 @InstallIn(SingletonComponent::class)
 internal object FavoritesFeatureModule {
@@ -32,4 +23,4 @@ internal object FavoritesFeatureModule {
     @Provides
     fun provideFavoritesServerApi(@FeatureInternal retrofit: Retrofit): FavoritesServerApi =
         retrofit.create(FavoritesServerApi::class.java)
-}
+}*/

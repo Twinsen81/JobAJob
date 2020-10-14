@@ -2,19 +2,19 @@ package jobajob.feature.dashboard.presentation.vacancies
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
-import jobajob.feature.dashboard.domain.intercator.GetVacanciesUseCase
-import jobajob.library.entity.vacancy.Vacancy
-import jobajob.library.uicomponents.presentation.BaseViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import jobajob.feature.vacancies.entity.VacanciesPage
+import jobajob.feature.vacancies.usecase.GetVacanciesUseCase
+import jobajob.library.entity.common.Result
+
 
 internal class VacanciesViewModel @ViewModelInject constructor(
     getVacanciesUseCase: GetVacanciesUseCase,
     @Assisted private val savedStateHandle: SavedStateHandle
-) : BaseViewModel(getVacanciesUseCase) {
-
+) : ViewModel() {
+/*
     private val pagedListConfig = PagedList.Config.Builder()
         .setEnablePlaceholders(true)
         .setInitialLoadSizeHint(20)
@@ -26,5 +26,14 @@ internal class VacanciesViewModel @ViewModelInject constructor(
             VacanciesPagedDataSourceFactory(
                 getVacanciesUseCase
             ), pagedListConfig)
-            .build()
+            .build()*/
+
+    val vacancies = liveData {
+        val page = getVacanciesUseCase.getVacancies(null, null)
+        if (page is Result.Success) {
+            emit(page.value)
+        } else {
+            emit(VacanciesPage(emptyList(), null))
+        }
+    }
 }

@@ -12,13 +12,8 @@ dependencies {
 
     implementation Libraries.coroutinesCore
 
-
     implementation Libraries.kotlinXSerialization
     implementation Libraries.okhttp
     implementation Libraries.retrofit
     implementation Libraries.retrofitKotlinXSerialization
-
-    implementation Libraries.hilt
-
-    kapt Libraries.hiltCompiler
 }

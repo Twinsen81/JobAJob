@@ -28,8 +28,8 @@ dependencies {
 
     // App modules
     implementation project(Modules.featureLoginWiring)
-    //implementation project(Modules.featureDashboardWiring)
-    implementation project(Modules.featureDashboardImpl)
+    implementation project(Modules.featureVacanciesWiring)
+    implementation project(Modules.featureDashboardWiring)
     implementation project(Modules.featureFavoritesWiring)
 
     implementation project(Modules.libraryCore)
@@ -47,6 +47,8 @@ dependencies {
     implementation Libraries.xLifecycle
     implementation Libraries.xLifecycleViewModel
     implementation Libraries.xMaterial
+    implementation Libraries.xLifecycleLiveData
+    implementation Libraries.xLifecycleRuntime
 
     // Dagger
     implementation Libraries.dagger
@@ -54,9 +56,12 @@ dependencies {
     implementation Libraries.hilt
     kapt Libraries.hiltCompiler
     implementation Libraries.hiltAndroid
+    kapt Libraries.hiltAndroidXCompiler
+    implementation Libraries.hiltAndroidX
 
     // Retrofit
     implementation Libraries.okhttp
+    implementation Libraries.retrofit
 
     // Firebase
     implementation Libraries.firebaseAnalytics

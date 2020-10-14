@@ -18,15 +18,30 @@ android {
 
 dependencies {
     // App modules
+    implementation project(Modules.featureVacanciesWiring)
+
     implementation project(Modules.featureDashboardApi)
     implementation project(Modules.featureDashboardImpl)
 
+    implementation project(Modules.libraryCore)
+    implementation project(Modules.librarySession)
     implementation project(Modules.libraryUiComponents)
     implementation project(Modules.libraryNavigationWiring)
     implementation project(Modules.libraryNetworkWiring)
-    implementation project(Modules.libraryCore)
     implementation project(Modules.libraryFlipperWiring)
+
+    // AndroidX
+    implementation Libraries.xAppCompat
+    implementation Libraries.xCoreKtx
+    implementation Libraries.xFragmentKtx
+    implementation Libraries.xConstraintLayout
+    implementation Libraries.xLifecycle
+    implementation Libraries.xLifecycleViewModel
+    implementation Libraries.xMaterial
+    implementation Libraries.xLifecycleLiveData
+    implementation Libraries.xLifecycleRuntime
 
     // Retrofit
     implementation Libraries.okhttp
+    implementation Libraries.retrofit
 }

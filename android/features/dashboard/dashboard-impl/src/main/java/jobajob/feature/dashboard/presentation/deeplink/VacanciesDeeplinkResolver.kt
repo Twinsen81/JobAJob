@@ -12,7 +12,7 @@ class VacanciesDeeplinkResolver : DeeplinkResolver {
     }
 
     override fun getDestination(params: Bundle): Fragment {
-        val vacancyId = params.getString(VACANCY_ID_PARAM)?.toLongOrNull()
+        val vacancyId = params.getString(VACANCY_ID_PARAM)
         return if (vacancyId != null) {
             VacancyDetailFragment.newInstance(vacancyId)
         } else {

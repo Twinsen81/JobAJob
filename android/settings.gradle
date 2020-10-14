@@ -1,3 +1,4 @@
+include ':features:vacancies:vacancies-wiring'
 include ':features:vacancies:vacancies-impl'
 include ':features:vacancies:vacancies-api'
 include ':libraries:session'

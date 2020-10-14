@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.R
-import jobajob.feature.dashboard.data.remote.api.DashboardServerApi
 import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
+import jobajob.feature.vacancies.entity.VacanciesPage
 import jobajob.library.navigation.api.ScreenNavigator
 import jobajob.library.uicomponents.analytics.AnalyticsViewVacancyEvent
 import kotlinx.android.synthetic.main.dashboard_fragment_vacancies.*
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,9 +26,6 @@ internal class VacanciesFragment : Fragment() {
     private val viewModel: VacanciesViewModel by viewModels()
     private lateinit var recyclerViewAdapter: VacanciesAdapter
     private lateinit var recyclerViewLayoutManager: LinearLayoutManager
-
-    @Inject
-    lateinit var serverApi: DashboardServerApi
 
     @Inject
     lateinit var screenNavigator: ScreenNavigator
@@ -49,7 +47,7 @@ internal class VacanciesFragment : Fragment() {
         vacanciesRecyclerView.layoutManager = recyclerViewLayoutManager
 
         recyclerViewAdapter = VacanciesAdapter { clickedVacancy ->
-            AnalyticsViewVacancyEvent(clickedVacancy.id.toString())
+            AnalyticsViewVacancyEvent(clickedVacancy.id)
             screenNavigator.navigateTo(VacancyDetailFragment.newInstance(clickedVacancy.id))
         }
 
@@ -60,6 +58,10 @@ internal class VacanciesFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        viewModel.vacancies.observe(viewLifecycleOwner, Observer { recyclerViewAdapter.submitList(it) })
+        viewModel.vacancies.observe(viewLifecycleOwner, Observer { renderVacancies(it) })
+    }
+
+    private fun renderVacancies(vacancies: VacanciesPage) {
+        Timber.d(vacancies.vacancies.toString())
     }
 }

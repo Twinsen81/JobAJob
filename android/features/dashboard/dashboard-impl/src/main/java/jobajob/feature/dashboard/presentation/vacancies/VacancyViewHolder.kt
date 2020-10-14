@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import jobajob.feature.dashboard.presentation.vacancies.VacanciesDiffUtilCallback.Companion.DETAILS
 import jobajob.feature.dashboard.presentation.vacancies.VacanciesDiffUtilCallback.Companion.TITLES
-import jobajob.library.entity.vacancy.Vacancy
+import jobajob.feature.vacancies.entity.Vacancy
 import jobajob.library.uicomponents.util.ChangePayload
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.dashboard_item_vacancy.*
@@ -36,11 +36,11 @@ internal class VacancyViewHolder(
 
         if (updated(TITLES)) {
             tvVacancyTitle.text = vacancy.title
-            tvVacancyCompany.text = vacancy.company
-            tvVacancySalary.text = vacancy.salary
+            tvVacancyCompany.text = vacancy.employer.name
+            tvVacancySalary.text = vacancy.industry.industry
         }
 
         if (updated(DETAILS))
-            tvVacancyDetails.text = vacancy.details
+            tvVacancyDetails.text = vacancy.title
     }
 }

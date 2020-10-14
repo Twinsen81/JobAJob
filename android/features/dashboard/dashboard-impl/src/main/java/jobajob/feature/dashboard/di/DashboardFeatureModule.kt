@@ -6,57 +6,12 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoMap
 import dagger.multibindings.StringKey
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import jobajob.feature.dashboard.api.DashboardBaseUrl
-import jobajob.feature.dashboard.api.VacanciesGateway
-import jobajob.feature.dashboard.data.local.VacanciesLocalDataSource
-import jobajob.feature.dashboard.data.local.VacanciesRoomDataSource
-import jobajob.feature.dashboard.data.remote.VacanciesRemoteDataSource
-import jobajob.feature.dashboard.data.remote.VacanciesServerDataSource
-import jobajob.feature.dashboard.data.remote.api.DashboardServerApi
-import jobajob.feature.dashboard.data.repository.VacanciesRepository
 import jobajob.feature.dashboard.presentation.deeplink.VacanciesDeeplinkResolver
 import jobajob.library.uicomponents.deeplink.DeeplinkResolver
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal object DashboardFeatureModule {
-
-    @Provides
-    @FeatureInternal
-    fun provideUiScheduler(): Scheduler = AndroidSchedulers.mainThread()
-
-    @Provides
-    @FeatureInternal
-    fun provideRetrofit(okHttpClient: OkHttpClient, @DashboardBaseUrl baseUrl: String): Retrofit {
-
-        val builder = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(okHttpClient)
-
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        builder.addConverterFactory(GsonConverterFactory.create())
-
-        return builder.build()
-    }
-
-    @Provides
-    fun provideDashboardServerApi(@FeatureInternal retrofit: Retrofit): DashboardServerApi =
-        retrofit.create(DashboardServerApi::class.java)
-
-    @Provides
-    fun provideVacanciesLocalDataSource(dataSource: VacanciesRoomDataSource): VacanciesLocalDataSource = dataSource
-
-    @Provides
-    fun provideVacanciesRemoteDataSource(dataSource: VacanciesServerDataSource): VacanciesRemoteDataSource = dataSource
-
-    @Provides
-    fun provideVacanciesGateway(repository: VacanciesRepository): VacanciesGateway = repository
 
     @Provides
     @IntoMap

@@ -1,3 +1,4 @@
+/*
 package jobajob.feature.dashboard.presentation.vacancies
 
 import androidx.paging.DataSource
@@ -53,4 +54,4 @@ internal class VacanciesPagedDataSourceFactory(
         VacanciesPagedDataSource(
             getVacanciesUseCase
         )
-}
+}*/

@@ -30,6 +30,8 @@ dependencies {
     implementation Libraries.xConstraintLayout
     implementation Libraries.xLifecycle
     implementation Libraries.xLifecycleViewModel
+    implementation Libraries.xLifecycleLiveData
+    implementation Libraries.xLifecycleRuntime
 
     // Dagger
     implementation Libraries.dagger
@@ -37,6 +39,8 @@ dependencies {
     implementation Libraries.hilt
     kapt Libraries.hiltCompiler
     implementation Libraries.hiltAndroid
+    kapt Libraries.hiltAndroidXCompiler
+    implementation Libraries.hiltAndroidX
 
     // Misc
     implementation Libraries.kotlin

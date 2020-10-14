@@ -21,14 +21,14 @@ internal class VacancyDetailFragment : Fragment() {
 
     private val viewModel: VacancyDetailViewModel by viewModels()
 
-    private var vacancyId: Long = 0
+    private var vacancyId: String = ""
 
     companion object {
         private const val VACANCY_ID_KEY = "vacancy_id"
 
-        fun newInstance(vacancyId: Long) =
+        fun newInstance(vacancyId: String) =
             VacancyDetailFragment().withArgs {
-                putLong(VACANCY_ID_KEY, vacancyId)
+                putString(VACANCY_ID_KEY, vacancyId)
             }
     }
 
@@ -36,7 +36,7 @@ internal class VacancyDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val args = requireNotNull(arguments)
-        vacancyId = requireNotNull(args.getLong(VACANCY_ID_KEY))
+        vacancyId = requireNotNull(args.getString(VACANCY_ID_KEY))
     }
 
     override fun onCreateView(

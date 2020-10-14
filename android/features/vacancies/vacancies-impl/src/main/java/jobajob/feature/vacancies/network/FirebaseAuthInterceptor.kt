@@ -1,22 +1,17 @@
 package jobajob.feature.vacancies.network
 
-import jobajob.feature.vacancies.di.FeatureInternal
 import jobajob.library.session.AuthenticationData
 import jobajob.library.session.Session
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
-import javax.inject.Named
 
 /**
  * Authentication interceptor for Firebase.
  * Adds the authentication parameter (ID token) to the URL
  */
 @ExperimentalCoroutinesApi
-@FeatureInternal
-@Named("auth")
-internal class FirebaseAuthInterceptor @Inject constructor(private val session: Session) : Interceptor {
+internal class FirebaseAuthInterceptor(private val session: Session) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         val authToken = firebaseIdToken

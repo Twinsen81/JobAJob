@@ -26,17 +26,13 @@ dependencies {
     implementation Libraries.xMaterial
     implementation Libraries.xPaging
 
-    // Room
-    implementation Libraries.roomRuntime
-    implementation Libraries.roomKtx
-    kapt Libraries.roomCompiler
-
     // Project's libraries
-    implementation project(Modules.libraryCore)
+    api project(Modules.libraryCore)
     implementation project(Modules.libraryUiComponents)
     implementation project(Modules.libraryNavigationApi)
     implementation project(Modules.libraryNetwork)
 
     // Project's features
     implementation project(Modules.featureDashboardApi)
+    api project(Modules.featureVacanciesApi)
 }

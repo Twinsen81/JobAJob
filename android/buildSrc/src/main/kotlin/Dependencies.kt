@@ -21,6 +21,7 @@ object Versions {
     const val crashlyticsGradle = "2.2.0"
     const val room = "2.2.0"
     const val lifecycle = "2.2.0"
+    const val lifecycleKtx = "2.3.0-alpha07"
     const val dagger = "2.29.1"
     const val hilt = "2.29.1-alpha"
     const val coroutines = "1.3.9"
@@ -38,7 +39,9 @@ object Libraries {
     const val xCoreKtx = "androidx.core:core-ktx:${Versions.androidXKtxCore}"
     const val xFragmentKtx = "androidx.fragment:fragment-ktx:${Versions.androidXKtxFragment}"
     const val xLifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
-    const val xLifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val xLifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleKtx}"
+    const val xLifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleKtx}"
+    const val xLifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleKtx}"
     const val xConstraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val xPreference = "androidx.preference:preference:1.1.0"
     const val xMaterial = "com.google.android.material:material:1.0.0"
@@ -56,7 +59,9 @@ object Libraries {
     const val hilt = "com.google.dagger:hilt-core:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
-    const val hiltTesting = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
+    const val hiltAndroidTesting = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
+    const val hiltAndroidX = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
+    const val hiltAndroidXCompiler = "androidx.hilt:hilt-compiler:1.0.0-alpha01"
 
     // Coroutines
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
@@ -93,7 +98,7 @@ object Libraries {
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
 
     // Gradle
-    const val gradleAndroid = "com.android.tools.build:gradle:4.0.1"
+    const val gradleAndroid = "com.android.tools.build:gradle:4.1.0"
     const val gradleKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val gradleVersions = "com.github.ben-manes:gradle-versions-plugin:0.28.0"
 }

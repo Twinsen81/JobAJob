@@ -17,6 +17,16 @@ data class Vacancy(
     val title: String,
 
     /**
+     * The vacancy description
+     */
+    val description: String,
+
+    /**
+     * The city where the position is offered
+     */
+    val city: String,
+
+    /**
      * The industry that the vacancy is related to
      */
     val industry: Industry,
@@ -40,11 +50,6 @@ data class Vacancy(
      * The type of the salary offered
      */
     val salaryType: SalaryType?,
-
-    /**
-     * The location of the work site
-     */
-    val location: EmployerLocation,
 
     /**
      * Short info about the employer

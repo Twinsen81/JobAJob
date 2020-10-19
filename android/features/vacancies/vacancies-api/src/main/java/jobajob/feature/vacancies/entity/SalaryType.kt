@@ -23,9 +23,9 @@ enum class SalaryType(val type: String) {
     override fun toString(): String = type
 
     companion object {
-        fun fromString(type: String): SalaryType {
+        fun fromString(type: String?): SalaryType {
             return values().firstOrNull {
-                it.type.toLowerCase(Locale.ROOT) == type.toLowerCase(Locale.ROOT)
+                it.type.toLowerCase(Locale.ROOT) == type?.toLowerCase(Locale.ROOT)
             } ?: Unknown
         }
     }

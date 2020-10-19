@@ -8,4 +8,6 @@ dependencies {
     // Retrofit
     implementation Libraries.retrofit
     implementation Libraries.okhttp
+
+    implementation Libraries.kotlinXSerialization
 }

@@ -6,11 +6,15 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import jobajob.feature.vacancies.api.VacanciesBaseUrl
+import jobajob.feature.vacancies.entity.Vacancy
 import jobajob.feature.vacancies.network.FirebaseAuthInterceptor
 import jobajob.feature.vacancies.network.VacanciesServerApi
+import jobajob.feature.vacancies.network.dto.VacancyDto
+import jobajob.feature.vacancies.network.mapper.VacancyMapper
 import jobajob.feature.vacancies.usecase.GetVacanciesUseCase
 import jobajob.feature.vacancies.usecase.GetVacanciesUseCaseImpl
 import jobajob.library.network.logger.NetworkLogger
+import jobajob.library.network.utils.Mapper
 import jobajob.library.session.Session
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -55,11 +59,15 @@ internal object VacanciesFeatureModule {
         @VacanciesBaseUrl baseUrl: String,
     ): Retrofit {
 
-        val contentType = "application/json".toMediaType()
         val builder = Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient)
-            .addConverterFactory(Json.asConverterFactory(contentType))
+            .addConverterFactory(
+                Json {
+                    isLenient = true
+                    ignoreUnknownKeys = true
+                }.asConverterFactory("application/json".toMediaType())
+            )
 
         return builder.build()
     }
@@ -69,8 +77,12 @@ internal object VacanciesFeatureModule {
         retrofit.create(VacanciesServerApi::class.java)
 
     @Provides
+    fun provideVacancyMapper(vacancyMapper: VacancyMapper): Mapper<VacancyDto, Vacancy> = vacancyMapper
+
+    @Provides
     fun provideGetVacanciesUseCase(
         serverApi: VacanciesServerApi,
+        vacancyMapper: Mapper<VacancyDto, Vacancy>,
         @FeatureInternal dispatcher: CoroutineDispatcher
-    ): GetVacanciesUseCase = GetVacanciesUseCaseImpl(serverApi, dispatcher)
+    ): GetVacanciesUseCase = GetVacanciesUseCaseImpl(serverApi, vacancyMapper, dispatcher)
 }

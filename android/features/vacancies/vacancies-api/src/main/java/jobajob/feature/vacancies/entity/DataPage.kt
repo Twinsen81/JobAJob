@@ -1,13 +1,13 @@
 package jobajob.feature.vacancies.entity
 
 /**
- * One page of the vacancies list
+ * One page of the data (for pagination)
  */
-data class VacanciesPage(
+data class DataPage<T>(
     /**
-     * Vacancies
+     * The data
      */
-    val vacancies: List<Vacancy>,
+    val data: List<T>,
 
     /**
      * Pointer to the next page of the data (page id, record id, etc.)

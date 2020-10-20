@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.R
 import jobajob.feature.dashboard.presentation.vacancydetail.VacancyDetailFragment
-import jobajob.feature.vacancies.entity.VacanciesPage
+import jobajob.feature.vacancies.entity.DataPage
+import jobajob.feature.vacancies.entity.Vacancy
 import jobajob.library.navigation.api.ScreenNavigator
 import jobajob.library.uicomponents.analytics.AnalyticsViewVacancyEvent
 import kotlinx.android.synthetic.main.dashboard_fragment_vacancies.*
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -60,7 +60,6 @@ internal class VacanciesFragment : Fragment() {
         viewModel.vacancies.observe(viewLifecycleOwner, { renderVacancies(it) })
     }
 
-    private fun renderVacancies(vacancies: VacanciesPage) {
-        Timber.d(vacancies.vacancies.toString())
+    private fun renderVacancies(page: DataPage<Vacancy>) {
     }
 }

@@ -1,24 +1,24 @@
 package jobajob.feature.vacancies.usecase
 
 import jobajob.feature.vacancies.entity.DataPage
-import jobajob.feature.vacancies.entity.Vacancy
+import jobajob.feature.vacancies.entity.PromoVacancy
 import jobajob.feature.vacancies.network.VacanciesServerApi
-import jobajob.feature.vacancies.network.dto.VacancyDto
+import jobajob.feature.vacancies.network.dto.PromoVacancyDto
 import jobajob.library.entity.common.Failure
 import jobajob.library.entity.common.Result
 import jobajob.library.network.utils.Mapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
-internal class GetVacanciesUseCaseImpl(
+internal class GetPromoVacanciesUseCaseImpl(
     private val serverApi: VacanciesServerApi,
-    private val vacancyMapper: Mapper<VacancyDto, Vacancy>,
+    private val vacancyMapper: Mapper<PromoVacancyDto, PromoVacancy>,
     private val dispatcher: CoroutineDispatcher,
-) : GetVacanciesUseCase {
-    override suspend fun getVacancies(startAt: String?, number: Int?): VacanciesPageResult {
+) : GetPromoVacanciesUseCase {
+    override suspend fun getPromoVacancies(): PromoVacanciesPageResult {
         return withContext(dispatcher) {
             try {
-                val vacanciesList = serverApi.getVacancies()
+                val vacanciesList = serverApi.getPromoVacancies()
                     .entries
                     .map { (vacancyId, dto) -> vacancyMapper.map(dto.apply { id = vacancyId }) }
 

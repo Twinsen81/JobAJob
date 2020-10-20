@@ -6,11 +6,16 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import jobajob.feature.vacancies.api.VacanciesBaseUrl
+import jobajob.feature.vacancies.entity.PromoVacancy
 import jobajob.feature.vacancies.entity.Vacancy
 import jobajob.feature.vacancies.network.FirebaseAuthInterceptor
 import jobajob.feature.vacancies.network.VacanciesServerApi
+import jobajob.feature.vacancies.network.dto.PromoVacancyDto
 import jobajob.feature.vacancies.network.dto.VacancyDto
+import jobajob.feature.vacancies.network.mapper.PromoVacancyMapper
 import jobajob.feature.vacancies.network.mapper.VacancyMapper
+import jobajob.feature.vacancies.usecase.GetPromoVacanciesUseCase
+import jobajob.feature.vacancies.usecase.GetPromoVacanciesUseCaseImpl
 import jobajob.feature.vacancies.usecase.GetVacanciesUseCase
 import jobajob.feature.vacancies.usecase.GetVacanciesUseCaseImpl
 import jobajob.library.network.logger.NetworkLogger
@@ -80,9 +85,20 @@ internal object VacanciesFeatureModule {
     fun provideVacancyMapper(vacancyMapper: VacancyMapper): Mapper<VacancyDto, Vacancy> = vacancyMapper
 
     @Provides
+    fun providePromoVacancyMapper(vacancyMapper: PromoVacancyMapper): Mapper<PromoVacancyDto, PromoVacancy> =
+        vacancyMapper
+
+    @Provides
     fun provideGetVacanciesUseCase(
         serverApi: VacanciesServerApi,
         vacancyMapper: Mapper<VacancyDto, Vacancy>,
         @FeatureInternal dispatcher: CoroutineDispatcher
     ): GetVacanciesUseCase = GetVacanciesUseCaseImpl(serverApi, vacancyMapper, dispatcher)
+
+    @Provides
+    fun provideGetPromoVacanciesUseCase(
+        serverApi: VacanciesServerApi,
+        vacancyMapper: Mapper<PromoVacancyDto, PromoVacancy>,
+        @FeatureInternal dispatcher: CoroutineDispatcher
+    ): GetPromoVacanciesUseCase = GetPromoVacanciesUseCaseImpl(serverApi, vacancyMapper, dispatcher)
 }

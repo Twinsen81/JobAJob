@@ -5,7 +5,8 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import jobajob.feature.vacancies.entity.VacanciesPage
+import jobajob.feature.vacancies.entity.DataPage
+import jobajob.feature.vacancies.entity.Vacancy
 import jobajob.feature.vacancies.usecase.GetVacanciesUseCase
 import jobajob.library.entity.common.Result
 
@@ -33,7 +34,7 @@ internal class VacanciesViewModel @ViewModelInject constructor(
         if (page is Result.Success) {
             emit(page.value)
         } else {
-            emit(VacanciesPage(emptyList(), null))
+            emit(DataPage<Vacancy>(emptyList(), null))
         }
     }
 }

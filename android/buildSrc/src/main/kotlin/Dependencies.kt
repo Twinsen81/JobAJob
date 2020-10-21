@@ -42,9 +42,9 @@ object Libraries {
     const val xLifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleKtx}"
     const val xLifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleKtx}"
     const val xLifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleKtx}"
-    const val xConstraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+    const val xConstraintLayout = "androidx.constraintlayout:constraintlayout:2.0.2"
     const val xPreference = "androidx.preference:preference:1.1.0"
-    const val xMaterial = "com.google.android.material:material:1.0.0"
+    const val xMaterial = "com.google.android.material:material:1.3.0-alpha03"
     const val xRecyclerView = "androidx.recyclerview:recyclerview:1.1.0"
     const val xPaging = "androidx.paging:paging-runtime:2.1.0"
 

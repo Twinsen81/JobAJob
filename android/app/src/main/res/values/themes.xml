@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main app theme (dark or light - depending on the app/system settings -->
+    <style name="Theme.JobAJob.Main" parent="Theme.JobAJob.Light" />
+
+    <!-- Light theme -->
+    <style name="Theme.JobAJob.Light" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/blue_700</item>
+        <item name="colorPrimaryVariant">@color/blue_800</item>
+        <item name="colorSecondary">@color/blgr_400</item>
+        <item name="colorSecondaryVariant">@color/blgr_700</item>
+
+        <item name="android:colorBackground">@color/blue_50</item>
+        <item name="colorSurface">@color/white_50</item>
+        <item name="colorError">@color/red_400</item>
+
+        <item name="colorOnPrimary">@color/white_50</item>
+        <item name="colorOnSecondary">@color/black_900</item>
+        <item name="colorOnBackground">@color/black_900</item>
+        <item name="colorOnSurface">@color/black_900</item>
+        <item name="colorOnError">@color/black_900</item>
+
+        <item name="bottomNavigationStyle">@style/Widget.JobAJob.BottomNavigationView</item>
+
+        <item name="emphasisHighAlpha">0.87</item>
+        <item name="emphasisMediumAlpha">0.60</item>
+        <item name="emphasisDisabledAlpha">0.38</item>
+
+        <item name="colorPrimarySurfaceVariant">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/blue_50_alpha_060</item>
+
+        <item name="fontFamily">@font/rubik</item>
+    </style>
+
+</resources>

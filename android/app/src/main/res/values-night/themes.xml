@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main app theme (dark or light - depending on the app/system settings -->
+    <style name="Theme.JobAJob.Main" parent="Theme.JobAJob.Dark" />
+
+    <!-- Dark theme - overrides the light theme's attributes for the dark mode look -->
+    <style name="Theme.JobAJob.Dark" parent="Theme.JobAJob.Light">
+        <item name="colorPrimary">@color/blue_200</item>
+        <item name="colorPrimaryVariant">@color/blue_300</item>
+        <item name="colorSecondary">@color/orange_300</item>
+        <item name="colorSecondaryVariant">@color/orange_300</item>
+
+        <item name="android:colorBackground">@color/black_900</item>
+        <item name="colorSurface">@color/black_800</item>
+        <item name="colorError">@color/red_200</item>
+
+        <item name="colorOnPrimary">@color/black_900</item>
+        <item name="colorOnSecondary">@color/black_900</item>
+        <item name="colorOnBackground">@color/white_50</item>
+        <item name="colorOnSurface">@color/white_50</item>
+        <item name="colorOnError">@color/black_900</item>
+
+        <item name="colorPrimarySurfaceVariant">?attr/colorSurface</item>
+        <item name="android:statusBarColor">@color/black_900_alpha_060</item>
+
+        <item name="elevationOverlayEnabled">true</item>
+    </style>
+
+</resources>

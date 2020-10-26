@@ -20,6 +20,8 @@ dependencies {
 
     // Misc
     implementation Libraries.kotlin
+    implementation Libraries.coroutinesCore
+    implementation Libraries.kotlinXDateTime
 
     // Tests
     testImplementation Libraries.testJunit

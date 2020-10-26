@@ -70,6 +70,9 @@ dependencies {
 
     // Misc
     implementation Libraries.kotlin
+    implementation Libraries.coroutinesCore
+    implementation Libraries.coroutinesAndroid
+    implementation Libraries.kotlinXDateTime
     implementation Libraries.fragNav
     debugImplementation Libraries.leakCanary
     implementation Libraries.timber

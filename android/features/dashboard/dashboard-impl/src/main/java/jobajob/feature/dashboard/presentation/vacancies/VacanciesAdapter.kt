@@ -1,3 +1,4 @@
+/*
 package jobajob.feature.dashboard.presentation.vacancies
 
 import android.view.LayoutInflater
@@ -37,4 +38,4 @@ internal class VacanciesAdapter(
         val item = getItem(position)
         item?.also { holder.onBind(item, ChangePayload(payloads)) }
     }
-}
+}*/

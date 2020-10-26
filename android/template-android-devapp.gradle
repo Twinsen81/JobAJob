@@ -28,6 +28,9 @@ dependencies {
 
     // Misc
     implementation Libraries.kotlin
+    implementation Libraries.kotlinXDateTime
+    implementation Libraries.coroutinesCore
+    implementation Libraries.coroutinesAndroid
     debugImplementation Libraries.leakCanary
     implementation Libraries.timber
 

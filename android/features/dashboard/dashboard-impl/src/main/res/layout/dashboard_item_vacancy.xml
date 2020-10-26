@@ -10,17 +10,17 @@
     android:layout_margin="8dp">
 
     <TextView
-        android:id="@+id/tvVacancySalary"
+        android:id="@+id/vacancySalary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvVacancyTitle"
+        app:layout_constraintTop_toBottomOf="@+id/vacancyTitle"
         tools:text="$100/mo" />
 
     <TextView
-        android:id="@+id/tvVacancyTitle"
+        android:id="@+id/vacancyTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -35,24 +35,13 @@
         tools:text="Android developer" />
 
     <TextView
-        android:id="@+id/tvVacancyCompany"
+        android:id="@+id/vacancyEmployerName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/tvVacancySalary"
+        app:layout_constraintEnd_toStartOf="@+id/vacancySalary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvVacancyTitle"
+        app:layout_constraintTop_toBottomOf="@+id/vacancyTitle"
         tools:text="ACME Inc." />
 
-    <TextView
-        android:id="@+id/tvVacancyDetails"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="serif"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvVacancyCompany"
-        tools:text="The vacancy details..." />
 </androidx.constraintlayout.widget.ConstraintLayout>

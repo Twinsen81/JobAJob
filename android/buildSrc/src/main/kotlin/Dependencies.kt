@@ -24,7 +24,7 @@ object Versions {
     const val lifecycleKtx = "2.3.0-alpha07"
     const val dagger = "2.29.1"
     const val hilt = "2.29.1-alpha"
-    const val coroutines = "1.3.9"
+    const val coroutines = "1.4.0-M1"
     const val retrofit = "2.9.0"
     const val okhttp = "4.9.0"
     const val flipper = "0.48.0"
@@ -33,6 +33,7 @@ object Versions {
 object Libraries {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val kotlinXSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0"
+    const val kotlinXDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.0"
 
     // AndroidX
     const val xAppCompat = "androidx.appcompat:appcompat:${Versions.androidX}"
@@ -45,7 +46,7 @@ object Libraries {
     const val xConstraintLayout = "androidx.constraintlayout:constraintlayout:2.0.2"
     const val xPreference = "androidx.preference:preference:1.1.0"
     const val xMaterial = "com.google.android.material:material:1.3.0-alpha03"
-    const val xRecyclerView = "androidx.recyclerview:recyclerview:1.1.0"
+    const val xRecyclerView = "androidx.recyclerview:recyclerview:1.2.0-alpha06"
     const val xPaging = "androidx.paging:paging-runtime:2.1.0"
 
     //Room

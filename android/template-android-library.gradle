@@ -44,6 +44,8 @@ dependencies {
 
     // Misc
     implementation Libraries.kotlin
+    implementation Libraries.coroutinesCore
+    implementation Libraries.kotlinXDateTime
     implementation Libraries.timber
 
     // Tests

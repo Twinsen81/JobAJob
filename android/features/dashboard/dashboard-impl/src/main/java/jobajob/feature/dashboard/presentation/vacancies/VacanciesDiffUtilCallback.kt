@@ -1,3 +1,4 @@
+/*
 package jobajob.feature.dashboard.presentation.vacancies
 
 import android.os.Bundle
@@ -22,13 +23,16 @@ internal class VacanciesDiffUtilCallback : DiffUtil.ItemCallback<Vacancy>() {
 
         with(newItem) {
 
-            /* if (title != oldItem.title || employer != oldItem.employer
+            */
+/* if (title != oldItem.title || employer != oldItem.employer
              ) diffBundle.putBoolean(TITLES, false)
 
              if (details != oldItem.details)
-                 diffBundle.putBoolean(DETAILS, false)*/
+                 diffBundle.putBoolean(DETAILS, false)*//*
+
         }
 
         return diffBundle
     }
 }
+*/

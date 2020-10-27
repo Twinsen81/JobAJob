@@ -33,4 +33,16 @@ internal class GetVacanciesUseCaseImpl(
             }
         }
     }
+
+    override suspend fun getVacancy(vacancyId: String): VacancyResult {
+        return withContext(dispatcher) {
+            try {
+                val vacancyDto = serverApi.getVacancy(vacancyId)
+                val vacancy = vacancyMapper.map(vacancyDto.apply { id = vacancyId })
+                Result.Success(vacancy)
+            } catch (e: Throwable) {
+                Result.Error(Failure.ServerError(e))
+            }
+        }
+    }
 }

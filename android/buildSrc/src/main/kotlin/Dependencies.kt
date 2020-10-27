@@ -24,7 +24,7 @@ object Versions {
     const val lifecycleKtx = "2.3.0-alpha07"
     const val dagger = "2.29.1"
     const val hilt = "2.29.1-alpha"
-    const val coroutines = "1.4.0-M1"
+    const val coroutines = "1.4.0"
     const val retrofit = "2.9.0"
     const val okhttp = "4.9.0"
     const val flipper = "0.48.0"

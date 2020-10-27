@@ -1,9 +1,7 @@
 package jobajob.feature.dashboard.presentation.vacancies
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -23,12 +21,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-internal class VacanciesFragment : Fragment() {
+internal class VacanciesFragment : Fragment(R.layout.dashboard_fragment_vacancies) {
 
     @ExperimentalCoroutinesApi
     private val viewModel: VacanciesViewModel by viewModels()
@@ -42,31 +41,23 @@ internal class VacanciesFragment : Fragment() {
     @Inject
     lateinit var screenNavigator: ScreenNavigator
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
 
         lifecycleScope.launchWhenStarted {
             viewModel.state
                 .onEach { renderState(it) }
                 .catch { Timber.e(it, "Error processing a state from ViewModel") }
                 .collect()
+        }
 
+        lifecycleScope.launchWhenStarted {
             viewModel.event
                 .onEach { processEvent(it) }
                 .catch { Timber.e(it, "Error processing an event from ViewModel") }
                 .collect()
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.dashboard_fragment_vacancies, container, false)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
     }
 
     private fun setupRecyclerView() {
@@ -75,10 +66,12 @@ internal class VacanciesFragment : Fragment() {
         vacanciesRecyclerView.layoutManager = recyclerViewLayoutManager
 
         headerAdapter = HeaderAdapter()
+
         vacanciesAdapter = VacanciesAdapter { clickedVacancyId ->
-//            AnalyticsViewVacancyEvent(clickedVacancyId)
-//            screenNavigator.navigateTo(VacancyDetailFragment.newInstance(clickedVacancyId))
+            executeAction(VacanciesViewAction.VacancyClicked(clickedVacancyId))
         }
+        vacanciesAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+
         concatAdapter = ConcatAdapter(headerAdapter, vacanciesAdapter)
 
         vacanciesRecyclerView.adapter = concatAdapter
@@ -93,12 +86,19 @@ internal class VacanciesFragment : Fragment() {
     private fun processEvent(event: VacanciesViewModelEvent) {
         return when (event) {
             is VacanciesViewModelEvent.DisplayError -> showSnack(event.text)
-            is VacanciesViewModelEvent.DisplayVacancy ->
+            is VacanciesViewModelEvent.DisplayVacancy -> {
                 screenNavigator.navigateTo(VacancyDetailFragment.newInstance(event.vacancyId))
+            }
         }
     }
 
     private fun showSnack(text: String) {
         view?.also { Snackbar.make(it, text, Snackbar.LENGTH_SHORT).show() }
+    }
+
+    private fun executeAction(action: VacanciesViewAction) {
+        lifecycleScope.launch {
+            viewModel.action.emit(action)
+        }
     }
 }

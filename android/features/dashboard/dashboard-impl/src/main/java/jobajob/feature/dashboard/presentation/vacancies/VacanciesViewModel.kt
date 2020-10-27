@@ -12,9 +12,11 @@ import jobajob.feature.vacancies.entity.Vacancy
 import jobajob.feature.vacancies.usecase.GetVacanciesUseCase
 import jobajob.library.entity.common.Failure
 import jobajob.library.entity.common.Result
+import jobajob.library.uicomponents.analytics.AnalyticsViewVacancyEvent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 @ExperimentalCoroutinesApi
@@ -29,17 +31,25 @@ internal class VacanciesViewModel @ViewModelInject constructor(
     private val mutableEvent = MutableSharedFlow<VacanciesViewModelEvent>()
     val event: SharedFlow<VacanciesViewModelEvent> get() = mutableEvent.asSharedFlow()
 
+    val action = MutableSharedFlow<VacanciesViewAction>()
+
     init {
+        viewModelScope.launch {
+            action
+                .onEach { processAction(it) }
+                .catch { Timber.e(it, "Error while processing an action from View") }
+                .collect()
+        }
         loadVacancies()
     }
 
     private fun loadVacancies() {
         setLoadingState()
         viewModelScope.launch {
+            Timber.d("REQUESTING DATA")
             val page = getVacanciesUseCase.getVacancies(null, null)
             if (page is Result.Success) {
                 mutableState.value = mapSuccessToViewState(mutableState.value, page.value.data)
-                mutableEvent.emit(VacanciesViewModelEvent.DisplayError("OKK"))
             } else {
                 mutableState.value = mapErrorToViewState(mutableState.value, (page as Result.Error<Failure>).error)
             }
@@ -76,10 +86,20 @@ internal class VacanciesViewModel @ViewModelInject constructor(
         }
     }
 
-
     private suspend fun mapErrorToViewState(oldState: VacanciesViewState, error: Failure): VacanciesViewState {
         setLoadingState(false)
         mutableEvent.emit(VacanciesViewModelEvent.DisplayError("Something went wrong"))
         return oldState.copy(loading = false)
+    }
+
+    private fun processAction(action: VacanciesViewAction) {
+        viewModelScope.launch {
+            return@launch when (action) {
+                is VacanciesViewAction.VacancyClicked -> {
+                    AnalyticsViewVacancyEvent.invoke(action.vacancyId)
+                    mutableEvent.emit(VacanciesViewModelEvent.DisplayVacancy(action.vacancyId))
+                }
+            }
+        }
     }
 }

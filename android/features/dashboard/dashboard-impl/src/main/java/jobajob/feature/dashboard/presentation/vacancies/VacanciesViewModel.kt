@@ -5,10 +5,6 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import jobajob.feature.dashboard.presentation.vacancies.adapter.header.HeaderItem
-import jobajob.feature.dashboard.presentation.vacancies.adapter.vacancies.VacancyItem
-import jobajob.feature.vacancies.entity.SalaryType
-import jobajob.feature.vacancies.entity.Vacancy
 import jobajob.feature.vacancies.usecase.GetVacanciesUseCase
 import jobajob.library.entity.common.Failure
 import jobajob.library.entity.common.Result
@@ -18,78 +14,55 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-
 @ExperimentalCoroutinesApi
 internal class VacanciesViewModel @ViewModelInject constructor(
     private val getVacanciesUseCase: GetVacanciesUseCase,
+    private val viewStateMapper: VacanciesViewStateMapper,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val mutableState = MutableStateFlow(VacanciesViewState.emptyLoading)
+    private val currentState: VacanciesViewState get() = mutableState.value
     val state: StateFlow<VacanciesViewState> get() = mutableState
 
     private val mutableEvent = MutableSharedFlow<VacanciesViewModelEvent>()
-    val event: SharedFlow<VacanciesViewModelEvent> get() = mutableEvent.asSharedFlow()
 
+    val event: SharedFlow<VacanciesViewModelEvent> get() = mutableEvent.asSharedFlow()
     val action = MutableSharedFlow<VacanciesViewAction>()
 
     init {
-        viewModelScope.launch {
-            action
-                .onEach { processAction(it) }
-                .catch { Timber.e(it, "Error while processing an action from View") }
-                .collect()
-        }
+        observeViewActions()
         loadVacancies()
     }
 
     private fun loadVacancies() {
         setLoadingState()
         viewModelScope.launch {
-            Timber.d("REQUESTING DATA")
             val page = getVacanciesUseCase.getVacancies(null, null)
             if (page is Result.Success) {
-                mutableState.value = mapSuccessToViewState(mutableState.value, page.value.data)
+                mutableState.value = viewStateMapper.map(currentState, page.value.data)
             } else {
-                mutableState.value = mapErrorToViewState(mutableState.value, (page as Result.Error<Failure>).error)
+                handleError((page as Result.Error<Failure>).error)
             }
         }
     }
 
-    private fun setLoadingState(isLoading: Boolean = true) {
-        mutableState.value = mutableState.value.copy(loading = isLoading)
-    }
-
-    private fun mapSuccessToViewState(oldState: VacanciesViewState, vacancies: List<Vacancy>): VacanciesViewState {
-        return VacanciesViewState(
-            loading = false,
-            header = HeaderItem("Vacancies"),
-            vacancies = vacancies.map {
-                VacancyItem(
-                    id = it.id,
-                    title = it.title,
-                    city = it.city,
-                    salary = getVacancySalary(it.salaryType, it.salaryMin, it.salaryMax),
-                    employerName = "",
-                    isFavorite = false
-                )
-            }
-        )
-    }
-
-    private fun getVacancySalary(salaryType: SalaryType?, salaryMin: Int?, salaryMax: Int?): String? {
-        return when {
-            (salaryType == null || (salaryMin == null && salaryMax == null)) -> null
-            salaryMin == null -> "up to $salaryMax"
-            salaryMax == null -> "from $salaryMin"
-            else -> "$salaryMin - $salaryMax (${salaryType})"
-        }
-    }
-
-    private suspend fun mapErrorToViewState(oldState: VacanciesViewState, error: Failure): VacanciesViewState {
-        setLoadingState(false)
+    private suspend fun handleError(error: Failure) {
+        mutableState.value = viewStateMapper.map(currentState, error)
         mutableEvent.emit(VacanciesViewModelEvent.DisplayError("Something went wrong"))
-        return oldState.copy(loading = false)
+    }
+
+    private fun setLoadingState() {
+        mutableState.value = viewStateMapper.map(currentState, true)
+    }
+
+    private fun observeViewActions() {
+        viewModelScope.launch {
+            action
+                .onEach { processAction(it) }
+                .catch { Timber.e(it, "Error while processing an action from View") }
+                .collect()
+        }
     }
 
     private fun processAction(action: VacanciesViewAction) {

@@ -1,21 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Toolbar">
-        <item name="navigationIcon">@drawable/ic_arrow_back</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">?attr/actionBarSize</item>
-        <item name="titleTextAppearance">@style/Toolbar.Title</item>
-        <item name="titleTextColor">@color/icons</item>
-        <item name="android:background">@color/primary</item>
-        <item name="navigationIconColor">@color/icons</item>
-    </style>
+<resources>
 
-    <style name="Toolbar.Title">
-        <item name="textAllCaps">true</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/icons</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:letterSpacing" tools:targetApi="lollipop">0.07</item>
-        <item name="android:lineSpacingExtra">10sp</item>
+    <style name="Widget.JobAJob.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="navigationIcon">@drawable/ic_arrow_back</item>
+        <item name="navigationIconColor">?attr/colorOnPrimary</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="titleTextAppearance">?attr/textAppearanceHeadline6</item>
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
     </style>
 </resources>

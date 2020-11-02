@@ -1,0 +1,19 @@
+<resources>
+
+    <style name="Widget.JobAJob.FavoriteButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="ThemeOverlay.JobAJob.VacancyCard" parent="">
+        <item name="shapeAppearance">@style/ShapeAppearance.JobAJob.VacancyCard</item>
+    </style>
+
+    <style name="ShapeAppearance.JobAJob.VacancyCard" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+    </style>
+</resources>

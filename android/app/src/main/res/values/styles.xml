@@ -1,5 +1,4 @@
 <resources>
-
     <style name="Widget.JobAJob.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="labelVisibilityMode">labeled</item>
         <item name="itemIconTint">@color/bottom_navigation</item>

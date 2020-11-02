@@ -45,14 +45,14 @@ internal class VacanciesFragment : Fragment(R.layout.dashboard_fragment_vacancie
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
-        lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.state
                 .onEach { renderState(it) }
                 .catch { Timber.e(it, "Error processing a state from ViewModel") }
                 .collect()
         }
 
-        lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.event
                 .onEach { processEvent(it) }
                 .catch { Timber.e(it, "Error processing an event from ViewModel") }
@@ -79,8 +79,11 @@ internal class VacanciesFragment : Fragment(R.layout.dashboard_fragment_vacancie
     }
 
     private fun renderState(state: VacanciesViewState) {
-        headerAdapter.submitList(listOf(state.header))
+        headerAdapter.submitList(
+            if (state.header != null) listOf(state.header) else emptyList()
+        )
         vacanciesAdapter.submitList(state.vacancies)
+        vacanciesLoadingView.visibility = if (state.loading) View.VISIBLE else View.GONE
     }
 
     private fun processEvent(event: VacanciesViewModelEvent) {

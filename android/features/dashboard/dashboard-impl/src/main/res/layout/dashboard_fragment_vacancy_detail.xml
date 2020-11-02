@@ -6,16 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <jobajob.library.uicomponents.widget.Toolbar
-        style="@style/Toolbar"
+    <com.google.android.material.appbar.MaterialToolbar
+        style="@style/Widget.JobAJob.Toolbar"
         android:id="@+id/vacancyDetailToolbar"
-        android:tag="jobajob.library.uicomponents.widget.Toolbar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="ВАКАНСИЯ" />
+        app:title="@string/vacancy_detail_title" />
 
     <TextView
         android:id="@+id/vacancyDetailTitle"

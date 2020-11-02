@@ -30,6 +30,7 @@ dependencies {
     implementation Libraries.xConstraintLayout
     implementation Libraries.xLifecycle
     implementation Libraries.xLifecycleViewModel
+    implementation Libraries.xMaterial
     implementation Libraries.xLifecycleLiveData
     implementation Libraries.xLifecycleRuntime
 

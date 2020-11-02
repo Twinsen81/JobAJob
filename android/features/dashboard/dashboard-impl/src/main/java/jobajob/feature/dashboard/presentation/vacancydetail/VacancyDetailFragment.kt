@@ -54,7 +54,9 @@ internal class VacancyDetailFragment : Fragment(R.layout.dashboard_fragment_vaca
 
         screenNavigator.hideNavigation()
 
-        vacancyDetailToolbar.backNavigationListener = { screenNavigator.goBack() }
+        vacancyDetailToolbar.setNavigationOnClickListener {
+            screenNavigator.goBack()
+        }
     }
 
     private fun renderState(state: VacancyDetailViewState) {

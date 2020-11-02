@@ -16,6 +16,5 @@ internal class HeaderAdapter : ListAdapter<ItemWithId, HeaderViewHolder>(ItemWit
 
     override fun onBindViewHolder(holder: HeaderViewHolder, position: Int) {
         (getItem(position) as? HeaderItem)?.also { holder.onBind(it) }
-
     }
 }

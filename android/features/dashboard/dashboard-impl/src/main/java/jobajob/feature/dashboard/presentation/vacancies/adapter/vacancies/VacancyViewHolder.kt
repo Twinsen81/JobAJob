@@ -26,7 +26,16 @@ internal class VacancyViewHolder(
 
             vacancyTitle.text = item.title
             vacancyEmployerName.text = item.employerName
-            vacancySalary.text = item.salary.orEmpty()
+            vacancyCity.text = item.city
+            if (item.salary != null) {
+                vacancySalary.text = item.salary
+                vacancySalary.visibility = View.VISIBLE
+                vacancyCitySeparator.visibility = View.VISIBLE
+            } else {
+                vacancySalary.text = ""
+                vacancySalary.visibility = View.GONE
+                vacancyCitySeparator.visibility = View.GONE
+            }
         }
 
         if (updated(VacancyDiffUtilCallback.FAVORITE)) {

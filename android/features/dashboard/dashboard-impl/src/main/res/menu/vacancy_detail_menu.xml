@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/vacancyDetailFavorite"
+        android:icon="@drawable/vacancy_favorite_not"
+        android:title="Favorite"
+        android:checkable="true"
+        android:visible="true"
+        app:showAsAction="always" />
+</menu>

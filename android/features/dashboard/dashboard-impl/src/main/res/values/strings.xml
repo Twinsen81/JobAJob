@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="vacancy_detail_title">Vacancy</string>
+    <string name="vacancy_detail_salary_no">Salary: not specified</string>
+    <string name="vacancy_detail_salary">Salary: %s - %s</string>
+    <string name="vacancy_detail_salary_up_to">Salary: up to %s</string>
+    <string name="vacancy_detail_salary_from">Salary: from %s</string>
+    <string name="vacancy_detail_experience">Required experience: %s</string>
+    <string name="vacancy_detail_schedule">Work schedule: %s</string>
 </resources>

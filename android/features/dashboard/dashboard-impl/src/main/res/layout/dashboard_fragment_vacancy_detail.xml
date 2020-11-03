@@ -7,24 +7,63 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.MaterialToolbar
-        style="@style/Widget.JobAJob.Toolbar"
         android:id="@+id/vacancyDetailToolbar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="@string/vacancy_detail_title" />
+        android:layout_width="match_parent"
+        app:menu="@menu/vacancy_detail_menu" />
 
-    <TextView
-        android:id="@+id/vacancyDetailTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="VACANCY"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="32dp"
+        android:background="?attr/colorPrimarySurfaceVariant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/vacancyDetailToolbar">
 
+        <TextView
+            android:id="@+id/vacancyDetailCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody2"
+            tools:text="London" />
 
+        <TextView
+            android:id="@+id/vacancyDetailTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            tools:text="Android developer" />
+
+        <TextView
+            android:id="@+id/vacancyDetailSalary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            tools:text="Not specified" />
+
+        <TextView
+            android:id="@+id/vacancyDetailExperience"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            tools:text="1-3 years" />
+
+        <TextView
+            android:id="@+id/vacancyDetailSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            tools:text="Remote" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

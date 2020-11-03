@@ -20,5 +20,8 @@ internal sealed class VacancyDetailViewState {
     /**
      * The data - the complete info about the requested vacancy
      */
-    data class Data(val vacancy: Vacancy) : VacancyDetailViewState()
+    data class Data(
+        val vacancy: Vacancy,
+        val isFavorite: Boolean,
+    ) : VacancyDetailViewState()
 }

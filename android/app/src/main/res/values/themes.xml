@@ -8,6 +8,7 @@
     <style name="Theme.JobAJob.Light" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/blue_700</item>
         <item name="colorPrimaryVariant">@color/blue_800</item>
+        <item name="colorPrimarySurfaceVariant">@color/blue_200</item>
         <item name="colorSecondary">@color/blgr_400</item>
         <item name="colorSecondaryVariant">@color/blgr_700</item>
 
@@ -22,6 +23,7 @@
         <item name="colorOnError">@color/black_900</item>
 
         <item name="bottomNavigationStyle">@style/Widget.JobAJob.BottomNavigationView</item>
+        <item name="toolbarStyle">@style/Widget.JobAJob.Toolbar</item>
 
         <item name="emphasisHighAlpha">0.87</item>
         <item name="emphasisMediumAlpha">0.60</item>

@@ -30,7 +30,7 @@ internal class VacancyDetailViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             val result = getVacanciesUseCase.getVacancy(vacancyId)
             if (result is Result.Success) {
-                mutableState.value = VacancyDetailViewState.Data(result.value)
+                mutableState.value = VacancyDetailViewState.Data(result.value, false)
             } else {
                 mutableState.value = VacancyDetailViewState.Error("Something went wrong")
             }

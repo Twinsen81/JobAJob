@@ -1,0 +1,6 @@
+<resources>
+
+    <style name="ThemeOverlay.JobAJob.VacancyCard" parent="">
+        <item name="shapeAppearance">@style/ShapeAppearance.JobAJob.VacancyCard</item>
+    </style>
+</resources>

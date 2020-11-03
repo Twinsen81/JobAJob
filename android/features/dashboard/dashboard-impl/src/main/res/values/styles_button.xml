@@ -1,0 +1,5 @@
+<resources>
+    <style name="Widget.JobAJob.FavoriteButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+</resources>

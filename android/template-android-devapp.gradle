@@ -33,6 +33,7 @@ dependencies {
     implementation Libraries.coroutinesAndroid
     debugImplementation Libraries.leakCanary
     implementation Libraries.timber
+    implementation Libraries.coil
 
     // Tests
     testImplementation Libraries.testJunit

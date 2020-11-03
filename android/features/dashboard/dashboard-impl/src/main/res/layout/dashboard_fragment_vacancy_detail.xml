@@ -16,12 +16,13 @@
         app:menu="@menu/vacancy_detail_menu" />
 
     <LinearLayout
+        android:id="@+id/vacancyDetailMainInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="8dp"
         android:paddingHorizontal="16dp"
-        android:paddingBottom="32dp"
+        android:paddingBottom="48dp"
         android:background="?attr/colorPrimarySurfaceVariant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,4 +67,16 @@
             android:textAppearance="?attr/textAppearanceBody1"
             tools:text="Remote" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/vacancyDetailEmployerLogo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="@id/vacancyDetailMainInfo"
+        app:layout_constraintTop_toBottomOf="@id/vacancyDetailMainInfo"
+        app:layout_constraintBottom_toBottomOf="@id/vacancyDetailMainInfo"
+        tools:ignore="ContentDescription" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

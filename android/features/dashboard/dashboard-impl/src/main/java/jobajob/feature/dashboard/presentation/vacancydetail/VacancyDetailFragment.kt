@@ -9,6 +9,8 @@ import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import coil.load
+import coil.transform.CircleCropTransformation
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.R
 import jobajob.feature.vacancies.entity.SalaryType
@@ -100,6 +102,9 @@ internal class VacancyDetailFragment : Fragment(R.layout.dashboard_fragment_vaca
             vacancyDetailSalary.text = getVacancySalary(vacancy.salaryType, vacancy.salaryMin, vacancy.salaryMax)
             vacancyDetailExperience.text = resources.getString(R.string.vacancy_detail_experience, vacancy.experience)
             vacancyDetailSchedule.text = resources.getString(R.string.vacancy_detail_schedule, vacancy.schedule)
+            vacancyDetailEmployerLogo.load(vacancy.employer.logoUrl) {
+                transformations(CircleCropTransformation())
+            }
             renderFavoriteState(isFavorite)
         }
     }
@@ -110,7 +115,7 @@ internal class VacancyDetailFragment : Fragment(R.layout.dashboard_fragment_vaca
                 resources.getString(R.string.vacancy_detail_salary_no)
             salaryMin == null -> resources.getString(R.string.vacancy_detail_salary_up_to, salaryMax.toString())
             salaryMax == null -> resources.getString(R.string.vacancy_detail_salary_from, salaryMin.toString())
-            else -> resources.getString(R.string.vacancy_detail_salary_up_to, salaryMin, salaryMax)
+            else -> resources.getString(R.string.vacancy_detail_salary_up_to, salaryMax.toString())
         }
     }
 

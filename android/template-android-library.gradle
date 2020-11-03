@@ -48,6 +48,7 @@ dependencies {
     implementation Libraries.coroutinesCore
     implementation Libraries.kotlinXDateTime
     implementation Libraries.timber
+    implementation Libraries.coil
 
     // Tests
     testImplementation Libraries.testJunit

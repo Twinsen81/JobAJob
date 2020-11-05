@@ -105,6 +105,8 @@ internal class VacancyDetailFragment : Fragment(R.layout.dashboard_fragment_vaca
             vacancyDetailEmployerLogo.load(vacancy.employer.logoUrl) {
                 transformations(CircleCropTransformation())
             }
+            vacancyDetailEmployerName.text = vacancy.employer.name
+            vacancyDetailDescription.text = vacancy.description
             renderFavoriteState(isFavorite)
         }
     }

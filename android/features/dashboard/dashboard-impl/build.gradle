@@ -26,6 +26,9 @@ dependencies {
     implementation Libraries.xMaterial
     implementation Libraries.xPaging
 
+    // Misc
+    implementation Libraries.flexbox
+
     // Project's libraries
     api project(Modules.libraryCore)
     implementation project(Modules.libraryUiComponents)

@@ -6,4 +6,5 @@
     <string name="vacancy_detail_salary_from">Salary: from %s</string>
     <string name="vacancy_detail_experience">Required experience: %s</string>
     <string name="vacancy_detail_schedule">Work schedule: %s</string>
+    <string name="vacancy_detail_skills">Required skills</string>
 </resources>

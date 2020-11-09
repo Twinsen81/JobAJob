@@ -91,6 +91,7 @@ object Libraries {
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.4"
     const val fragNav = "com.ncapdevi:frag-nav:3.2.0"
     const val coil = "io.coil-kt:coil:1.0.0"
+    const val flexbox = "com.google.android:flexbox:2.0.1"
 
     // Tests
     const val testJunit = "junit:junit:4.13"

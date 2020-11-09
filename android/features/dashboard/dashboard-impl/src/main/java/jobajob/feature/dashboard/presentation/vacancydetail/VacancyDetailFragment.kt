@@ -3,6 +3,8 @@ package jobajob.feature.dashboard.presentation.vacancydetail
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.TypedValue
 import android.view.View
 import androidx.core.content.res.use
 import androidx.core.view.MenuItemCompat
@@ -11,6 +13,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import coil.transform.CircleCropTransformation
+import com.google.android.flexbox.FlexboxLayout
+import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import jobajob.feature.dashboard.R
 import jobajob.feature.vacancies.entity.SalaryType
@@ -22,6 +26,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 internal class VacancyDetailFragment : Fragment(R.layout.dashboard_fragment_vacancy_detail) {
@@ -89,9 +94,15 @@ internal class VacancyDetailFragment : Fragment(R.layout.dashboard_fragment_vaca
 
     private fun renderState(state: VacancyDetailViewState) {
         when (state) {
-            is VacancyDetailViewState.Loading -> "Loading..."
-            is VacancyDetailViewState.Data -> renderVacancy(state)
-            is VacancyDetailViewState.Error -> "Oops... Error"
+            is VacancyDetailViewState.Loading -> {
+                vacancyDetailLoadingView.visibility = View.VISIBLE
+            }
+            is VacancyDetailViewState.Data -> {
+                vacancyDetailLoadingView.visibility = View.GONE
+                renderVacancy(state)
+            }
+            is VacancyDetailViewState.Error -> {
+            }
         }
     }
 
@@ -103,11 +114,36 @@ internal class VacancyDetailFragment : Fragment(R.layout.dashboard_fragment_vaca
             vacancyDetailExperience.text = resources.getString(R.string.vacancy_detail_experience, vacancy.experience)
             vacancyDetailSchedule.text = resources.getString(R.string.vacancy_detail_schedule, vacancy.schedule)
             vacancyDetailEmployerLogo.load(vacancy.employer.logoUrl) {
+                placeholder(R.drawable.vacancy_detail_logo_placeholder)
                 transformations(CircleCropTransformation())
             }
             vacancyDetailEmployerName.text = vacancy.employer.name
             vacancyDetailDescription.text = vacancy.description
             renderFavoriteState(isFavorite)
+            renderRequiredSkills(vacancy.skills)
+        }
+    }
+
+    private fun renderRequiredSkills(skills: List<String>) {
+        if (skills.isEmpty()) {
+            vacancyDetailSkillsContainer.visibility = View.GONE
+            return
+        } else {
+            vacancyDetailSkills.removeAllViews()
+            vacancyDetailSkillsContainer.visibility = View.VISIBLE
+            skills.forEach { skill ->
+                val chip = Chip(context)
+                chip.maxLines = 1
+                chip.ellipsize = TextUtils.TruncateAt.END
+                chip.chipMinHeight = dp2pixels(32)
+                chip.text = skill
+                chip.chipStartPadding = dp2pixels(2)
+                chip.chipEndPadding = dp2pixels(2)
+                vacancyDetailSkills.addView(chip)
+                val lp = chip.layoutParams as FlexboxLayout.LayoutParams
+                lp.rightMargin = dp2pixels(8).roundToInt()
+                chip.layoutParams = lp
+            }
         }
     }
 
@@ -127,4 +163,13 @@ internal class VacancyDetailFragment : Fragment(R.layout.dashboard_fragment_vaca
             item, ColorStateList.valueOf(if (isFavorite) vacancyIsFavoriteColor else vacancyIsNotFavoriteColor)
         )
     }
+
+    fun dp2pixels(dp: Int): Float {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dp.toFloat(),
+            requireContext().resources.displayMetrics
+        )
+    }
+
 }

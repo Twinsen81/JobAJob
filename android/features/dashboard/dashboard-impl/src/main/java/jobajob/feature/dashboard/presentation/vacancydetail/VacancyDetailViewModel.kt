@@ -27,6 +27,7 @@ internal class VacancyDetailViewModel @ViewModelInject constructor(
     }
 
     private fun loadVacancy() {
+
         viewModelScope.launch {
             val result = getVacanciesUseCase.getVacancy(vacancyId)
             if (result is Result.Success) {
